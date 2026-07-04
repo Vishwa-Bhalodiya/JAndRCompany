@@ -109,11 +109,7 @@ function Services() {
 
                                 </p>
 
-                                <button className="service-btn">
-
-                                    Learn More
-
-                                </button>
+                                
 
                             </motion.div>
 

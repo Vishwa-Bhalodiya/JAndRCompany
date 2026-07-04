@@ -13,11 +13,11 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 
     # Apps
+    path("api/home/", include("home.urls")),
     path("api/properties/", include("properties.urls")),
     path("api/users/", include("users.urls")),
-    path("api/agents/", include("agents.urls")),
     path("api/inquiries/", include("inquiries.urls")),
-    path("api/reviews/", include("reviews.urls")),
+   
 
     # JWT
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),

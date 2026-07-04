@@ -1,6 +1,9 @@
 import "./PropertySearch.css";
 
-function PropertySearch() {
+function PropertySearch({
+    locations = [],
+    propertyTypes = []
+}) {
 
     return (
 
@@ -10,87 +13,67 @@ function PropertySearch() {
 
                 <div className="row g-3">
 
-                    <div className="col-lg-2">
+                    <div className="col-lg-3">
 
                         <select className="form-select">
 
-                            <option>Location</option>
+                            <option value="">
+                                Select Location
+                            </option>
 
-                            <option>Ahmedabad</option>
+                            {locations.map((location) => (
 
-                            <option>Rajkot</option>
+                                <option
+                                    key={location}
+                                    value={location}
+                                >
+                                    {location}
+                                </option>
 
-                            <option>Surat</option>
-
-                            <option>Junagadh</option>
+                            ))}
 
                         </select>
 
                     </div>
 
-                    <div className="col-lg-2">
+                    <div className="col-lg-3">
 
                         <select className="form-select">
 
-                            <option>Property Type</option>
+                            <option value="">
+                                Property Type
+                            </option>
 
-                            <option>Apartment</option>
+                            {propertyTypes.map((type) => (
 
-                            <option>Villa</option>
+                                <option
+                                    key={type}
+                                    value={type}
+                                >
+                                    {type}
+                                </option>
 
-                            <option>Office</option>
-
-                            <option>Plot</option>
+                            ))}
 
                         </select>
 
                     </div>
 
-                    <div className="col-lg-2">
+                    <div className="col-lg-3">
 
                         <select className="form-select">
 
-                            <option>Price</option>
+                            <option>For Sale</option>
 
-                            <option>₹20L - ₹50L</option>
+                            <option>For Rent</option>
 
-                            <option>₹50L - ₹1Cr</option>
-
-                            <option>₹1Cr+</option>
+                            <option>Sold</option>
 
                         </select>
 
                     </div>
 
-                    <div className="col-lg-2">
-
-                        <select className="form-select">
-
-                            <option>Bedrooms</option>
-
-                            <option>1 BHK</option>
-
-                            <option>2 BHK</option>
-
-                            <option>3 BHK</option>
-
-                            <option>4 BHK+</option>
-
-                        </select>
-
-                    </div>
-
-                    <div className="col-lg-2">
-
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Area (Sq Ft)"
-                        />
-
-                    </div>
-
-                    <div className="col-lg-2">
+                    <div className="col-lg-3">
 
                         <button className="search-btn">
 

@@ -1,18 +1,29 @@
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getUser, logout } from "../../services/auth";
 
 function Navbar() {
+    const navigate = useNavigate();
+
+    const user = getUser();
+
+    const handleLogout = () => {
+        logout();
+        navigate("/");
+        window.location.reload();
+    };
+
     return (
         <nav className="navbar navbar-expand-lg">
 
             <div className="container">
 
-                {/* Company Name */}
+                {/* Company Logo */}
                 <Link className="navbar-brand company-logo" to="/">
                     J & R Company
                 </Link>
 
-                {/* Mobile Toggle Button */}
+                {/* Mobile Toggle */}
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -25,8 +36,10 @@ function Navbar() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
-                {/* Navbar Menu */}
-                <div className="collapse navbar-collapse" id="navbarMenu">
+                <div
+                    className="collapse navbar-collapse"
+                    id="navbarMenu"
+                >
 
                     <ul className="navbar-nav ms-auto align-items-lg-center">
 
@@ -49,12 +62,6 @@ function Navbar() {
                         </li>
 
                         <li className="nav-item">
-                            <Link className="nav-link" to="/agents">
-                                Agents
-                            </Link>
-                        </li>
-
-                        <li className="nav-item">
                             <Link className="nav-link" to="/contact">
                                 Contact
                             </Link>
@@ -64,9 +71,21 @@ function Navbar() {
 
                     <div className="d-flex ms-lg-4 mt-3 mt-lg-0">
 
-                        <Link to="/login" className="login-btn">
-                            Login
-                        </Link>
+                        {user ? (
+                            <button
+                                className="login-btn"
+                                onClick={handleLogout}
+                            >
+                                Logout
+                            </button>
+                        ) : (
+                            <Link
+                                to="/login"
+                                className="login-btn"
+                            >
+                                Login
+                            </Link>
+                        )}
 
                     </div>
 

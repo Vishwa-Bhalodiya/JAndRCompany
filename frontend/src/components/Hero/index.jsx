@@ -2,13 +2,11 @@ import "./Hero.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-function Hero() {
+function Hero({ hero }) {
     return (
         <section className="hero">
-
             <div className="container">
 
-                {/* Hero Content Animation */}
                 <motion.div
                     className="hero-content"
                     initial={{ opacity: 0, y: 80 }}
@@ -23,34 +21,38 @@ function Hero() {
                         className="hero-subtitle"
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2, duration: 0.6 }}
+                        transition={{
+                            delay: 0.2,
+                            duration: 0.6
+                        }}
                     >
-                        WELCOME TO J & R COMPANY
+                        {hero.subtitle}
                     </motion.p>
 
                     <motion.h1
                         className="hero-title"
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 0.8 }}
+                        transition={{
+                            delay: 0.4,
+                            duration: 0.8
+                        }}
                     >
-                        Find Your <span>Dream Property</span>
-                        <br />
-                        With Confidence
+                        {hero.title}
                     </motion.h1>
 
                     <motion.p
                         className="hero-description"
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6, duration: 0.8 }}
+                        transition={{
+                            delay: 0.6,
+                            duration: 0.8
+                        }}
                     >
-                        Discover premium apartments, luxury villas,
-                        commercial spaces, and investment properties
-                        across India with J & R Company.
+                        {hero.description}
                     </motion.p>
 
-                    {/* Buttons Animation */}
                     <motion.div
                         className="hero-buttons"
                         initial={{ opacity: 0, y: 30 }}
@@ -60,7 +62,6 @@ function Hero() {
                             duration: 0.8
                         }}
                     >
-
                         <Link
                             to="/properties"
                             className="primary-btn"
@@ -74,13 +75,11 @@ function Hero() {
                         >
                             Contact Us
                         </Link>
-
                     </motion.div>
 
                 </motion.div>
 
             </div>
-
         </section>
     );
 }
