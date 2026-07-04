@@ -2,40 +2,18 @@ import { Link } from "react-router-dom";
 
 function Sidebar() {
     return (
-        <div
-            style={{
-                width: "260px",
-                background: "#111",
-                color: "#fff",
-                padding: "20px",
-                borderRight: "1px solid rgba(212,175,55,.2)",
-                minHeight: "100vh"
-            }}
-        >
-            <h2
-                style={{
-                    color: "#D4AF37",
-                    marginBottom: "30px"
-                }}
-            >
+        <div style={styles.sidebar}>
+            
+            {/* BRAND */}
+            <h2 style={styles.logo}>
                 J & R Company
             </h2>
 
-            <nav
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "15px"
-                }}
-            >
-                {/* Dashboard Home */}
+            <nav style={styles.nav}>
+
+                {/* Dashboard */}
                 <Link style={linkStyle} to="/dashboard">
                     📊 Dashboard
-                </Link>
-
-                {/* Admin Profile */}
-                <Link style={linkStyle} to="/dashboard/profile">
-                    👤 Profile
                 </Link>
 
                 {/* Add Property */}
@@ -48,36 +26,46 @@ function Sidebar() {
                     🏠 Manage Properties
                 </Link>
 
-                {/* Future Pages */}
-                <Link style={linkStyle} to="#">
-                    📨 Inquiries
-                </Link>
-
-                <Link style={linkStyle} to="#">
-                    ⭐ Reviews
-                </Link>
-
-                <Link style={linkStyle} to="#">
-                    👥 Users
-                </Link>
-
-                <Link style={linkStyle} to="#">
-                    ⚙️ Settings
-                </Link>
             </nav>
         </div>
     );
 }
+
+/* ================= STYLES ================= */
+
+const styles = {
+    sidebar: {
+        width: "260px",
+        background: "#0B0B0B",
+        color: "#fff",
+        padding: "20px",
+        borderRight: "1px solid rgba(212,175,55,.2)",
+        minHeight: "100vh"
+    },
+
+    logo: {
+        color: "#D4AF37",
+        marginBottom: "30px",
+        fontSize: "20px",
+        letterSpacing: "1px"
+    },
+
+    nav: {
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px"
+    }
+};
 
 const linkStyle = {
     color: "#ccc",
     textDecoration: "none",
     padding: "12px 15px",
     borderRadius: "8px",
-    transition: "0.3s",
     background: "#1b1b1b",
     fontSize: "15px",
-    fontWeight: "500"
+    fontWeight: "500",
+    transition: "0.3s"
 };
 
 export default Sidebar;
