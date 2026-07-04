@@ -113,13 +113,14 @@ function ManageProperties() {
               <th>Type</th>
               <th>Status</th>
               <th>Actions</th>
+              <th> Featured</th>
             </tr>
           </thead>
 
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan="6" className="no-data">
+                <td colSpan="7" className="no-data">
                   No properties found
                 </td>
               </tr>
@@ -152,6 +153,16 @@ function ManageProperties() {
                       Delete
                     </button>
                   </td>
+
+                  <td>
+                      <button
+                          className="featured-btn"
+                          onClick={() => toggleFeatured(p.id)}
+                      >
+                          {p.featured ? "⭐" : "☆"}
+                      </button>
+                  </td>
+                
                 </tr>
               ))
             )}
