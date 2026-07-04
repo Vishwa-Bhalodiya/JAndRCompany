@@ -3,11 +3,17 @@ from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-u&uo&q7-lu$!0%m6j=1ir8-replace-this"
 
+# ================= SECURITY =================
+SECRET_KEY = "django-insecure-u&uo&q7-lu$!0%m6j-REPLACE-THIS"
 DEBUG = True
+ALLOWED_HOSTS = ["*"]
 
-ALLOWED_HOSTS = ["*"]  # later change for production
+
+# ================= PROJECT CORE =================
+ROOT_URLCONF = "config.urls"
+WSGI_APPLICATION = "config.wsgi.application"
+ASGI_APPLICATION = "config.asgi.application"
 
 
 # ================= APPS =================
@@ -24,7 +30,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "corsheaders",
 
-    # YOUR APPS (SAAS MODULES)
+    # YOUR APPS
     "users",
     "properties",
     "inquiries",
@@ -53,35 +59,22 @@ MIDDLEWARE = [
 ]
 
 
-# ================= CORS (FRONTEND CONNECTION) =================
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+# ================= TEMPLATES =================
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
 ]
-
-CORS_ALLOW_CREDENTIALS = True
-
-
-# ================= REST FRAMEWORK (SAAS CORE) =================
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",
-    )
-}
-
-
-# ================= JWT CONFIG (VERY IMPORTANT) =================
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-
-    "AUTH_HEADER_TYPES": ("Bearer",),
-
-    "ROTATE_REFRESH_TOKENS": True,
-    "BLACKLIST_AFTER_ROTATION": True,
-}
 
 
 # ================= DATABASE =================
@@ -93,13 +86,40 @@ DATABASES = {
 }
 
 
-# ================= MEDIA (PROPERTY IMAGES) =================
+# ================= STATIC & MEDIA =================
+STATIC_URL = "/static/"
+
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 
-# ================= STATIC =================
-STATIC_URL = "/static/"
+# ================= CORS =================
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+
+# ================= REST FRAMEWORK =================
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.AllowAny",
+    ),
+}
+
+
+# ================= JWT =================
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+}
 
 
 # ================= PASSWORD VALIDATION =================

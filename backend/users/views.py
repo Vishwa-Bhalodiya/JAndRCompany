@@ -43,28 +43,31 @@ def register(request):
 @api_view(["POST"])
 def login(request):
 
-    email = request.data.get("email")
+    email_or_username = request.data.get("email")
     password = request.data.get("password")
 
+    user = None
+
     try:
-        user = User.objects.get(email=email)
-    except User.DoesNotExist:
-        return Response({"message": "Invalid email or password"}, status=401)
+        user = User.objects.get(email=email_or_username)
+    except:
+        try:
+            user = User.objects.get(username=email_or_username)
+        except:
+            return Response({"message": "Invalid credentials"}, status=401)
 
     if not user.check_password(password):
-        return Response({"message": "Invalid email or password"}, status=401)
+        return Response({"message": "Invalid credentials"}, status=401)
 
     refresh = RefreshToken.for_user(user)
 
     return Response({
         "access": str(refresh.access_token),
         "refresh": str(refresh),
-
-        # 🔥 SAAS USER INFO
         "user": {
             "id": user.id,
             "username": user.username,
             "email": user.email,
-            "role": user.role,   # ✅ IMPORTANT FIX
+            "role": user.role,
         }
     })
