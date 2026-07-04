@@ -67,7 +67,11 @@ function Properties() {
 
                                 {/* IMAGE */}
                                 <img
-                                    src={getImageUrl(property.image)}
+                                    src={
+                                        property.images && property.images.length > 0
+                                            ? getImageUrl(property.images[0].image)
+                                            : "/placeholder.jpg"
+                                    }
                                     alt={property.title}
                                     className="property-image"
                                 />

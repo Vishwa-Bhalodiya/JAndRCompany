@@ -17,8 +17,12 @@ return(
 <div className="property-image">
 
 <img
-src={property.image}
-alt={property.title}
+    src={
+        property.images?.length > 0
+            ? property.images[0].image
+            : "/placeholder.jpg"
+    }
+    alt={property.title}
 />
 
 <span className="property-status">

@@ -20,10 +20,13 @@ function PropertyCard({ property }) {
         <div className="property-image-wrapper">
 
           <img
-            src={property.image}
-            alt={property.title}
-            className="property-image"
-          />
+        src={
+            property.images?.length > 0
+                ? property.images[0].image
+                : "/placeholder.jpg"
+        }
+        alt={property.title}
+    />
 
           <button className="favorite-btn">
             <FaHeart />
