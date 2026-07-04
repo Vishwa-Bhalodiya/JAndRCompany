@@ -5,6 +5,7 @@ import MainLayout from "../layouts/MainLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 
 /* ================= AUTH GUARD ================= */
+import AdminRoute from "./AdminRoute";
 import ProtectedRoute from "./ProtectedRoute";
 
 /* ================= PUBLIC PAGES ================= */
@@ -49,9 +50,9 @@ function AppRoutes() {
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute>
+            <AdminRoute>
               <DashboardLayout />
-            </ProtectedRoute>
+            </AdminRoute>
           }
         >
           {/* DEFAULT DASHBOARD */}
