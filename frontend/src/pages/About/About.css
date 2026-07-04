@@ -1,0 +1,188 @@
+.about-banner{
+    position: relative;
+    background:
+        linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
+        url("../../assets/images/about-banner.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding:50px 0 50px;
+    text-align:center;
+}
+
+.about-banner h1{
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:20px;
+    font-size: clamp(32px, 5vw, 58px);
+}
+
+.about-banner p{
+    color:var(--text-light);
+    font-size: clamp(16px, 2vw, 20px);
+    letter-spacing:1px;
+}
+
+/* ===========================
+   ABOUT SECTION
+=========================== */
+
+.about-section{
+    background:var(--dark-1);
+    padding:120px 0;
+}
+
+.about-section img{
+    width:100%;
+    aspect-ratio: 4 / 3;
+    object-fit:cover;
+    border-radius:15px;
+    box-shadow:0 20px 40px rgba(0,0,0,.5);
+}
+
+.about-section h2{
+    color:white;
+    margin-bottom:25px;
+    font-size: clamp(26px, 3vw, 42px);
+}
+
+.about-section p{
+    color:var(--text-muted);
+    font-size:17px;
+    line-height:1.9;
+}
+
+/* ===========================
+   ABOUT LIST
+=========================== */
+
+.about-list{
+    margin-top:35px;
+}
+
+.about-list p{
+    background:var(--dark-3);
+    color:white;
+    padding:15px 20px;
+    border-radius:8px;
+    margin-bottom:15px;
+    border-left:4px solid var(--gold);
+    cursor:pointer;
+    transition: all 0.35s ease;
+}
+
+.about-list p:hover{
+    transform:translateX(8px);
+    background:var(--dark-hover);
+}
+
+.about-list svg{
+    color:var(--gold);
+    margin-right:12px;
+}
+
+/* ===========================
+   MISSION SECTION
+=========================== */
+
+.mission-section{
+    background:var(--dark-2);
+    padding:120px 0;
+}
+
+.mission-card{
+    background:var(--dark-3);
+    padding:45px 35px;
+    border-radius:15px;
+    text-align:center;
+    border:1px solid rgba(212,175,55,.15);
+    height:100%;
+    transition: all 0.35s ease;
+}
+
+.mission-card:hover{
+    transform:translateY(-10px);
+    border-color:var(--gold);
+    box-shadow:0 20px 40px rgba(212,175,55,.15);
+}
+
+.mission-icon{
+    color:var(--gold);
+    font-size:55px;
+    margin-bottom:25px;
+}
+
+.mission-card h3{
+    color:white;
+    margin-bottom:18px;
+    font-size:28px;
+}
+
+.mission-card p{
+    color:var(--text-muted);
+    line-height:1.8;
+}
+
+/* ===========================
+   SECTION TITLE (GLOBAL)
+=========================== */
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    color:var(--gold);
+    margin-bottom:15px;
+    font-size: clamp(28px, 4vw, 46px);
+}
+
+.section-title p{
+    color:#cfcfcf;
+    font-size:18px;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+=========================== */
+
+@media(max-width:992px){
+
+    .about-banner{
+        padding:50px 0 50px;
+    }
+
+    .about-section{
+        text-align:center;
+    }
+
+    .about-section img{
+        margin-bottom:40px;
+    }
+
+    .mission-card{
+        margin-bottom:25px;
+    }
+}
+
+@media(max-width:768px){
+
+    .about-banner{
+        padding:50px 0 50px;
+    }
+
+    .about-section{
+        padding:70px 0;
+    }
+
+    .mission-section{
+        padding:70px 0;
+    }
+
+    .section-title{
+        margin-bottom:40px;
+    }
+}

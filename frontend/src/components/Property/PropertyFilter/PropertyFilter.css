@@ -1,0 +1,67 @@
+.property-filter{
+
+background:#181818;
+
+padding:35px;
+
+border-radius:15px;
+
+margin-bottom:50px;
+
+border:1px solid rgba(212,175,55,.15);
+
+}
+
+.property-filter input,
+.property-filter select{
+
+width:100%;
+
+height:52px;
+
+background:#111;
+
+border:1px solid #333;
+
+color:white;
+
+padding:0 15px;
+
+border-radius:8px;
+
+margin-bottom:15px;
+
+}
+
+.property-filter input:focus,
+.property-filter select:focus{
+
+outline:none;
+
+border-color:#D4AF37;
+
+}
+
+.reset-btn{
+
+width:100%;
+
+height:52px;
+
+background:#D4AF37;
+
+border:none;
+
+border-radius:8px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.reset-btn:hover{
+
+background:white;
+
+}

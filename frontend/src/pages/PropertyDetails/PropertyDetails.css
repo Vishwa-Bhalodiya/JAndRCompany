@@ -1,0 +1,37 @@
+.property-banner{
+
+background:
+linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),
+url("../../assets/images/property-banner.jpg");
+
+background-size:cover;
+
+background-position:center;
+
+padding:180px 0 120px;
+
+text-align:center;
+
+}
+
+.property-banner h1{
+
+color:#D4AF37;
+
+font-size:60px;
+
+}
+
+.property-banner p{
+
+color:white;
+
+font-size:20px;
+
+}
+
+body{
+
+background:#0b0b0b;
+
+}

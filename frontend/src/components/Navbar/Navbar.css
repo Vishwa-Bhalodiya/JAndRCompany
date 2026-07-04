@@ -1,0 +1,118 @@
+/* Navbar */
+
+.navbar{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    background:transparent;
+    padding:20px 0;
+}
+
+/* Company Name */
+
+.company-logo{
+
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:#D4AF37 !important;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    transition:.3s;
+}
+
+.company-logo:hover{
+
+    color:white !important;
+
+}
+
+/* Menu */
+
+.nav-link{
+
+    color:white !important;
+
+    font-size:16px;
+
+    font-weight:500;
+
+    margin-left:20px;
+
+    transition:.3s;
+
+}
+
+.nav-link:hover{
+
+    color:#D4AF37 !important;
+
+}
+
+/* Login Button */
+
+.login-btn{
+
+    padding:10px 28px;
+
+    border:2px solid #D4AF37;
+
+    color:#000000 !important;
+
+    border-radius:6px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.login-btn:hover{
+
+    background:#D4AF37;
+
+    color:black !important;
+
+}
+
+/* Mobile */
+
+@media(max-width:991px){
+
+.navbar{
+
+background:#111;
+
+padding:15px 0;
+
+}
+
+.navbar-nav{
+
+margin-top:20px;
+
+}
+
+.nav-link{
+
+margin:12px 0;
+
+}
+
+.login-btn{
+
+display:inline-block;
+
+margin-top:15px;
+
+}
+
+}

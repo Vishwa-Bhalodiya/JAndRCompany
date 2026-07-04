@@ -1,0 +1,40 @@
+.manage-properties{
+    padding:30px;
+}
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.add-btn{
+    background:#D4AF37;
+    color:#000;
+    padding:10px 20px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#161616;
+    color:white;
+}
+
+th,td{
+    padding:15px;
+    border:1px solid #2b2b2b;
+}
+
+th{
+    background:#111;
+}
+
+td img{
+    border-radius:8px;
+    object-fit:cover;
+}

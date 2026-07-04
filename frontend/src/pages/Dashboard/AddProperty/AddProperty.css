@@ -1,0 +1,91 @@
+.add-property-page {
+    padding: 30px;
+    background: #0b0b0b;
+    min-height: 100vh;
+    color: white;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: auto;
+    background: #151515;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.form-container h2 {
+    margin-bottom: 5px;
+}
+
+.form-container p {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+input, textarea, select {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background: #222;
+    color: white;
+}
+
+textarea {
+    min-height: 100px;
+    resize: none;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #d4af37;
+    border: none;
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #b8942f;
+}
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.amenity-item {
+    background: #222;
+    padding: 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #fff;
+}

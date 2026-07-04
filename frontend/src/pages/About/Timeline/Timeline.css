@@ -1,0 +1,47 @@
+.timeline-section{
+
+padding:120px 0;
+
+background:#0b0b0b;
+
+}
+
+.timeline{
+
+display:flex;
+
+justify-content:space-between;
+
+flex-wrap:wrap;
+
+gap:30px;
+
+}
+
+.timeline-item{
+
+flex:1;
+
+background:#181818;
+
+padding:40px;
+
+border-radius:12px;
+
+text-align:center;
+
+}
+
+.timeline-item h3{
+
+color:#D4AF37;
+
+font-size:40px;
+
+}
+
+.timeline-item p{
+
+color:white;
+
+}

@@ -1,0 +1,123 @@
+.documents-section{
+
+    background:#181818;
+
+    padding:40px;
+
+    border-radius:15px;
+
+    margin-top:60px;
+
+    border:1px solid rgba(212,175,55,.15);
+
+}
+
+.documents-section h2{
+
+    color:white;
+
+}
+
+.documents-section p{
+
+    color:#bbb;
+
+    margin-bottom:30px;
+
+}
+
+.document-card{
+
+    background:#111;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.document-left{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:center;
+
+}
+
+.document-left svg{
+
+    font-size:30px;
+
+    color:#D4AF37;
+
+}
+
+.document-left h5{
+
+    color:white;
+
+    margin-bottom:8px;
+
+}
+
+.document-left span{
+
+    color:#81c784;
+
+    display:flex;
+
+    gap:8px;
+
+    align-items:center;
+
+}
+
+.document-card button{
+
+    background:#D4AF37;
+
+    border:none;
+
+    color:black;
+
+    padding:12px 25px;
+
+    border-radius:8px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.document-card button:hover{
+
+    background:white;
+
+}
+
+@media(max-width:768px){
+
+.document-card{
+
+flex-direction:column;
+
+gap:20px;
+
+align-items:flex-start;
+
+}
+
+}

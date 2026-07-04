@@ -1,0 +1,67 @@
+.property-map{
+
+    background:#181818;
+
+    padding:40px;
+
+    border-radius:15px;
+
+    margin-top:60px;
+
+    border:1px solid rgba(212,175,55,.15);
+
+}
+
+.property-map h2{
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+.map-address{
+
+    color:#D4AF37;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+}
+
+.map-container{
+
+    width:100%;
+
+    height:450px;
+
+    overflow:hidden;
+
+    border-radius:15px;
+
+}
+
+.map-container iframe{
+
+    width:100%;
+
+    height:100%;
+
+    border:none;
+
+}
+
+@media(max-width:768px){
+
+.map-container{
+
+height:300px;
+
+}
+
+}
