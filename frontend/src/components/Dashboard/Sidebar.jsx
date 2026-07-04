@@ -26,6 +26,10 @@ function Sidebar() {
                     🏠 Manage Properties
                 </Link>
 
+                <Link style={linkStyle} to="/dashboard/inquiries">
+                    📨 Manage Inquiries
+                </Link>
+
             </nav>
         </div>
     );

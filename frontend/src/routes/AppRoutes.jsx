@@ -26,6 +26,7 @@ import Profile from "../pages/dashboard/Profile";
 import ManageProperties from "../pages/dashboard/ManageProperties";
 import AddProperty from "../pages/dashboard/AddProperty/AddProperty";
 import EditProperty from "../pages/dashboard/EditProperty";
+import ManageInquiries from "../pages/dashboard/ManageInquiries";
 
 function AppRoutes() {
   return (
@@ -57,6 +58,8 @@ function AppRoutes() {
         >
           {/* DEFAULT DASHBOARD */}
           <Route index element={<DashboardHome />} />
+          <Route path="inquiries" element={<ManageInquiries />}
+/>
 
           {/* USER PROFILE */}
           <Route path="profile" element={<Profile />} />
