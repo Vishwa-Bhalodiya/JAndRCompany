@@ -43,10 +43,7 @@ function Home() {
         <>
             <Hero hero={home.hero} />
 
-            <PropertySearch
-                locations={home.locations}
-                propertyTypes={home.property_types}
-            />
+           
 
             <FeaturedProperties
                 properties={home.featured_properties}

@@ -1,11 +1,49 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./SimilarProperties.css";
 
-function SimilarProperties() {
+function SimilarProperties({ propertyId }) {
+
+    const [properties, setProperties] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (propertyId) {
+            loadSimilarProperties();
+        }
+    }, [propertyId]);
+
+    const loadSimilarProperties = async () => {
+        try {
+            setLoading(true);
+
+            const res = await fetch(
+                `http://127.0.0.1:8000/api/properties/${propertyId}/similar/`
+            );
+
+            const data = await res.json();
+            setProperties(data || []);
+
+        } catch (error) {
+            console.error("Failed to load similar properties", error);
+            setProperties([]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (loading) {
+        return <p>Loading similar properties...</p>;
+    }
+
+    if (!properties.length) {
+        return <p>No similar properties found</p>;
+    }
 
     return (
-
         <section className="similar-properties">
-
             <div className="container">
 
                 <h2 className="section-title">
@@ -14,43 +52,60 @@ function SimilarProperties() {
 
                 <div className="row">
 
-                    <div className="col-lg-4 col-md-6 mb-4">
+                    {properties.map((item) => (
 
-                        <div className="similar-card">
+                        <div
+                            className="col-lg-4 col-md-6 mb-4"
+                            key={item.id}
+                        >
 
-                            <img
-                                src="/src/assets/images/properties/property1.jpg"
-                                alt="Land"
-                            />
+                            <div className="similar-card">
 
-                            <div className="similar-content">
+                                {/* ✅ FIX IMAGE (handles array properly) */}
+                                <img
+                                    src={
+                                        item.images?.length > 0
+                                            ? `http://127.0.0.1:8000${item.images[0].image}`
+                                            : "/default.jpg"
+                                    }
+                                    alt={item.title}
+                                />
 
-                                <span className="badge">Residential Plot</span>
+                                <div className="similar-content">
 
-                                <h4>Premium NA Plot</h4>
+                                    <span className="badge">
+                                        {item.property_type}
+                                    </span>
 
-                                <p>Ahmedabad, Gujarat</p>
+                                    <h4>{item.title}</h4>
 
-                                <h5>₹3.25 Cr</h5>
+                                    <p>{item.location}</p>
 
-                                <button className="view-btn">
-                                    View Details
-                                </button>
+                                    <h5>₹{item.price}</h5>
+
+                                    {/* ✅ FIX NAVIGATION */}
+                                    <button
+                                        className="view-btn"
+                                        onClick={() =>
+                                            navigate(`/property/${item.id}`)
+                                        }
+                                    >
+                                        View Details
+                                    </button>
+
+                                </div>
 
                             </div>
 
                         </div>
 
-                    </div>
+                    ))}
 
                 </div>
 
             </div>
-
         </section>
-
     );
-
 }
 
 export default SimilarProperties;

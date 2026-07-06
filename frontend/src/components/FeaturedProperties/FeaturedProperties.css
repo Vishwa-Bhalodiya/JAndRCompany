@@ -28,7 +28,7 @@
 
 .property-card:hover{
     transform:translateY(-10px);
-    border-color:#D4AF37;
+    border-color:#37b5d4;
     box-shadow:0 25px 60px rgba(212,175,55,.25);
 }
 
@@ -57,12 +57,12 @@
     border-radius:50%;
     border:none;
     background:white;
-    color:#D4AF37;
+    color:#37b5d4;
     font-size:18px;
 }
 
 .favorite-btn:hover{
-    background:#D4AF37;
+    background:#37b5d4;
     color:black;
 }
 
@@ -81,7 +81,7 @@
     position:absolute;
     bottom:18px;
     left:18px;
-    background:#D4AF37;
+    background:#37b5d4;
     color:black;
     padding:8px 18px;
     border-radius:5px;
@@ -93,7 +93,7 @@
 }
 
 .property-price{
-    color:#D4AF37;
+    color:#37b5d4;
     font-size:30px;
     margin-bottom:12px;
 }
@@ -109,7 +109,7 @@
 }
 
 .property-rating{
-    color:#D4AF37;
+    color:#37b5d4;
     display:flex;
     align-items:center;
     gap:8px;
@@ -149,7 +149,7 @@
 .details-btn{
     background:none;
     border:none;
-    color:#D4AF37;
+    color:#37b5d4;
     font-weight:600;
     display:flex;
     align-items:center;

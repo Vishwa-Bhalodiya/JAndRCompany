@@ -33,6 +33,8 @@ const icons = [
 
 function Amenities({ amenities }) {
 
+    console.log(amenities);
+
     if (!amenities || amenities.length === 0) {
         return (
             <section className="amenities-section">

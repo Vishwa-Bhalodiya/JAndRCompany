@@ -27,6 +27,7 @@ import ManageProperties from "../pages/dashboard/ManageProperties";
 import AddProperty from "../pages/dashboard/AddProperty/AddProperty";
 import EditProperty from "../pages/dashboard/EditProperty";
 import ManageInquiries from "../pages/dashboard/ManageInquiries";
+import Favorites from "../pages/Favorites/index";
 
 function AppRoutes() {
   return (
@@ -41,6 +42,7 @@ function AppRoutes() {
           <Route path="/property/:id" element={<PropertyDetails />} />
           <Route path="/agents" element={<Agents />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Route>
 
         {/* ================= AUTH ROUTES ================= */}

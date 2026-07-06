@@ -10,7 +10,7 @@ import PropertyMap from "../../components/property/PropertyMap";
 import AgentCard from "../../components/property/AgentCard";
 import VisitForm from "../../components/property/VisitForm";
 import SimilarProperties from "../../components/property/SimilarProperties";
-import NearbyPlaces from "../../components/property/NearbyPlaces";
+
 import EMICalculator from "../../components/property/EMICalculator";
 import PropertyDocuments from "../../components/property/PropertyDocuments";
 
@@ -80,7 +80,7 @@ function PropertyDetails() {
                         <div className="col-lg-8">
 
                             <PropertyInfo property={property} />
-
+                            console.log(property.amenities);
                             <Amenities amenities={property.amenities} />
 
                             <PropertyMap
@@ -88,7 +88,9 @@ function PropertyDetails() {
                                 location={property.location}
                             />
 
-                            <NearbyPlaces location={property.location} />
+                            <EMICalculator price={property.price} />
+
+                           
 
                         </div>
 
@@ -99,7 +101,7 @@ function PropertyDetails() {
 
                             <PropertyDocuments documents={property.documents} />
 
-                            <EMICalculator price={property.price} />
+                            
 
                             <VisitForm propertyId={property.id} />
 

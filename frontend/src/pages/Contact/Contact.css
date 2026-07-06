@@ -26,7 +26,7 @@
 
 .contact-hero h1{
     font-size:60px;
-    color:#D4AF37;
+    color:#37b5d4;
     margin-bottom:20px;
 }
 
@@ -59,13 +59,13 @@
 
 .info-card:hover{
     transform:translateY(-8px);
-    border-color:#D4AF37;
+    border-color:#37b5d4;
     box-shadow:0 20px 40px rgba(212,175,55,.18);
 }
 
 .info-card svg{
     font-size:35px;
-    color:#D4AF37;
+    color:#37b5d4;
     margin-bottom:18px;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .contact-left h2{
-    color:#D4AF37;
+    color:#37b5d4;
     margin-bottom:15px;
 }
 
@@ -119,13 +119,13 @@
 .contact-left input:focus,
 .contact-left textarea:focus{
 
-    border-color:#D4AF37;
+    border-color:#37b5d4;
 
 }
 
 .contact-left button{
 
-    background:#D4AF37;
+    background:#37b5d4;
     color:black;
     border:none;
     padding:16px;
@@ -137,7 +137,7 @@
 
 .contact-left button:hover{
 
-    background:#f2c94c;
+    background:#37b5d4;
     transform:translateY(-2px);
 
 }
@@ -164,7 +164,7 @@
     width:50px;
     height:50px;
     background:#181818;
-    color:#D4AF37;
+    color:#37b5d4;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -176,7 +176,7 @@
 
 .socials a:hover{
 
-    background:#D4AF37;
+    background:#37b5d4;
     color:black;
     transform:scale(1.1);
 

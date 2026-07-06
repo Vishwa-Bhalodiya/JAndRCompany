@@ -11,7 +11,7 @@
 }
 
 .mi-header h2{
-    color:#D4AF37;
+    color:#37b5d4;
 }
 
 .mi-header p{
@@ -43,7 +43,7 @@
 .mi-table th{
 
     background:#1b1b1b;
-    color:#D4AF37;
+    color:#37b5d4;
     padding:15px;
 
 }
@@ -65,7 +65,7 @@
 
 .pending{
 
-    background:#b8860b;
+    background:#37b5d4;
     color:white;
 
 }
@@ -79,7 +79,7 @@
 
 .contact-btn{
 
-    background:#D4AF37;
+    background:#37b5d4;
     border:none;
     color:black;
     padding:8px 15px;

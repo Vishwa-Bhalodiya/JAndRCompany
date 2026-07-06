@@ -4,7 +4,7 @@ from .models import (
     Property,
     Amenity,
     PropertyImage,
-    PropertyDocument
+    PropertyDocument,
 )
 
 
@@ -31,9 +31,17 @@ class PropertyDocumentSerializer(serializers.ModelSerializer):
 
 class PropertySerializer(serializers.ModelSerializer):
 
-    amenities = serializers.PrimaryKeyRelatedField(
+    # Read
+    amenities = AmenitySerializer(
+        many=True,
+        read_only=True
+    )
+
+    # Write
+    amenity_ids = serializers.PrimaryKeyRelatedField(
         queryset=Amenity.objects.all(),
         many=True,
+        write_only=True,
         required=False
     )
 
@@ -62,31 +70,43 @@ class PropertySerializer(serializers.ModelSerializer):
             "google_map",
             "featured",
             "amenities",
+            "amenity_ids",
             "images",
             "documents",
-            "created_at"
+            "created_at",
         ]
 
     def create(self, validated_data):
 
-        amenities = validated_data.pop("amenities", [])
+        amenity_ids = validated_data.pop("amenity_ids", [])
 
         property_instance = Property.objects.create(**validated_data)
 
-        property_instance.amenities.set(amenities)
+        property_instance.amenities.set(amenity_ids)
 
         return property_instance
 
     def update(self, instance, validated_data):
 
-        amenities = validated_data.pop("amenities", None)
+        amenity_ids = validated_data.pop("amenity_ids", None)
 
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
 
         instance.save()
 
-        if amenities is not None:
-            instance.amenities.set(amenities)
+        if amenity_ids is not None:
+            instance.amenities.set(amenity_ids)
 
         return instance
+
+    def to_representation(self, instance):
+
+        data = super().to_representation(instance)
+
+        data["amenities"] = AmenitySerializer(
+            instance.amenities.all(),
+            many=True
+        ).data
+
+        return data

@@ -22,12 +22,12 @@ function Topbar() {
             color: "#fff"
         }}>
 
-            <h3 style={{ color: "#D4AF37" }}>Dashboard</h3>
+            <h3 style={{ color: "#37b5d4" }}>Dashboard</h3>
 
             <button
                 onClick={handleLogout}
                 style={{
-                    background: "#D4AF37",
+                    background: "#37b5d4",
                     border: "none",
                     padding: "8px 15px",
                     cursor: "pointer"

@@ -35,6 +35,21 @@ function ManageProperties() {
     fetchProperties();
   };
 
+  const toggleFeatured = async (id) => {
+  try {
+    await axios.patch(
+      `http://127.0.0.1:8000/api/properties/${id}/featured/`
+    );
+
+    // Reload the table
+    fetchProperties();
+
+  } catch (error) {
+    console.error(error);
+    alert("Failed to update featured status.");
+  }
+};
+
   const handleEdit = (id) => {
     navigate(`/dashboard/edit-property/${id}`);
   };
@@ -155,12 +170,12 @@ function ManageProperties() {
                   </td>
 
                   <td>
-                      <button
-                          className="featured-btn"
-                          onClick={() => toggleFeatured(p.id)}
-                      >
-                          {p.featured ? "⭐" : "☆"}
-                      </button>
+                    <button
+                      className={`featured-btn ${p.featured ? "active" : ""}`}
+                      onClick={() => toggleFeatured(p.id)}
+                    >
+                      {p.featured ? "⭐ Featured" : "☆ Feature"}
+                    </button>
                   </td>
                 
                 </tr>

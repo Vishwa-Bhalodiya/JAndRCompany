@@ -59,7 +59,7 @@ textarea {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
-    background: #d4af37;
+    background: #37b5d4;
     border: none;
     color: black;
     font-weight: bold;
@@ -69,7 +69,7 @@ textarea {
 }
 
 .submit-btn:hover {
-    background: #b8942f;
+    background: #37b5d4;
 }
 
 .amenities-grid {

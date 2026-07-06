@@ -1,40 +1,31 @@
-import "./FeaturedProperties.css";
-
+import "./PropertyCard.css";
+import { Link } from "react-router-dom";
 import {
-  FaBed,
-  FaBath,
-  FaRulerCombined,
-  FaMapMarkerAlt,
   FaHeart,
-  FaStar,
+  FaMapMarkerAlt,
+  FaRulerCombined,
   FaArrowRight,
-  FaUser
 } from "react-icons/fa";
 
 function PropertyCard({ property }) {
-  return (
-    <div className="col-lg-4 col-md-6 mb-5">
 
+  
+  const image =
+    property.images?.length > 0
+      ? property.images[0].image
+      : "/placeholder.jpg";
+
+  return (
+    <div className="col-lg-4 col-md-6 mb-4">
       <div className="property-card">
 
-        <div className="property-image-wrapper">
+        <div className="property-image">
 
-          <img
-        src={
-            property.images?.length > 0
-                ? property.images[0].image
-                : "/placeholder.jpg"
-        }
-        alt={property.title}
-    />
-
-          <button className="favorite-btn">
-            <FaHeart />
-          </button>
+          <img src={image} alt={property.title} />
 
           {property.featured && (
             <span className="featured-badge">
-              Featured
+              ⭐ Featured
             </span>
           )}
 
@@ -42,64 +33,51 @@ function PropertyCard({ property }) {
             {property.status}
           </span>
 
+          <button className="favorite-btn">
+            <FaHeart />
+          </button>
+
         </div>
 
-        <div className="property-body">
+        <div className="property-content">
 
-          <h3 className="property-price">
-            {property.price}
+          <h2 className="property-price">
+            ₹{Number(property.price).toLocaleString("en-IN")}
+          </h2>
+
+          <h3 className="property-title">
+            {property.title}
           </h3>
 
-          <h4 className="property-title">
-            {property.title}
-          </h4>
-
           <p className="property-location">
-            <FaMapMarkerAlt /> {property.location}
+            <FaMapMarkerAlt />
+            {property.location}
           </p>
-
-          <div className="property-rating">
-            <FaStar />
-            {property.rating}
-          </div>
 
           <div className="property-info">
 
             <span>
-              <FaBed />
-              {property.beds} Beds
-            </span>
-
-            <span>
-              <FaBath />
-              {property.baths} Baths
-            </span>
-
-            <span>
               <FaRulerCombined />
-              {property.area}
+              {property.area} Sq.ft
+            </span>
+
+            <span className="property-type">
+              {property.property_type}
             </span>
 
           </div>
 
-          <div className="property-footer">
-
-            <div className="agent">
-              <FaUser />
-              {property.agent}
-            </div>
-
-            <button className="details-btn">
-              View Details
-              <FaArrowRight />
-            </button>
-
-          </div>
+          <Link
+            to={`/property/${property.id}`}
+            className="details-btn"
+          >
+            View Details
+            <FaArrowRight />
+          </Link>
 
         </div>
 
       </div>
-
     </div>
   );
 }

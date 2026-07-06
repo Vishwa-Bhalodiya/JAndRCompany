@@ -86,6 +86,7 @@ function AddProperty() {
 
     try {
 
+        console.log("Selected Amenities:", selectedAmenities);
         const formData = new FormData();
 
         // Property Details
@@ -100,7 +101,7 @@ function AddProperty() {
 
         // Amenities
         selectedAmenities.forEach(id => {
-            formData.append("amenities", id);
+            formData.append("amenity_ids", id);
         });
 
         // Images

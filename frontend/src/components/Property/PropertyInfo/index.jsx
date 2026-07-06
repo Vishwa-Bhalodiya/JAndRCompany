@@ -1,208 +1,183 @@
 import "./PropertyInfo.css";
+import axios from "axios";
 
 import {
-    FaHeart,
-    FaStar,
-    FaMapMarkerAlt,
-    FaRulerCombined,
-    FaRoad,
-    FaMountain,
-    FaBolt,
-    FaTint,
-    FaBuilding,
-    FaCalendarAlt
+  FaHeart,
+  FaStar,
+  FaMapMarkerAlt,
+  FaRulerCombined,
+  FaBuilding,
+  FaCalendarAlt,
 } from "react-icons/fa";
 
-function PropertyInfo() {
+function PropertyInfo({ property }) {
 
-    return (
+  if (!property) return null;
 
-        <div className="property-info-box">
+const saveProperty = async () => {
+    try {
 
-            {/* Header */}
+        const token = localStorage.getItem("access");
 
-            <div className="property-header">
+        const res = await axios.post(
+            `http://127.0.0.1:8000/api/favorites/${property.id}/`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
 
-                <div>
+        alert(res.data.message);
 
-                    <span className="property-category">
-                        Investment Land
-                    </span>
+    } catch (error) {
 
-                    <h2>
-                        Premium NA Plot in Ahmedabad
-                    </h2>
+        console.log("Status:", error.response?.status);
+        console.log("Data:", error.response?.data);
+        console.log("Headers:", error.response?.headers);
 
-                    <p className="property-location">
+        alert("Failed to save property");
+    }
+};
 
-                        <FaMapMarkerAlt />
 
-                        SG Highway, Ahmedabad, Gujarat
+  return (
+    <div className="property-info-box">
 
-                    </p>
+      {/* Header */}
+      <div className="property-header">
 
-                </div>
+        <div>
 
-                <div className="text-end">
+          <span className="property-category">
+            {property.property_type}
+          </span>
 
-                    <h2 className="property-price">
+          <h2>
+            {property.title}
+          </h2>
 
-                        ₹3.25 Cr
-
-                    </h2>
-
-                    <button className="favorite-property">
-
-                        <FaHeart />
-
-                        Save Property
-
-                    </button>
-
-                </div>
-
-            </div>
-
-            {/* Rating */}
-
-            <div className="property-rating">
-
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-
-                <span>
-                    4.9 (82 Reviews)
-                </span>
-
-            </div>
-
-            {/* Specifications */}
-
-            <div className="specifications">
-
-                <div className="spec-card">
-
-                    <FaRulerCombined />
-
-                    <h5>Plot Area</h5>
-
-                    <p>12,500 Sq.ft</p>
-
-                </div>
-
-                <div className="spec-card">
-
-                    <FaRoad />
-
-                    <h5>Road Width</h5>
-
-                    <p>80 Feet</p>
-
-                </div>
-
-                <div className="spec-card">
-
-                    <FaBuilding />
-
-                    <h5>Land Type</h5>
-
-                    <p>NA Residential</p>
-
-                </div>
-
-                <div className="spec-card">
-
-                    <FaMountain />
-
-                    <h5>Facing</h5>
-
-                    <p>East</p>
-
-                </div>
-
-                <div className="spec-card">
-
-                    <FaBolt />
-
-                    <h5>Electricity</h5>
-
-                    <p>Available</p>
-
-                </div>
-
-                <div className="spec-card">
-
-                    <FaTint />
-
-                    <h5>Water Supply</h5>
-
-                    <p>Available</p>
-
-                </div>
-
-                <div className="spec-card">
-
-                    <FaCalendarAlt />
-
-                    <h5>Possession</h5>
-
-                    <p>Immediate</p>
-
-                </div>
-
-                <div className="spec-card">
-
-                    <FaBuilding />
-
-                    <h5>Zoning</h5>
-
-                    <p>Residential</p>
-
-                </div>
-
-                <div className="spec-card">
-
-                    <FaMapMarkerAlt />
-
-                    <h5>Location</h5>
-
-                    <p>Prime Area</p>
-
-                </div>
-
-            </div>
-
-            {/* Description */}
-
-            <div className="description">
-
-                <h3>
-
-                    Property Description
-
-                </h3>
-
-                <p>
-
-                    This premium NA land is located on SG Highway,
-                    Ahmedabad, making it an excellent opportunity for
-                    residential development or long-term investment.
-                    The property has a wide road frontage, clear legal
-                    title, electricity and water connections nearby,
-                    and excellent connectivity to schools, hospitals,
-                    shopping centers, and major highways.
-
-                </p>
-
-            </div>
+          <p className="property-location">
+            <FaMapMarkerAlt />
+            {property.location}
+          </p>
 
         </div>
 
-    );
+        <div className="text-end">
 
+          <h2 className="property-price">
+            ₹{Number(property.price).toLocaleString("en-IN")}
+          </h2>
+
+          <button
+                className="favorite-property"
+                onClick={saveProperty}
+            >
+                <FaHeart />
+                Save Property
+          </button>
+        </div>
+
+      </div>
+
+      {/* Rating */}
+      <div className="property-rating">
+
+        <FaStar />
+        <FaStar />
+        <FaStar />
+        <FaStar />
+        <FaStar />
+
+        <span>
+          Featured Property
+        </span>
+
+      </div>
+
+      {/* Specifications */}
+      <div className="specifications">
+
+        <div className="spec-card">
+
+          <FaRulerCombined />
+
+          <h5>Area</h5>
+
+          <p>
+            {property.area} Sq.ft
+          </p>
+
+        </div>
+
+        <div className="spec-card">
+
+          <FaBuilding />
+
+          <h5>Property Type</h5>
+
+          <p>
+            {property.property_type}
+          </p>
+
+        </div>
+
+        <div className="spec-card">
+
+          <FaCalendarAlt />
+
+          <h5>Status</h5>
+
+          <p>
+            {property.status}
+          </p>
+
+        </div>
+
+        <div className="spec-card">
+
+          <FaBuilding />
+
+          <h5>Featured</h5>
+
+          <p>
+            {property.featured ? "Yes" : "No"}
+          </p>
+
+        </div>
+
+        <div className="spec-card">
+
+          <FaMapMarkerAlt />
+
+          <h5>Location</h5>
+
+          <p>
+            {property.location}
+          </p>
+
+        </div>
+
+      </div>
+
+      {/* Description */}
+
+      <div className="description">
+
+        <h3>
+          Property Description
+        </h3>
+
+        <p>
+          {property.description}
+        </p>
+
+      </div>
+
+    </div>
+  );
 }
 
 export default PropertyInfo;

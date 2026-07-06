@@ -4,7 +4,7 @@ const team=[
 
 {
 
-name:"ABCD",
+name:"Jatin Panchal",
 
 position:"Founder & CEO",
 
@@ -12,19 +12,11 @@ image:"https://i.pravatar.cc/400?img=11"
 
 },
 
-{
 
-name:"PQRS",
-
-position:"Sales Director",
-
-image:"https://i.pravatar.cc/400?img=12"
-
-},
 
 {
 
-name:"XYZ",
+name:"Kiran Patel(B. D. Patel)",
 
 position:"Legal Advisor",
 

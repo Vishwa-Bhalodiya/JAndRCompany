@@ -50,7 +50,7 @@ function Properties() {
 
                 {/* PAGE TITLE */}
                 <h1 className="page-title">
-                    Premium Properties
+                     Properties
                 </h1>
 
                 {/* GRID */}

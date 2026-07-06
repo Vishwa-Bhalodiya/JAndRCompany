@@ -66,8 +66,9 @@ function EditProperty() {
                 google_map: data.google_map || ""
             });
 
-            setSelectedAmenities(data.amenities || []);
-
+            setSelectedAmenities(
+    data.amenities.map(item => item.id)
+);
         } catch (err) {
             console.error(err);
             alert("Failed to load property");
@@ -122,7 +123,7 @@ function EditProperty() {
             formData.append("google_map", form.google_map);
 
             selectedAmenities.forEach(item => {
-                formData.append("amenities", item);
+                formData.append("amenity_ids", item);
             });
 
             images.forEach(img => {

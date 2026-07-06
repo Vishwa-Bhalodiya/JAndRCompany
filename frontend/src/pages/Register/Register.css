@@ -29,7 +29,7 @@
 }
 
 .register-brand span {
-  color: #D4AF37;
+  color: #37b5d4;
 }
 
 .register-brand p {
@@ -55,7 +55,7 @@
   padding: 12px;
   border-radius: 10px;
   margin-bottom: 12px;
-  color: #D4AF37;
+  color: #37b5d4;
 }
 
 .register-input-box input {
@@ -70,7 +70,7 @@
 .register-btn {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(45deg, #D4AF37, #b8860b);
+  background: linear-gradient(45deg, #37b5d4, #0f8baa);
   border: none;
   border-radius: 10px;
   font-weight: bold;
@@ -83,5 +83,5 @@
 }
 
 .login-link a {
-  color: #D4AF37;
+  color: #37b5d4;
 }

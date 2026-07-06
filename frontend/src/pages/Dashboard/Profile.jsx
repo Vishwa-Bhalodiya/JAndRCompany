@@ -7,7 +7,7 @@ function Profile() {
     return (
         <div style={{ color: "#fff" }}>
 
-            <h2 style={{ color: "#D4AF37", marginBottom: "20px" }}>
+            <h2 style={{ color: "#37b5d4", marginBottom: "20px" }}>
                 My Profile
             </h2>
 

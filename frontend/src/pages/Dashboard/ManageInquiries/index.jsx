@@ -160,7 +160,7 @@ function ManageInquiries() {
                                     className="contact-btn"
                                     onClick={()=>markContacted(item)}
                                 >
-                                    Toggle
+                                    Status
                                 </button>
 
                                 <button

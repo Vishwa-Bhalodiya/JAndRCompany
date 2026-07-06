@@ -74,13 +74,13 @@
 .visit-form select:focus,
 .visit-form textarea:focus{
 
-    border-color:#D4AF37;
+    border-color:#37b5d4;
 
 }
 
 .visit-form button{
 
-    background:#D4AF37;
+    background:#37b5d4;
 
     color:black;
 

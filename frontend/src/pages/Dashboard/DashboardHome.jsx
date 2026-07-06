@@ -69,7 +69,7 @@ function DashboardHome() {
     { name: "Sold", value: sold }
   ];
 
-  const COLORS = ["#C9A227", "#ffffff", "#333"];
+  const COLORS = ["#37b5d4", "#ffffff", "#333"];
 
   const barData = properties.slice(0, 6).map(p => ({
     name: p.title,
@@ -134,7 +134,7 @@ function DashboardHome() {
       >
         {pieData.map((entry, index) => {
           const colorMap = {
-            "For Sale": "#C9A227",   // gold
+            "For Sale": "#37b5d4",   // gold
             "For Rent": "#FFFFFF",   // white
             "Sold": "#444444"        // dark gray
           };
@@ -148,7 +148,7 @@ function DashboardHome() {
       <Tooltip
         contentStyle={{
           backgroundColor: "#0B0B0B",
-          border: "1px solid #C9A227",
+          border: "1px solid #37b5d4",
           color: "#fff"
         }}
         formatter={(value, name) => [
@@ -182,7 +182,7 @@ function DashboardHome() {
                 <XAxis dataKey="name" hide />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="price" fill="#C9A227" />
+                <Bar dataKey="price" fill="#37b5d4" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -201,7 +201,7 @@ function DashboardHome() {
               <Line
                 type="monotone"
                 dataKey="value"
-                stroke="#C9A227"
+                stroke="#37b5d4"
                 strokeWidth={3}
               />
             </LineChart>
@@ -244,7 +244,7 @@ const styles = {
   },
 
   logo: {
-    color: "#C9A227",
+    color: "#37b5d4",
     marginBottom: "20px",
     fontWeight: "bold"
   },
@@ -299,7 +299,7 @@ const styles = {
   },
 
   title: {
-    color: "#C9A227"
+    color: "#37b5d4"
   },
 
   valueCard: {
@@ -307,12 +307,12 @@ const styles = {
     padding: "20px",
     borderRadius: "14px",
     background: "linear-gradient(135deg,#000,#1a1a1a)",
-    border: "1px solid #C9A227",
-    color: "#C9A227"
+    border: "1px solid #37b5d4",
+    color: "#37b5d4"
   },
 
   loadingPage: {
-    color: "#C9A227",
+    color: "#37b5d4",
     padding: "20px"
   }
 };

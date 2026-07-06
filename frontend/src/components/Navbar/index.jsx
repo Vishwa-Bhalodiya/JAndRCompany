@@ -1,6 +1,7 @@
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { getUser, logout } from "../../services/auth";
+import { FaHeart } from "react-icons/fa";
 
 function Navbar() {
     const navigate = useNavigate();
@@ -60,6 +61,18 @@ function Navbar() {
                                 Properties
                             </Link>
                         </li>
+
+                        {user && (
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link d-flex align-items-center gap-2"
+                                    to="/favorites"
+                                >
+                                    <FaHeart />
+                                    Favorites
+                                </Link>
+                            </li>
+                        )}
 
                         <li className="nav-item">
                             <Link className="nav-link" to="/contact">

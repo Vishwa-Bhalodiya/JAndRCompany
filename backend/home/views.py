@@ -2,6 +2,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from properties.models import Property
+from properties.serializers import PropertySerializer
 
 
 class HomeAPIView(APIView):
@@ -10,26 +11,11 @@ class HomeAPIView(APIView):
 
         featured = Property.objects.filter(featured=True)[:6]
 
-        featured_properties = []
-
-        for property in featured:
-
-            image = ""
-
-            if property.images.exists():
-                image = request.build_absolute_uri(
-                    property.images.first().image.url
-                )
-
-            featured_properties.append({
-                "id": property.id,
-                "title": property.title,
-                "price": property.price,
-                "location": property.location,
-                "status": property.status,
-                "property_type": property.property_type,
-                "image": image
-            })
+        featured_properties = PropertySerializer(
+            featured,
+            many=True,
+            context={"request": request}
+        ).data
 
         data = {
             "hero": {
@@ -44,7 +30,7 @@ class HomeAPIView(APIView):
                 "total_properties": Property.objects.count(),
                 "for_sale": Property.objects.filter(status="For Sale").count(),
                 "for_rent": Property.objects.filter(status="For Rent").count(),
-                "sold": Property.objects.filter(status="Sold").count()
+                "sold": Property.objects.filter(status="Sold").count(),
             },
 
             "locations": list(

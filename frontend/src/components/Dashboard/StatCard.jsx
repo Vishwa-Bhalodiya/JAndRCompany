@@ -8,7 +8,7 @@ function StatCard({ title, value }) {
             color: "#fff"
         }}>
             <h4 style={{ color: "#aaa" }}>{title}</h4>
-            <h2 style={{ color: "#D4AF37" }}>{value}</h2>
+            <h2 style={{ color: "#37b5d4" }}>{value}</h2>
         </div>
     );
 }

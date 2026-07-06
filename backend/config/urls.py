@@ -17,6 +17,7 @@ urlpatterns = [
     path("api/properties/", include("properties.urls")),
     path("api/users/", include("users.urls")),
     path("api/inquiries/", include("inquiries.urls")),
+    path("api/favorites/", include("favorites.urls")),
    
 
     # JWT

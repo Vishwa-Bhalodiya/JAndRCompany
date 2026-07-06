@@ -48,7 +48,7 @@ const styles = {
     },
 
     logo: {
-        color: "#D4AF37",
+        color: "#37b5d4",
         marginBottom: "30px",
         fontSize: "20px",
         letterSpacing: "1px"

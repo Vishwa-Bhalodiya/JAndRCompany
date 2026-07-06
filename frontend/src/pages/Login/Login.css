@@ -23,12 +23,12 @@
 }
 
 .login-title{
-    color: #D4AF37;
+    color: #37b5d4;
     text-align: center;
 }
 
 .login-subtitle{
-    color: rgba(212,175,55,0.8);
+    color: rgba(55, 181, 212, 0.8);
     text-align: center;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .login-brand span {
-  color: #D4AF37;
+  color: #37b5d4;
 }
 
 .login-brand p {
@@ -81,7 +81,7 @@
   padding: 12px;
   border-radius: 10px;
   margin-bottom: 12px;
-  color: #D4AF37;
+  color: #37b5d4;
 }
 
 .login-input-box input {
@@ -106,14 +106,14 @@
 }
 
 .login-options a {
-  color: #D4AF37;
+  color: #37b5d4;
 }
 
 /* buttons */
 .login-btn {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(45deg, #D4AF37, #b8860b);
+  background: linear-gradient(45deg, #37b5d4, #0a8aaa);
   border: none;
   border-radius: 10px;
   font-weight: bold;
@@ -143,5 +143,5 @@
 }
 
 .register-link a {
-  color: #D4AF37;
+  color: #37b5d4;
 }
