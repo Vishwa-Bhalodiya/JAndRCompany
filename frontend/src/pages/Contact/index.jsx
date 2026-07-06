@@ -123,7 +123,7 @@ function Contact() {
                 <div className="info-card">
                     <FaPhoneAlt />
                     <h3>Call Us</h3>
-                    <p>+91 9876543210</p>
+                    <p>+91 9898381668</p>
                 </div>
 
                 <div className="info-card">
@@ -141,7 +141,7 @@ function Contact() {
                 <div className="info-card">
                     <FaClock />
                     <h3>Working Hours</h3>
-                    <p>Mon - Sat | 9 AM - 7 PM</p>
+                    <p>Mon - Sun | 10 AM - 7 PM</p>
                 </div>
 
             </section>

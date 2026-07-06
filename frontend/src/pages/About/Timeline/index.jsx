@@ -8,7 +8,7 @@ const items=[
 
 ["2015","500+ Properties Sold"],
 
-["2020","Expanded Across Gujarat"],
+["2022","Expanded Across Gujarat"],
 
 ["2026","Luxury Projects Nationwide"]
 

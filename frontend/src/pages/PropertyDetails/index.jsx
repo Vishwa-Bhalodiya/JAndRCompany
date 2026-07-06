@@ -8,10 +8,9 @@ import PropertyInfo from "../../components/property/PropertyInfo";
 import Amenities from "../../components/property/Amenities";
 import PropertyMap from "../../components/property/PropertyMap";
 import AgentCard from "../../components/property/AgentCard";
-import VisitForm from "../../components/property/VisitForm";
+
 import SimilarProperties from "../../components/property/SimilarProperties";
 
-import EMICalculator from "../../components/property/EMICalculator";
 import PropertyDocuments from "../../components/property/PropertyDocuments";
 
 function PropertyDetails() {
@@ -88,7 +87,7 @@ function PropertyDetails() {
                                 location={property.location}
                             />
 
-                            <EMICalculator price={property.price} />
+                            
 
                            
 
@@ -103,7 +102,7 @@ function PropertyDetails() {
 
                             
 
-                            <VisitForm propertyId={property.id} />
+                            
 
                         </div>
 

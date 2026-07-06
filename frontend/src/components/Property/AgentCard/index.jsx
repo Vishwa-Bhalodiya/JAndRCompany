@@ -56,7 +56,7 @@ function AgentCard() {
 
                     <FaPhoneAlt />
 
-                    +91 98765 43210
+                    +91 98983 81668
 
                 </p>
 
@@ -64,7 +64,7 @@ function AgentCard() {
 
                     <FaEnvelope />
 
-                    info@jandrcompany.com
+                    boss@thejandrcompany.com
 
                 </p>
 
@@ -72,7 +72,7 @@ function AgentCard() {
 
                     <FaMapMarkerAlt />
 
-                    Ahmedabad, Gujarat
+                    Gandhinagar, Gujarat
 
                 </p>
 
@@ -80,7 +80,7 @@ function AgentCard() {
 
                     <FaCertificate />
 
-                    RERA Registered Consultant
+                    GST Registered Consultant
 
                 </p>
 
@@ -89,7 +89,7 @@ function AgentCard() {
             <div className="agent-buttons">
 
                 <a
-                    href="tel:+919876543210"
+                    href="tel:+919898381668"
                     className="call-btn"
                 >
                     <FaPhoneAlt />
@@ -99,7 +99,7 @@ function AgentCard() {
                 </a>
 
                 <a
-                    href="https://wa.me/919876543210"
+                    href="https://wa.me/919898381668"
                     target="_blank"
                     rel="noreferrer"
                     className="whatsapp-btn"

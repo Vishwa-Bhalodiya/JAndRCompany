@@ -3,49 +3,93 @@ import { motion } from "framer-motion";
 
 import {
     FaHome,
-    FaKey,
     FaBuilding,
-    FaFileContract,
+    FaKey,
     FaChartLine,
-    FaHandsHelping
+    FaFileContract,
+    FaHandsHelping,
+    FaMapMarkedAlt,
+    FaBalanceScale,
+    FaClipboardList,
+    FaLandmark,
+    FaDraftingCompass,
+    FaRegFileAlt,
+    FaLeaf
 } from "react-icons/fa";
+
 
 const services = [
     {
         icon: <FaHome />,
         title: "Buy Property",
         description:
-            "Discover luxury apartments, villas, and commercial properties across India."
+            "Explore residential, commercial, and agricultural properties with complete legal support."
     },
     {
         icon: <FaBuilding />,
         title: "Sell Property",
         description:
-            "Sell your property quickly with our professional marketing and trusted buyers."
+            "Sell your property quickly with professional marketing, valuation, and verified buyers."
     },
     {
         icon: <FaKey />,
         title: "Rent Property",
         description:
-            "Find premium rental homes and commercial spaces at the best prices."
+            "Find residential and commercial rental properties that match your requirements and budget."
+    },
+    {
+        icon: <FaDraftingCompass />,
+        title: "Land Survey & Measurement",
+        description:
+            "Accurate land measurement, boundary verification, and professional surveying services."
+    },
+    {
+        icon: <FaRegFileAlt />,
+        title: "Land Documentation",
+        description:
+            "Complete assistance with land documents, registration, title verification, and paperwork."
+    },
+    {
+        icon: <FaBalanceScale />,
+        title: "Land Dispute & Legal Cases",
+        description:
+            "Professional legal guidance and representation for land disputes and property-related cases."
+    },
+    {
+        icon: <FaLandmark />,
+        title: "Government Land Services",
+        description:
+            "Expert assistance for government land matters, regularization, and legal procedures."
+    },
+    {
+        icon: <FaClipboardList />,
+        title: "7/12 Record Services",
+        description:
+            "Correction, preparation, and updating of 7/12 land records with complete documentation."
+    },
+    {
+        icon: <FaLeaf />,
+        title: "N.A. Land Conversion",
+        description:
+            "Complete Non-Agricultural (N.A.) land conversion services with government approvals."
     },
     {
         icon: <FaChartLine />,
         title: "Investment Advice",
         description:
-            "Get expert guidance to maximize your return on real estate investments."
+            "Receive expert guidance to maximize returns from residential, commercial, and land investments."
     },
     {
         icon: <FaFileContract />,
         title: "Legal Assistance",
         description:
-            "Complete legal documentation and verification for safe property transactions."
+            "End-to-end legal documentation, verification, and compliance for secure property transactions."
     },
     {
         icon: <FaHandsHelping />,
         title: "Property Consultation",
         description:
-            "Our experienced consultants help you make confident real estate decisions."
+            "Personalized consultation to help you buy, sell, invest, or resolve property-related matters."
     }
 ];
 

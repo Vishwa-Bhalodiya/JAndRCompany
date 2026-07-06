@@ -5,17 +5,17 @@ function Testimonials() {
     const testimonials = [
 
         {
-            name: "ABCD",
+            name: "Raj Patel",
             review: "Buying our first land through J & R Company was smooth and completely transparent."
         },
 
         {
-            name: "XYZ",
+            name: "Neha Patel",
             review: "The team was extremely professional and helped us find the perfect investment property."
         },
 
         {
-            name: "pqr",
+            name: "Ritik Kumar",
             review: "Excellent customer service and verified properties. Highly recommended for real estate investments."
         }
 

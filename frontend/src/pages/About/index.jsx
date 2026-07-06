@@ -8,6 +8,7 @@ import Team from "./Team";
 import Timeline from "./Timeline";
 import CTA from "./CTA";
 import Testimonials from "./Testimonial";
+import Services from "../../components/Services";
 
 import {
     FaCheckCircle
@@ -117,6 +118,9 @@ function About() {
             {/* Why Choose Us */}
 
             <WhyChooseUs />
+
+
+            <Services />
 
 
             {/* Leadership Team */}
