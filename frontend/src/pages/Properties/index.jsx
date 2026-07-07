@@ -32,7 +32,7 @@ function Properties() {
         // If already full URL (Django media)
         if (image.startsWith("http")) return image;
 
-        return `http://127.0.0.1:8000${image}`;
+        return `${API_BASE_URL}${image}`;
     };
 
     if (loading) {

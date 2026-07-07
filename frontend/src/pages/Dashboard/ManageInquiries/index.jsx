@@ -12,7 +12,7 @@ function ManageInquiries() {
         try {
 
             const response = await fetch(
-                "http://127.0.0.1:8000/api/inquiries/"
+                `${API_BASE_URL}/api/inquiries/`
             );
 
             const data = await response.json();
@@ -38,7 +38,7 @@ function ManageInquiries() {
     const markContacted = async (item) => {
 
         await fetch(
-            `http://127.0.0.1:8000/api/inquiries/${item.id}/`,
+            `${API_BASE_URL}/api/inquiries/${item.id}/`,
             {
                 method: "PATCH",
                 headers: {
@@ -59,7 +59,7 @@ function ManageInquiries() {
         if (!window.confirm("Delete this inquiry?")) return;
 
         await fetch(
-            `http://127.0.0.1:8000/api/inquiries/${id}/`,
+            `${API_BASE_URL}/api/inquiries/${id}/`,
             {
                 method: "DELETE"
             }

@@ -58,7 +58,7 @@ function Register() {
     try {
 
       const response = await fetch(
-        "http://127.0.0.1:8000/api/users/register/",
+        `${API_BASE_URL}/api/users/register/`,
         {
           method: "POST",
           headers: {

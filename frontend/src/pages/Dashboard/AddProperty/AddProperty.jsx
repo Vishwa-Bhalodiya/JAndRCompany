@@ -30,7 +30,7 @@ function AddProperty() {
         try {
 
             const response = await fetch(
-                "http://127.0.0.1:8000/api/properties/amenities/"
+                `${API_BASE_URL}/api/properties/amenities/`
             );
 
             const data = await response.json();
@@ -115,7 +115,7 @@ function AddProperty() {
         });
 
         const response = await fetch(
-            "http://127.0.0.1:8000/api/properties/",
+            `${API_BASE_URL}/api/properties/`,
             {
                 method: "POST",
                 body: formData

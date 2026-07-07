@@ -32,7 +32,7 @@ function DashboardHome() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/properties/");
+        const res = await axios.get(`${API_BASE_URL}/api/properties/`);
         setProperties(res.data);
         setLoading(false);
       } catch (err) {

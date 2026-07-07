@@ -34,7 +34,7 @@ function EditProperty() {
     const loadAmenities = async () => {
         try {
             const res = await fetch(
-                "http://127.0.0.1:8000/api/properties/amenities/"
+                `${API_BASE_URL}/api/properties/amenities/`
             );
 
             const data = await res.json();
@@ -50,7 +50,7 @@ function EditProperty() {
         try {
 
             const res = await fetch(
-                `http://127.0.0.1:8000/api/properties/${id}/`
+                `${API_BASE_URL}/api/properties/${id}/`
             );
 
             const data = await res.json();
@@ -135,7 +135,7 @@ function EditProperty() {
             });
 
             const response = await fetch(
-                `http://127.0.0.1:8000/api/properties/${id}/`,
+                `${API_BASE_URL}/api/properties/${id}/`,
                 {
                     method: "PUT",
                     body: formData

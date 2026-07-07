@@ -26,7 +26,7 @@ function PropertyDetails() {
 
     const loadProperty = async () => {
         try {
-            const res = await fetch(`http://127.0.0.1:8000/api/properties/${id}/`);
+            const res = await fetch(`${API_BASE_URL}/api/properties/${id}/`);
             const data = await res.json();
             setProperty(data);
         } catch (error) {

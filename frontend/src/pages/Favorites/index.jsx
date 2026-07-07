@@ -15,7 +15,7 @@ function Favorites() {
         const token = localStorage.getItem("access");
 
         const res = await fetch(
-            "http://127.0.0.1:8000/api/favorites/",
+            `${API_BASE_URL}/api/favorites/`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -86,7 +86,7 @@ function Favorites() {
                                         <img
                                             src={
                                                 fav.Property.images?.length
-                                                    ? `http://127.0.0.1:8000${fav.Property.images[0].image}`
+                                                    ? `${API_BASE_URL}${fav.Property.images[0].image}`
                                                     : "/placeholder.jpg"
                                             }
                                             alt={fav.Property.title}

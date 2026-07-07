@@ -15,7 +15,7 @@ function ManageProperties() {
 
   const fetchProperties = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/properties/");
+      const res = await axios.get(`${API_BASE_URL}/api/properties/`);
       setProperties(res.data);
     } catch (err) {
       console.error(err);
@@ -31,14 +31,14 @@ function ManageProperties() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure?")) return;
 
-    await axios.delete(`http://localhost:8000/api/properties/${id}/`);
+    await axios.delete(`${API_BASE_URL}/api/properties/${id}/`);
     fetchProperties();
   };
 
   const toggleFeatured = async (id) => {
   try {
     await axios.patch(
-      `http://127.0.0.1:8000/api/properties/${id}/featured/`
+      `${API_BASE_URL}/api/properties/${id}/featured/`
     );
 
     // Reload the table

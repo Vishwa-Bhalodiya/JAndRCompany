@@ -20,7 +20,7 @@ function SimilarProperties({ PropertyId }) {
             setLoading(true);
 
             const res = await fetch(
-                `http://127.0.0.1:8000/api/properties/${PropertyId}/similar/`
+                `${API_BASE_URL}/api/properties/${PropertyId}/similar/`
             );
 
             const data = await res.json();
@@ -65,7 +65,7 @@ function SimilarProperties({ PropertyId }) {
                                 <img
                                     src={
                                         item.images?.length > 0
-                                            ? `http://127.0.0.1:8000${item.images[0].image}`
+                                            ? `${API_BASE_URL}${item.images[0].image}`
                                             : "/default.jpg"
                                     }
                                     alt={item.title}

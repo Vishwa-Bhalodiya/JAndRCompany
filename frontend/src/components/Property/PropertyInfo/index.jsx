@@ -20,7 +20,7 @@ const saveProperty = async () => {
         const token = localStorage.getItem("access");
 
         const res = await axios.post(
-            `http://127.0.0.1:8000/api/favorites/${Property.id}/`,
+            `${API_BASE_URL}/api/favorites/${Property.id}/`,
             {},
             {
                 headers: {
