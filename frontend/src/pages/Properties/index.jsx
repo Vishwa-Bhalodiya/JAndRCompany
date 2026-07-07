@@ -3,7 +3,7 @@ import "./Properties.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { getProperties } from "../../api/PropertyApi";
+import { getProperties } from "../../api/propertyApi";
 
 function Properties() {
 
