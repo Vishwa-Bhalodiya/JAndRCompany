@@ -1,12 +1,17 @@
+import os
 from pathlib import Path
 from datetime import timedelta
+import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # ================= SECURITY =================
-SECRET_KEY = "django-insecure-u&uo&q7-lu$!0%m6j-REPLACE-THIS"
-DEBUG = False
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-u&uo&q7-lu$!0%m6j-REPLACE-THIS")
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 ALLOWED_HOSTS = ["*"]
 
 
@@ -82,10 +87,9 @@ TEMPLATES = [
 
 # ================= DATABASE =================
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL", "sqlite:///" + str(BASE_DIR / "db.sqlite3"))
+    )
 }
 
 
@@ -144,3 +148,6 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Asia/Kolkata"
 USE_I18N = True
 USE_TZ = True
+
+# ================= DEFAULT PRIMARY KEY =================
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
