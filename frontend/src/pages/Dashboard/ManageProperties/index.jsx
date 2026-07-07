@@ -51,7 +51,7 @@ function ManageProperties() {
 };
 
   const handleEdit = (id) => {
-    navigate(`/dashboard/edit-property/${id}`);
+    navigate(`/Dashboard/edit-property/${id}`);
   };
 
   const filtered = properties.filter((p) => {
@@ -78,7 +78,7 @@ function ManageProperties() {
 
         <button
           className="add-btn"
-          onClick={() => navigate("/dashboard/add-property")}
+          onClick={() => navigate("/Dashboard/add-property")}
         >
           + Add Property
         </button>

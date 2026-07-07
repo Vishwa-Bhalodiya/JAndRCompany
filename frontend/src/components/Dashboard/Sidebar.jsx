@@ -12,21 +12,21 @@ function Sidebar() {
             <nav style={styles.nav}>
 
                 {/* Dashboard */}
-                <Link style={linkStyle} to="/dashboard">
+                <Link style={linkStyle} to="/Dashboard">
                     📊 Dashboard
                 </Link>
 
                 {/* Add Property */}
-                <Link style={linkStyle} to="/dashboard/add-property">
+                <Link style={linkStyle} to="/Dashboard/add-property">
                     ➕ Add Property
                 </Link>
 
                 {/* Manage Properties */}
-                <Link style={linkStyle} to="/dashboard/properties">
+                <Link style={linkStyle} to="/Dashboard/properties">
                     🏠 Manage Properties
                 </Link>
 
-                <Link style={linkStyle} to="/dashboard/inquiries">
+                <Link style={linkStyle} to="/Dashboard/inquiries">
                     📨 Manage Inquiries
                 </Link>
 

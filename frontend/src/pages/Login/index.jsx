@@ -74,7 +74,7 @@ const handleLogin = async (e) => {
 
     // 🚀 ROLE-BASED REDIRECT (FIXED)
     if (data.user.role === "admin") {
-      navigate("/dashboard");
+      navigate("/Dashboard");
     } else {
       navigate("/");
     }

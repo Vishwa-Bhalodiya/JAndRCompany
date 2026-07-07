@@ -77,9 +77,9 @@ thead th.sorted .text {
     padding-left: 42px;
 }
 
-/* dashboard styles */
+/* Dashboard styles */
 
-.dashboard .module table td a {
+.Dashboard .module table td a {
     padding-left: .6em;
     padding-right: 16px;
 }

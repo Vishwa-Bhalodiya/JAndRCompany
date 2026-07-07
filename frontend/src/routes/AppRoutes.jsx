@@ -20,13 +20,13 @@ import Agents from "../pages/Agents";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
-/* ================= DASHBOARD PAGES ================= */
-import DashboardHome from "../pages/dashboard/DashboardHome";
-import Profile from "../pages/dashboard/Profile";
-import ManageProperties from "../pages/dashboard/ManageProperties";
-import AddProperty from "../pages/dashboard/AddProperty/AddProperty";
-import EditProperty from "../pages/dashboard/EditProperty";
-import ManageInquiries from "../pages/dashboard/ManageInquiries";
+/* ================= Dashboard PAGES ================= */
+import DashboardHome from "../pages/Dashboard/DashboardHome";
+import Profile from "../pages/Dashboard/Profile";
+import ManageProperties from "../pages/Dashboard/ManageProperties";
+import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
+import EditProperty from "../pages/Dashboard/EditProperty";
+import ManageInquiries from "../pages/Dashboard/ManageInquiries";
 import Favorites from "../pages/Favorites/index";
 
 function AppRoutes() {
@@ -49,16 +49,16 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* ================= DASHBOARD (SAAS CORE) ================= */}
+        {/* ================= Dashboard (SAAS CORE) ================= */}
         <Route
-          path="/dashboard"
+          path="/Dashboard"
           element={
             <AdminRoute>
               <DashboardLayout />
             </AdminRoute>
           }
         >
-          {/* DEFAULT DASHBOARD */}
+          {/* DEFAULT Dashboard */}
           <Route index element={<DashboardHome />} />
           <Route path="inquiries" element={<ManageInquiries />}
 />

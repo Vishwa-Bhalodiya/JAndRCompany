@@ -34,7 +34,7 @@
         background-position: calc(100% - 8px) 9px;
     }
 
-    [dir="rtl"] .dashboard .module table td a {
+    [dir="rtl"] .Dashboard .module table td a {
         padding-left: 0;
         padding-right: 16px;
     }

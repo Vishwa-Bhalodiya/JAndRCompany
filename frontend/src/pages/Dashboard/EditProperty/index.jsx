@@ -152,7 +152,7 @@ function EditProperty() {
 
             alert("Property Updated Successfully!");
 
-            navigate("/dashboard/properties");
+            navigate("/Dashboard/properties");
 
         } catch (err) {
 
@@ -391,7 +391,7 @@ function EditProperty() {
                         style={{
                             background: "#666"
                         }}
-                        onClick={() => navigate("/dashboard/properties")}
+                        onClick={() => navigate("/Dashboard/properties")}
                     >
                         Cancel
                     </button>
