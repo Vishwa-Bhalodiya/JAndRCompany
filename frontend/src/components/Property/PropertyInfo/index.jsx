@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../../config";
 import "./PropertyInfo.css";
 import axios from "axios";
 

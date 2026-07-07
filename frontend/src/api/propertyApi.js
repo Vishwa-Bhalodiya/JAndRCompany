@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../config";
 const BASE_URL = `${API_BASE_URL}/api/properties/`;
 
 export async function getProperties() {

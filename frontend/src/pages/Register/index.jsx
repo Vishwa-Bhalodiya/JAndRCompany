@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config";
 import "./Register.css";
 
 import { useState } from "react";
