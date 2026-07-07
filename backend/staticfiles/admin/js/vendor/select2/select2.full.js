@@ -281,7 +281,7 @@ var requirejs, require, define;
             }
         }
 
-        //Using ridiculous property names for space reasons
+        //Using ridiculous Property names for space reasons
         return {
             f: prefix ? prefix + '!' + name : name, //fullName
             n: name,
@@ -2075,10 +2075,10 @@ S2.define('select2/selection/search',[
       }
     });
 
-    // Try to detect the IE version should the `documentMode` property that
+    // Try to detect the IE version should the `documentMode` Property that
     // is stored on the document. This is only implemented in IE and is
     // slightly cleaner than doing a user agent check.
-    // This property is not available in Edge, but Edge also doesn't have
+    // This Property is not available in Edge, but Edge also doesn't have
     // this bug.
     var msie = document.documentMode;
     var disableInputEvents = msie && msie <= 11;
@@ -3637,7 +3637,7 @@ S2.define('select2/data/ajax',[
         callback(results);
       }, function () {
         // Attempt to detect if a request was aborted
-        // Only works if the transport exposes a status property
+        // Only works if the transport exposes a status Property
         if ('status' in $request &&
             ($request.status === 0 || $request.status === '0')) {
           return;
@@ -5556,7 +5556,7 @@ S2.define('select2/core',[
     this._syncS = Utils.bind(this._syncSubtree, this);
 
     if (this.$element[0].attachEvent) {
-      this.$element[0].attachEvent('onpropertychange', this._syncA);
+      this.$element[0].attachEvent('onPropertychange', this._syncA);
     }
 
     var observer = window.MutationObserver ||
@@ -5961,7 +5961,7 @@ S2.define('select2/core',[
     this.$container.remove();
 
     if (this.$element[0].detachEvent) {
-      this.$element[0].detachEvent('onpropertychange', this._syncA);
+      this.$element[0].detachEvent('onPropertychange', this._syncA);
     }
 
     if (this._observer != null) {

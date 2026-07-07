@@ -85,15 +85,15 @@ function Favorites() {
 
                                         <img
                                             src={
-                                                fav.property.images?.length
-                                                    ? `http://127.0.0.1:8000${fav.property.images[0].image}`
+                                                fav.Property.images?.length
+                                                    ? `http://127.0.0.1:8000${fav.Property.images[0].image}`
                                                     : "/placeholder.jpg"
                                             }
-                                            alt={fav.property.title}
+                                            alt={fav.Property.title}
                                         />
 
                                         <span className="favorite-status">
-                                            {fav.property.status}
+                                            {fav.Property.status}
                                         </span>
 
                                     </div>
@@ -101,31 +101,31 @@ function Favorites() {
                                     <div className="favorite-content">
 
                                         <h3>
-                                            {fav.property.title}
+                                            {fav.Property.title}
                                         </h3>
 
                                         <p className="favorite-location">
-                                            📍 {fav.property.location}
+                                            📍 {fav.Property.location}
                                         </p>
 
                                         <h2 className="favorite-price">
-                                            ₹ {Number(fav.property.price).toLocaleString("en-IN")}
+                                            ₹ {Number(fav.Property.price).toLocaleString("en-IN")}
                                         </h2>
 
                                         <div className="favorite-info">
 
                                             <span>
-                                                📐 {fav.property.area} Sq.ft
+                                                📐 {fav.Property.area} Sq.ft
                                             </span>
 
                                             <span>
-                                                🏡 {fav.property.property_type}
+                                                🏡 {fav.Property.Property_type}
                                             </span>
 
                                         </div>
 
                                         <Link
-                                            to={`/property/${fav.property.id}`}
+                                            to={`/Property/${fav.Property.id}`}
                                             className="favorite-details-btn"
                                         >
                                             View Details

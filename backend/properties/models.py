@@ -14,11 +14,11 @@ class Amenity(models.Model):
 
 
 # =========================
-# PROPERTY
+# Property
 # =========================
 class Property(models.Model):
 
-    PROPERTY_TYPES = (
+    Property_TYPES = (
         ("Residential", "Residential"),
         ("Commercial", "Commercial"),
         ("Agricultural", "Agricultural"),
@@ -48,9 +48,9 @@ class Property(models.Model):
 
     location = models.CharField(max_length=255)
 
-    property_type = models.CharField(
+    Property_type = models.CharField(
         max_length=50,
-        choices=PROPERTY_TYPES
+        choices=Property_TYPES
     )
 
     status = models.CharField(
@@ -84,10 +84,10 @@ class Property(models.Model):
 
 
 # =========================
-# PROPERTY IMAGES
+# Property IMAGES
 # =========================
 class PropertyImage(models.Model):
-    property = models.ForeignKey(
+    Property = models.ForeignKey(
         Property,
         on_delete=models.CASCADE,
         related_name="images"
@@ -96,20 +96,24 @@ class PropertyImage(models.Model):
     image = models.ImageField(upload_to="properties/")
 
     def __str__(self):
-        return f"{self.property.title} - Image {self.id}"
+        return f"{self.Property.title} - Image {self.id}"
 
 
 # =========================
-# PROPERTY DOCUMENTS
+# Property DOCUMENTS
 # =========================
 class PropertyDocument(models.Model):
-    property = models.ForeignKey(
+    Property = models.ForeignKey(
         Property,
         on_delete=models.CASCADE,
         related_name="documents"
     )
 
-    document = models.FileField(upload_to="property_documents/")
+    document = models.FileField(upload_to="Property_documents/")
 
     def __str__(self):
-        return f"{self.property.title} - Document {self.id}"
+        return f"{self.Property.title} - Document {self.id}"
+    
+
+
+

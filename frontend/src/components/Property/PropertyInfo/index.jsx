@@ -10,9 +10,9 @@ import {
   FaCalendarAlt,
 } from "react-icons/fa";
 
-function PropertyInfo({ property }) {
+function PropertyInfo({ Property }) {
 
-  if (!property) return null;
+  if (!Property) return null;
 
 const saveProperty = async () => {
     try {
@@ -20,7 +20,7 @@ const saveProperty = async () => {
         const token = localStorage.getItem("access");
 
         const res = await axios.post(
-            `http://127.0.0.1:8000/api/favorites/${property.id}/`,
+            `http://127.0.0.1:8000/api/favorites/${Property.id}/`,
             {},
             {
                 headers: {
@@ -37,42 +37,42 @@ const saveProperty = async () => {
         console.log("Data:", error.response?.data);
         console.log("Headers:", error.response?.headers);
 
-        alert("Failed to save property");
+        alert("Failed to save Property");
     }
 };
 
 
   return (
-    <div className="property-info-box">
+    <div className="Property-info-box">
 
       {/* Header */}
-      <div className="property-header">
+      <div className="Property-header">
 
         <div>
 
-          <span className="property-category">
-            {property.property_type}
+          <span className="Property-category">
+            {Property.Property_type}
           </span>
 
           <h2>
-            {property.title}
+            {Property.title}
           </h2>
 
-          <p className="property-location">
+          <p className="Property-location">
             <FaMapMarkerAlt />
-            {property.location}
+            {Property.location}
           </p>
 
         </div>
 
         <div className="text-end">
 
-          <h2 className="property-price">
-            ₹{Number(property.price).toLocaleString("en-IN")}
+          <h2 className="Property-price">
+            ₹{Number(Property.price).toLocaleString("en-IN")}
           </h2>
 
           <button
-                className="favorite-property"
+                className="favorite-Property"
                 onClick={saveProperty}
             >
                 <FaHeart />
@@ -83,7 +83,7 @@ const saveProperty = async () => {
       </div>
 
       {/* Rating */}
-      <div className="property-rating">
+      <div className="Property-rating">
 
         <FaStar />
         <FaStar />
@@ -107,7 +107,7 @@ const saveProperty = async () => {
           <h5>Area</h5>
 
           <p>
-            {property.area} Sq.ft
+            {Property.area} Sq.ft
           </p>
 
         </div>
@@ -119,7 +119,7 @@ const saveProperty = async () => {
           <h5>Property Type</h5>
 
           <p>
-            {property.property_type}
+            {Property.Property_type}
           </p>
 
         </div>
@@ -131,7 +131,7 @@ const saveProperty = async () => {
           <h5>Status</h5>
 
           <p>
-            {property.status}
+            {Property.status}
           </p>
 
         </div>
@@ -143,7 +143,7 @@ const saveProperty = async () => {
           <h5>Featured</h5>
 
           <p>
-            {property.featured ? "Yes" : "No"}
+            {Property.featured ? "Yes" : "No"}
           </p>
 
         </div>
@@ -155,7 +155,7 @@ const saveProperty = async () => {
           <h5>Location</h5>
 
           <p>
-            {property.location}
+            {Property.location}
           </p>
 
         </div>
@@ -171,7 +171,7 @@ const saveProperty = async () => {
         </h3>
 
         <p>
-          {property.description}
+          {Property.description}
         </p>
 
       </div>

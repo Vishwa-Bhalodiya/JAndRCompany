@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SimilarProperties.css";
 
-function SimilarProperties({ propertyId }) {
+function SimilarProperties({ PropertyId }) {
 
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -10,17 +10,17 @@ function SimilarProperties({ propertyId }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (propertyId) {
+        if (PropertyId) {
             loadSimilarProperties();
         }
-    }, [propertyId]);
+    }, [PropertyId]);
 
     const loadSimilarProperties = async () => {
         try {
             setLoading(true);
 
             const res = await fetch(
-                `http://127.0.0.1:8000/api/properties/${propertyId}/similar/`
+                `http://127.0.0.1:8000/api/properties/${PropertyId}/similar/`
             );
 
             const data = await res.json();
@@ -74,7 +74,7 @@ function SimilarProperties({ propertyId }) {
                                 <div className="similar-content">
 
                                     <span className="badge">
-                                        {item.property_type}
+                                        {item.Property_type}
                                     </span>
 
                                     <h4>{item.title}</h4>
@@ -87,7 +87,7 @@ function SimilarProperties({ propertyId }) {
                                     <button
                                         className="view-btn"
                                         onClick={() =>
-                                            navigate(`/property/${item.id}`)
+                                            navigate(`/Property/${item.id}`)
                                         }
                                     >
                                         View Details

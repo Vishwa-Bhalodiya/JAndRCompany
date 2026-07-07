@@ -8,26 +8,26 @@ FaRulerCombined,
 FaMapMarkerAlt
 } from "react-icons/fa";
 
-function PropertyCard({property}){
+function PropertyCard({Property}){
 
 return(
 
-<div className="property-card">
+<div className="Property-card">
 
-<div className="property-image">
+<div className="Property-image">
 
 <img
     src={
-        property.images?.length > 0
-            ? property.images[0].image
+        Property.images?.length > 0
+            ? Property.images[0].image
             : "/placeholder.jpg"
     }
-    alt={property.title}
+    alt={Property.title}
 />
 
-<span className="property-status">
+<span className="Property-status">
 
-{property.status}
+{Property.status}
 
 </span>
 
@@ -39,11 +39,11 @@ return(
 
 </div>
 
-<div className="property-content">
+<div className="Property-content">
 
 <h3>
 
-{property.title}
+{Property.title}
 
 </h3>
 
@@ -51,23 +51,23 @@ return(
 
 <FaMapMarkerAlt/>
 
-{property.location}
+{Property.location}
 
 </p>
 
 <h2 className="price">
 
-{property.price}
+{Property.price}
 
 </h2>
 
-<div className="property-info">
+<div className="Property-info">
 
 <span>
 
 <FaBed/>
 
-{property.beds}
+{Property.beds}
 
 </span>
 
@@ -75,7 +75,7 @@ return(
 
 <FaBath/>
 
-{property.baths}
+{Property.baths}
 
 </span>
 
@@ -83,7 +83,7 @@ return(
 
 <FaRulerCombined/>
 
-{property.area}
+{Property.area}
 
 </span>
 

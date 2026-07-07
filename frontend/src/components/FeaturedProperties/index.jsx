@@ -22,11 +22,11 @@ function FeaturedProperties({ properties = [] }) {
 
                     {properties.length > 0 ? (
 
-                        properties.map((property) => (
+                        properties.map((Property) => (
 
                             <PropertyCard
-                                key={property.id}
-                                property={property}
+                                key={Property.id}
+                                Property={Property}
                             />
 
                         ))

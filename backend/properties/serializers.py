@@ -64,7 +64,7 @@ class PropertySerializer(serializers.ModelSerializer):
             "description",
             "price",
             "location",
-            "property_type",
+            "Property_type",
             "status",
             "area",
             "google_map",
@@ -80,11 +80,11 @@ class PropertySerializer(serializers.ModelSerializer):
 
         amenity_ids = validated_data.pop("amenity_ids", [])
 
-        property_instance = Property.objects.create(**validated_data)
+        Property_instance = Property.objects.create(**validated_data)
 
-        property_instance.amenities.set(amenity_ids)
+        Property_instance.amenities.set(amenity_ids)
 
-        return property_instance
+        return Property_instance
 
     def update(self, instance, validated_data):
 

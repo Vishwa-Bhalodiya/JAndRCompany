@@ -13,3 +13,4 @@ admin.site.register(Property)
 admin.site.register(Amenity)
 admin.site.register(PropertyImage)
 admin.site.register(PropertyDocument)
+

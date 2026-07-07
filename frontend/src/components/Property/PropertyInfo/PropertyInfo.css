@@ -1,4 +1,4 @@
-.property-info-box{
+.Property-info-box{
 
     background:#181818;
 
@@ -12,7 +12,7 @@
 
 }
 
-.property-header{
+.Property-header{
 
     display:flex;
 
@@ -26,7 +26,7 @@
 
 }
 
-.property-category{
+.Property-category{
 
     display:inline-block;
 
@@ -44,13 +44,13 @@
 
 }
 
-.property-header h2{
+.Property-header h2{
 
     color:white;
 
 }
 
-.property-location{
+.Property-location{
 
     color:#bbb;
 
@@ -62,7 +62,7 @@
 
 }
 
-.property-price{
+.Property-price{
 
     color:#37b5d4;
 
@@ -72,7 +72,7 @@
 
 }
 
-.favorite-property{
+.favorite-Property{
 
     background:#37b5d4;
 
@@ -90,13 +90,13 @@
 
 }
 
-.favorite-property:hover{
+.favorite-Property:hover{
 
     background:white;
 
 }
 
-.property-rating{
+.Property-rating{
 
     display:flex;
 
@@ -194,13 +194,13 @@ grid-template-columns:1fr;
 
 }
 
-.property-price{
+.Property-price{
 
 font-size:32px;
 
 }
 
-.property-header{
+.Property-header{
 
 flex-direction:column;
 

@@ -29,7 +29,7 @@ const services = [
         icon: <FaBuilding />,
         title: "Sell Property",
         description:
-            "Sell your property quickly with professional marketing, valuation, and verified buyers."
+            "Sell your Property quickly with professional marketing, valuation, and verified buyers."
     },
     {
         icon: <FaKey />,
@@ -53,7 +53,7 @@ const services = [
         icon: <FaBalanceScale />,
         title: "Land Dispute & Legal Cases",
         description:
-            "Professional legal guidance and representation for land disputes and property-related cases."
+            "Professional legal guidance and representation for land disputes and Property-related cases."
     },
     {
         icon: <FaLandmark />,
@@ -83,13 +83,13 @@ const services = [
         icon: <FaFileContract />,
         title: "Legal Assistance",
         description:
-            "End-to-end legal documentation, verification, and compliance for secure property transactions."
+            "End-to-end legal documentation, verification, and compliance for secure Property transactions."
     },
     {
         icon: <FaHandsHelping />,
         title: "Property Consultation",
         description:
-            "Personalized consultation to help you buy, sell, invest, or resolve property-related matters."
+            "Personalized consultation to help you buy, sell, invest, or resolve Property-related matters."
     }
 ];
 

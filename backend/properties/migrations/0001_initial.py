@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('price', models.DecimalField(decimal_places=2, max_digits=12)),
                 ('location', models.CharField(max_length=255)),
-                ('property_type', models.CharField(choices=[('Residential', 'Residential'), ('Commercial', 'Commercial'), ('Agricultural', 'Agricultural'), ('Industrial', 'Industrial')], max_length=50)),
+                ('Property_type', models.CharField(choices=[('Residential', 'Residential'), ('Commercial', 'Commercial'), ('Agricultural', 'Agricultural'), ('Industrial', 'Industrial')], max_length=50)),
                 ('status', models.CharField(choices=[('For Sale', 'For Sale'), ('For Rent', 'For Rent'), ('Sold', 'Sold')], default='For Sale', max_length=30)),
                 ('area', models.IntegerField()),
                 ('google_map', models.URLField(blank=True, null=True)),
@@ -40,8 +40,8 @@ class Migration(migrations.Migration):
             name='PropertyDocument',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('document', models.FileField(upload_to='property_documents/')),
-                ('property', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='documents', to='properties.property')),
+                ('document', models.FileField(upload_to='Property_documents/')),
+                ('Property', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='documents', to='properties.Property')),
             ],
         ),
         migrations.CreateModel(
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('image', models.ImageField(upload_to='properties/')),
-                ('property', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='properties.property')),
+                ('Property', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='properties.Property')),
             ],
         ),
     ]

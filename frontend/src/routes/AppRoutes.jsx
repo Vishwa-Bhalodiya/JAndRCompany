@@ -39,7 +39,7 @@ function AppRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/properties" element={<Properties />} />
-          <Route path="/property/:id" element={<PropertyDetails />} />
+          <Route path="/Property/:id" element={<PropertyDetails />} />
           <Route path="/agents" element={<Agents />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/favorites" element={<Favorites />} />
@@ -66,10 +66,10 @@ function AppRoutes() {
           {/* USER PROFILE */}
           <Route path="profile" element={<Profile />} />
 
-          {/* PROPERTY MANAGEMENT (CRM CORE) */}
+          {/* Property MANAGEMENT (CRM CORE) */}
           <Route path="properties" element={<ManageProperties />} />
-          <Route path="add-property" element={<AddProperty />} />
-          <Route path="edit-property/:id" element={<EditProperty />} />
+          <Route path="add-Property" element={<AddProperty />} />
+          <Route path="edit-Property/:id" element={<EditProperty />} />
 
         </Route>
 

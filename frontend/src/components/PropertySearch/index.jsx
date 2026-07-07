@@ -2,7 +2,7 @@ import "./PropertySearch.css";
 
 function PropertySearch({
     locations = [],
-    propertyTypes = []
+    PropertyTypes = []
 }) {
 
     return (
@@ -44,7 +44,7 @@ function PropertySearch({
                                 Property Type
                             </option>
 
-                            {propertyTypes.map((type) => (
+                            {PropertyTypes.map((type) => (
 
                                 <option
                                     key={type}

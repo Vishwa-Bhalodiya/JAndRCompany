@@ -40,9 +40,9 @@ class HomeAPIView(APIView):
                 ).distinct()
             ),
 
-            "property_types": list(
+            "Property_types": list(
                 Property.objects.values_list(
-                    "property_type",
+                    "Property_type",
                     flat=True
                 ).distinct()
             )

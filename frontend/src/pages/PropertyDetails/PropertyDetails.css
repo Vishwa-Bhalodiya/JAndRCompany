@@ -1,8 +1,8 @@
-.property-banner{
+.Property-banner{
 
 background:
 linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),
-url("../../assets/images/property-banner.jpg");
+url("../../assets/images/Property-banner.jpg");
 
 background-size:cover;
 
@@ -14,7 +14,7 @@ text-align:center;
 
 }
 
-.property-banner h1{
+.Property-banner h1{
 
 color:#37b5d4;
 
@@ -22,7 +22,7 @@ font-size:60px;
 
 }
 
-.property-banner p{
+.Property-banner p{
 
 color:white;
 

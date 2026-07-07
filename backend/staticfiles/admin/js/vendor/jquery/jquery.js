@@ -112,7 +112,7 @@ var document = window.document;
 			for ( i in preservedScriptAttributes ) {
 
 				// Support: Firefox 64+, Edge 18+
-				// Some browsers don't support the "nonce" property on scripts.
+				// Some browsers don't support the "nonce" Property on scripts.
 				// On the other hand, just using `getAttribute` is not enough as
 				// the `nonce` attribute is reset to an empty string whenever it
 				// becomes browsing-context connected.
@@ -942,7 +942,7 @@ function find( selector, context, results, seed ) {
 /**
  * Create key-value caches of limited size
  * @returns {function(string, object)} Returns the Object data after storing it on itself with
- *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+ *	Property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
  *	deleting the oldest entry
  */
 function createCache() {
@@ -1035,7 +1035,7 @@ function createDisabledPseudo( disabled ) {
 			//   https://html.spec.whatwg.org/multipage/forms.html#concept-fe-disabled
 			// * option elements in a disabled optgroup
 			//   https://html.spec.whatwg.org/multipage/forms.html#concept-option-disabled
-			// All such elements have a "form" property.
+			// All such elements have a "form" Property.
 			if ( elem.parentNode && elem.disabled === false ) {
 
 				// Option elements defer to a parent optgroup if present
@@ -1048,7 +1048,7 @@ function createDisabledPseudo( disabled ) {
 				}
 
 				// Support: IE 6 - 11+
-				// Use the isDisabled shortcut property to check for disabled fieldset ancestors
+				// Use the isDisabled shortcut Property to check for disabled fieldset ancestors
 				return elem.isDisabled === disabled ||
 
 					// Where there is no isDisabled, check manually
@@ -1058,7 +1058,7 @@ function createDisabledPseudo( disabled ) {
 
 			return elem.disabled === disabled;
 
-		// Try to winnow out elements that can't be disabled before trusting the disabled property.
+		// Try to winnow out elements that can't be disabled before trusting the disabled Property.
 		// Some victims get caught in our net (label, legend, menu, track), but it shouldn't
 		// even exist on them, let alone have a boolean value.
 		} else if ( "label" in elem ) {
@@ -1958,7 +1958,7 @@ Expr = jQuery.expr = {
 		selected: function( elem ) {
 
 			// Support: IE <=11+
-			// Accessing the selectedIndex property
+			// Accessing the selectedIndex Property
 			// forces the browser to treat the default option as
 			// selected when in an optgroup.
 			if ( elem.parentNode ) {
@@ -3994,8 +3994,8 @@ Data.prototype = {
 				if ( owner.nodeType ) {
 					owner[ this.expando ] = value;
 
-				// Otherwise secure it in a non-enumerable property
-				// configurable must be true to allow the property to be
+				// Otherwise secure it in a non-enumerable Property
+				// configurable must be true to allow the Property to be
 				// deleted when data is removed
 				} else {
 					Object.defineProperty( owner, this.expando, {
@@ -6450,7 +6450,7 @@ function curCSS( elem, name, computed ) {
 			// both leading & trailing whitespace to a single space.
 			//
 			// Fall back to `undefined` if empty string returned.
-			// This collapses a missing definition with property defined
+			// This collapses a missing definition with Property defined
 			// and set to an empty string but there's no standard API
 			// allowing us to differentiate them without a performance penalty
 			// and returning `undefined` aligns with older jQuery.
@@ -6523,7 +6523,7 @@ var cssPrefixes = [ "Webkit", "Moz", "ms" ],
 	emptyStyle = document.createElement( "div" ).style,
 	vendorProps = {};
 
-// Return a vendor-prefixed property or undefined
+// Return a vendor-prefixed Property or undefined
 function vendorPropName( name ) {
 
 	// Check for vendor prefixed names
@@ -6538,7 +6538,7 @@ function vendorPropName( name ) {
 	}
 }
 
-// Return a potentially-mapped jQuery.cssProps or vendor prefixed property
+// Return a potentially-mapped jQuery.cssProps or vendor prefixed Property
 function finalPropName( name ) {
 	var final = jQuery.cssProps[ name ] || vendorProps[ name ];
 
@@ -6725,8 +6725,8 @@ function getWidthOrHeight( elem, dimension, extra ) {
 
 jQuery.extend( {
 
-	// Add in style property hooks for overriding the default
-	// behavior of getting and setting a style property
+	// Add in style Property hooks for overriding the default
+	// behavior of getting and setting a style Property
 	cssHooks: {
 		opacity: {
 			get: function( elem, computed ) {
@@ -6777,7 +6777,7 @@ jQuery.extend( {
 	// setting or getting the value
 	cssProps: {},
 
-	// Get and set the style property on a DOM Node
+	// Get and set the style Property on a DOM Node
 	style: function( elem, name, value, extra ) {
 
 		// Don't set styles on text and comment nodes
@@ -6792,7 +6792,7 @@ jQuery.extend( {
 			style = elem.style;
 
 		// Make sure that we're working with the right name. We don't
-		// want to query the value if it is a CSS custom property
+		// want to query the value if it is a CSS custom Property
 		// since they are user-defined.
 		if ( !isCustomProp ) {
 			name = finalPropName( origName );
@@ -6861,7 +6861,7 @@ jQuery.extend( {
 			isCustomProp = rcustomProp.test( name );
 
 		// Make sure that we're working with the right name. We don't
-		// want to modify the value if it is a CSS custom property
+		// want to modify the value if it is a CSS custom Property
 		// since they are user-defined.
 		if ( !isCustomProp ) {
 			name = finalPropName( origName );
@@ -7088,8 +7088,8 @@ Tween.propHooks = {
 		get: function( tween ) {
 			var result;
 
-			// Use a property on the element directly when it is not a DOM element,
-			// or when there is no matching style property that exists.
+			// Use a Property on the element directly when it is not a DOM element,
+			// or when there is no matching style Property that exists.
 			if ( tween.elem.nodeType !== 1 ||
 				tween.elem[ tween.prop ] != null && tween.elem.style[ tween.prop ] == null ) {
 				return tween.elem[ tween.prop ];
@@ -7204,7 +7204,7 @@ function createTween( value, prop, animation ) {
 	for ( ; index < length; index++ ) {
 		if ( ( tween = collection[ index ].call( animation, prop, value ) ) ) {
 
-			// We're done with this property
+			// We're done with this Property
 			return tween;
 		}
 	}
@@ -7370,7 +7370,7 @@ function defaultPrefilter( elem, props, opts ) {
 			} );
 		}
 
-		// Per-property setup
+		// Per-Property setup
 		propTween = createTween( hidden ? dataShow[ prop ] : 0, prop, anim );
 		if ( !( prop in dataShow ) ) {
 			dataShow[ prop ] = propTween.start;
@@ -7642,7 +7642,7 @@ jQuery.fn.extend( {
 			optall = jQuery.speed( speed, easing, callback ),
 			doAnimation = function() {
 
-				// Operate on a copy of prop so per-property easing won't be lost
+				// Operate on a copy of prop so per-Property easing won't be lost
 				var anim = Animation( this, jQuery.extend( {}, prop ), optall );
 
 				// Empty animations, or finishing resolves immediately
@@ -8078,7 +8078,7 @@ jQuery.extend( {
 } );
 
 // Support: IE <=11 only
-// Accessing the selectedIndex property
+// Accessing the selectedIndex Property
 // forces the browser to respect setting selected
 // on the option
 // The getter ensures a default option is selected
@@ -9364,13 +9364,13 @@ jQuery.extend( {
 			urlAnchor = document.createElement( "a" );
 
 			// Support: IE <=8 - 11, Edge 12 - 15
-			// IE throws exception on accessing the href property if url is malformed,
+			// IE throws exception on accessing the href Property if url is malformed,
 			// e.g. http://example.com:80x/
 			try {
 				urlAnchor.href = s.url;
 
 				// Support: IE <=8 - 11 only
-				// Anchor's host property isn't correctly set when s.url is relative
+				// Anchor's host Property isn't correctly set when s.url is relative
 				urlAnchor.href = urlAnchor.href;
 				s.crossDomain = originAnchor.protocol + "//" + originAnchor.host !==
 					urlAnchor.protocol + "//" + urlAnchor.host;
@@ -9873,7 +9873,7 @@ jQuery.ajaxTransport( function( options ) {
 
 								// Support: IE <=9 only
 								// On a manual native abort, IE9 throws
-								// errors on any property access that is not readyState
+								// errors on any Property access that is not readyState
 								if ( typeof xhr.status !== "number" ) {
 									complete( 0, "error" );
 								} else {

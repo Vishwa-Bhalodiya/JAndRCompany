@@ -1,6 +1,6 @@
-import property1 from "../assets/images/properties/property1.jpg";
-import property2 from "../assets/images/properties/property2.jpg";
-import property3 from "../assets/images/properties/property3.jpg";
+import Property1 from "../assets/images/properties/Property1.jpg";
+import Property2 from "../assets/images/properties/Property2.jpg";
+import Property3 from "../assets/images/properties/Property3.jpg";
 
 
 const properties = [
@@ -38,7 +38,7 @@ const properties = [
 
     rating:4.9,
 
-    image:property1
+    image:Property1
 }
 
 ];

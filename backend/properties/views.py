@@ -50,14 +50,14 @@ class PropertyList(APIView):
 
             print("VALIDATED DATA:", serializer.validated_data)
 
-            property_instance = serializer.save()
+            Property_instance = serializer.save()
 
             # Save Images
             images = request.FILES.getlist("images")
 
             for image in images:
                 PropertyImage.objects.create(
-                    property=property_instance,
+                    Property=Property_instance,
                     image=image,
                 )
 
@@ -66,13 +66,13 @@ class PropertyList(APIView):
 
             for document in documents:
                 PropertyDocument.objects.create(
-                    property=property_instance,
+                    Property=Property_instance,
                     document=document,
                 )
 
             return Response(
                 PropertySerializer(
-                    property_instance,
+                    Property_instance,
                     context={"request": request},
                 ).data,
                 status=status.HTTP_201_CREATED,
@@ -101,16 +101,16 @@ class AmenityListAPIView(ListAPIView):
 @api_view(["PATCH"])
 def toggle_featured(request, pk):
 
-    property_instance = get_object_or_404(Property, pk=pk)
+    Property_instance = get_object_or_404(Property, pk=pk)
 
-    property_instance.featured = not property_instance.featured
+    Property_instance.featured = not Property_instance.featured
 
-    property_instance.save()
+    Property_instance.save()
 
     return Response(
         {
             "success": True,
-            "featured": property_instance.featured,
+            "featured": Property_instance.featured,
         }
     )
 
@@ -121,12 +121,12 @@ from django.db.models import Q
 @api_view(['GET'])
 def similar_properties(request, id):
     try:
-        property_obj = Property.objects.get(id=id)
+        Property_obj = Property.objects.get(id=id)
 
         similar = Property.objects.filter(
-            Q(property_type__iexact=property_obj.property_type) &
-            Q(location__icontains=property_obj.location) &
-            Q(status=property_obj.status)
+            Q(Property_type__iexact=Property_obj.Property_type) &
+            Q(location__icontains=Property_obj.location) &
+            Q(status=Property_obj.status)
         ).exclude(id=id)
 
         similar = similar[:6]

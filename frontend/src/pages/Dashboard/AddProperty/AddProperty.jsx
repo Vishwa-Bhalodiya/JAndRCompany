@@ -8,7 +8,7 @@ function AddProperty() {
         description: "",
         price: "",
         location: "",
-        property_type: "Residential",
+        Property_type: "Residential",
         status: "For Sale",
         area: "",
         google_map: ""
@@ -94,7 +94,7 @@ function AddProperty() {
         formData.append("description", form.description);
         formData.append("price", form.price);
         formData.append("location", form.location);
-        formData.append("property_type", form.property_type);
+        formData.append("Property_type", form.Property_type);
         formData.append("status", form.status);
         formData.append("area", form.area);
         formData.append("google_map", form.google_map);
@@ -126,7 +126,7 @@ function AddProperty() {
 
         if (!response.ok) {
             console.log(data);
-            alert("Failed to create property");
+            alert("Failed to create Property");
             return;
         }
 
@@ -140,7 +140,7 @@ function AddProperty() {
             description: "",
             price: "",
             location: "",
-            property_type: "Residential",
+            Property_type: "Residential",
             status: "For Sale",
             area: "",
             google_map: ""
@@ -169,13 +169,13 @@ function AddProperty() {
 };
     return (
 
-        <div className="add-property-page">
+        <div className="add-Property-page">
 
             <div className="form-container">
 
                 <h2>Add New Property</h2>
 
-                <p>Fill all property details</p>
+                <p>Fill all Property details</p>
 
                 <form onSubmit={handleSubmit}>
 
@@ -261,8 +261,8 @@ function AddProperty() {
                             <label>Property Type</label>
 
                             <select
-                                name="property_type"
-                                value={form.property_type}
+                                name="Property_type"
+                                value={form.Property_type}
                                 onChange={handleChange}
                             >
 

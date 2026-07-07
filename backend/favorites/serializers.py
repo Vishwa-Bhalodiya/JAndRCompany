@@ -5,7 +5,7 @@ from properties.serializers import PropertySerializer
 
 class SavedPropertySerializer(serializers.ModelSerializer):
 
-    property = PropertySerializer(read_only=True)
+    Property = PropertySerializer(read_only=True)
 
     class Meta:
         model = SavedProperty

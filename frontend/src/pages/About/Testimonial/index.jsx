@@ -11,7 +11,7 @@ function Testimonials() {
 
         {
             name: "Neha Patel",
-            review: "The team was extremely professional and helped us find the perfect investment property."
+            review: "The team was extremely professional and helped us find the perfect investment Property."
         },
 
         {

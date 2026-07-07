@@ -30,7 +30,7 @@ function EMICalculator() {
             <h2>EMI Calculator</h2>
 
             <p>
-                Estimate your monthly payment for this property.
+                Estimate your monthly payment for this Property.
             </p>
 
             <div className="emi-grid">

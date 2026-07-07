@@ -14,7 +14,7 @@ class FavoriteListAPIView(APIView):
     def get(self, request):
         favorites = SavedProperty.objects.filter(
             user=request.user
-        ).select_related("property")
+        ).select_related("Property")
 
         serializer = SavedPropertySerializer(
             favorites,
@@ -27,10 +27,10 @@ class FavoriteListAPIView(APIView):
 class ToggleFavoriteAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self, request, property_id):
+    def post(self, request, Property_id):
 
         try:
-            property_obj = Property.objects.get(id=property_id)
+            Property_obj = Property.objects.get(id=Property_id)
         except Property.DoesNotExist:
             return Response(
                 {"error": "Property not found"},
@@ -39,7 +39,7 @@ class ToggleFavoriteAPIView(APIView):
 
         favorite = SavedProperty.objects.filter(
             user=request.user,
-            property=property_obj
+            Property=Property_obj
         ).first()
 
         if favorite:
@@ -53,7 +53,7 @@ class ToggleFavoriteAPIView(APIView):
 
         SavedProperty.objects.create(
             user=request.user,
-            property=property_obj
+            Property=Property_obj
         )
 
         return Response({

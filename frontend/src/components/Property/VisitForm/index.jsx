@@ -44,7 +44,7 @@ function VisitForm() {
 
             <p>
 
-                Interested in this property? Fill out the form and our team
+                Interested in this Property? Fill out the form and our team
                 will contact you shortly.
 
             </p>

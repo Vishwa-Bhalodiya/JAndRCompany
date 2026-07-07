@@ -22,7 +22,7 @@ function PropertyFilter({
 
     return(
 
-<section className="property-filter">
+<section className="Property-filter">
 
 <div className="row">
 

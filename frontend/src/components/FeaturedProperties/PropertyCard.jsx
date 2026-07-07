@@ -7,30 +7,30 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 
-function PropertyCard({ property }) {
+function PropertyCard({ Property }) {
 
   
   const image =
-    property.images?.length > 0
-      ? property.images[0].image
+    Property.images?.length > 0
+      ? Property.images[0].image
       : "/placeholder.jpg";
 
   return (
     <div className="col-lg-4 col-md-6 mb-4">
-      <div className="property-card">
+      <div className="Property-card">
 
-        <div className="property-image">
+        <div className="Property-image">
 
-          <img src={image} alt={property.title} />
+          <img src={image} alt={Property.title} />
 
-          {property.featured && (
+          {Property.featured && (
             <span className="featured-badge">
               ⭐ Featured
             </span>
           )}
 
           <span className="status-badge">
-            {property.status}
+            {Property.status}
           </span>
 
           <button className="favorite-btn">
@@ -39,36 +39,36 @@ function PropertyCard({ property }) {
 
         </div>
 
-        <div className="property-content">
+        <div className="Property-content">
 
-          <h2 className="property-price">
-            ₹{Number(property.price).toLocaleString("en-IN")}
+          <h2 className="Property-price">
+            ₹{Number(Property.price).toLocaleString("en-IN")}
           </h2>
 
-          <h3 className="property-title">
-            {property.title}
+          <h3 className="Property-title">
+            {Property.title}
           </h3>
 
-          <p className="property-location">
+          <p className="Property-location">
             <FaMapMarkerAlt />
-            {property.location}
+            {Property.location}
           </p>
 
-          <div className="property-info">
+          <div className="Property-info">
 
             <span>
               <FaRulerCombined />
-              {property.area} Sq.ft
+              {Property.area} Sq.ft
             </span>
 
-            <span className="property-type">
-              {property.property_type}
+            <span className="Property-type">
+              {Property.Property_type}
             </span>
 
           </div>
 
           <Link
-            to={`/property/${property.id}`}
+            to={`/Property/${Property.id}`}
             className="details-btn"
           >
             View Details

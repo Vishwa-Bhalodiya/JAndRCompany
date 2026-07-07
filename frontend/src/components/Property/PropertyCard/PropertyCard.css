@@ -1,8 +1,8 @@
 /* ===========================
-   PROPERTY CARD
+   Property CARD
 =========================== */
 
-.property-card{
+.Property-card{
 
     background:#181818;
 
@@ -18,7 +18,7 @@
 
 }
 
-.property-card:hover{
+.Property-card:hover{
 
     transform:translateY(-10px);
 
@@ -31,7 +31,7 @@
    IMAGE
 =========================== */
 
-.property-image{
+.Property-image{
 
     position:relative;
 
@@ -41,7 +41,7 @@
 
 }
 
-.property-image img{
+.Property-image img{
 
     width:100%;
 
@@ -53,7 +53,7 @@
 
 }
 
-.property-card:hover img{
+.Property-card:hover img{
 
     transform:scale(1.08);
 
@@ -64,7 +64,7 @@
    STATUS BADGE
 =========================== */
 
-.property-status{
+.Property-status{
 
     position:absolute;
 
@@ -134,13 +134,13 @@
    CONTENT
 =========================== */
 
-.property-content{
+.Property-content{
 
     padding:25px;
 
 }
 
-.property-content h3{
+.Property-content h3{
 
     color:white;
 
@@ -176,10 +176,10 @@
 
 
 /* ===========================
-   PROPERTY INFO
+   Property INFO
 =========================== */
 
-.property-info{
+.Property-info{
 
     display:flex;
 
@@ -191,7 +191,7 @@
 
 }
 
-.property-info span{
+.Property-info span{
 
     display:flex;
 
@@ -239,13 +239,13 @@
 
 @media(max-width:768px){
 
-.property-image{
+.Property-image{
 
 height:220px;
 
 }
 
-.property-content h3{
+.Property-content h3{
 
 font-size:22px;
 

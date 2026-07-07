@@ -6,7 +6,7 @@ function PropertyMap({ googleMap, location }) {
 
     return (
 
-        <section className="property-map">
+        <section className="Property-map">
 
             <h2>
                 Property Location

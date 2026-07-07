@@ -20,7 +20,7 @@ function EditProperty() {
         description: "",
         price: "",
         location: "",
-        property_type: "Residential",
+        Property_type: "Residential",
         status: "For Sale",
         area: "",
         google_map: ""
@@ -60,7 +60,7 @@ function EditProperty() {
                 description: data.description || "",
                 price: data.price || "",
                 location: data.location || "",
-                property_type: data.property_type || "Residential",
+                Property_type: data.Property_type || "Residential",
                 status: data.status || "For Sale",
                 area: data.area || "",
                 google_map: data.google_map || ""
@@ -71,7 +71,7 @@ function EditProperty() {
 );
         } catch (err) {
             console.error(err);
-            alert("Failed to load property");
+            alert("Failed to load Property");
         } finally {
             setLoading(false);
         }
@@ -117,7 +117,7 @@ function EditProperty() {
             formData.append("description", form.description);
             formData.append("price", form.price);
             formData.append("location", form.location);
-            formData.append("property_type", form.property_type);
+            formData.append("Property_type", form.Property_type);
             formData.append("status", form.status);
             formData.append("area", form.area);
             formData.append("google_map", form.google_map);
@@ -146,7 +146,7 @@ function EditProperty() {
 
             if (!response.ok) {
                 console.log(data);
-                alert("Failed to update property");
+                alert("Failed to update Property");
                 return;
             }
 
@@ -173,13 +173,13 @@ function EditProperty() {
     }
     return (
 
-    <div className="add-property-page">
+    <div className="add-Property-page">
 
         <div className="form-container">
 
             <h2>Edit Property</h2>
 
-            <p>Update property details</p>
+            <p>Update Property details</p>
 
             <form onSubmit={handleSubmit}>
 
@@ -265,8 +265,8 @@ function EditProperty() {
                         <label>Property Type</label>
 
                         <select
-                            name="property_type"
-                            value={form.property_type}
+                            name="Property_type"
+                            value={form.Property_type}
                             onChange={handleChange}
                         >
 

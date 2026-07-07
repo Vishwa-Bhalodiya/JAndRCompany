@@ -17,7 +17,7 @@ function Sidebar() {
                 </Link>
 
                 {/* Add Property */}
-                <Link style={linkStyle} to="/Dashboard/add-property">
+                <Link style={linkStyle} to="/Dashboard/add-Property">
                     ➕ Add Property
                 </Link>
 

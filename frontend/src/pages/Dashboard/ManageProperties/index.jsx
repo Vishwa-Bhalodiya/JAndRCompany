@@ -51,7 +51,7 @@ function ManageProperties() {
 };
 
   const handleEdit = (id) => {
-    navigate(`/Dashboard/edit-property/${id}`);
+    navigate(`/Dashboard/edit-Property/${id}`);
   };
 
   const filtered = properties.filter((p) => {
@@ -59,7 +59,7 @@ function ManageProperties() {
       (p.title.toLowerCase().includes(search.toLowerCase()) ||
         p.location.toLowerCase().includes(search.toLowerCase())) &&
       (statusFilter === "All" || p.status === statusFilter) &&
-      (typeFilter === "All" || p.property_type === typeFilter)
+      (typeFilter === "All" || p.Property_type === typeFilter)
     );
   });
 
@@ -78,7 +78,7 @@ function ManageProperties() {
 
         <button
           className="add-btn"
-          onClick={() => navigate("/Dashboard/add-property")}
+          onClick={() => navigate("/Dashboard/add-Property")}
         >
           + Add Property
         </button>
@@ -145,7 +145,7 @@ function ManageProperties() {
                   <td>{p.title}</td>
                   <td className="price">₹{p.price}</td>
                   <td>{p.location}</td>
-                  <td>{p.property_type}</td>
+                  <td>{p.Property_type}</td>
 
                   <td>
                     <span className={`status ${p.status}`}>

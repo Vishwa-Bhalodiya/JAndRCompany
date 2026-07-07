@@ -14,7 +14,7 @@ export async function getProperty(id) {
     const response = await fetch(`${BASE_URL}${id}/`);
 
     if (!response.ok) {
-        throw new Error("Failed to fetch property");
+        throw new Error("Failed to fetch Property");
     }
 
     return response.json();

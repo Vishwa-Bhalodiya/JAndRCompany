@@ -14,17 +14,17 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='property',
+            model_name='Property',
             name='owner',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='properties', to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
-            model_name='property',
+            model_name='Property',
             name='slug',
             field=models.SlugField(blank=True, unique=True),
         ),
         migrations.AddField(
-            model_name='property',
+            model_name='Property',
             name='updated_at',
             field=models.DateTimeField(auto_now=True),
         ),

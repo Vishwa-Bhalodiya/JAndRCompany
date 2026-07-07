@@ -6,12 +6,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('properties', '0002_property_owner_property_slug_property_updated_at'),
+        ('properties', '0002_Property_owner_Property_slug_Property_updated_at'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='property',
+            model_name='Property',
             name='google_map',
             field=models.URLField(blank=True, max_length=2000, null=True),
         ),

@@ -3,7 +3,7 @@ import "./Properties.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { getProperties } from "../../api/propertyApi";
+import { getProperties } from "../../api/PropertyApi";
 
 function Properties() {
 
@@ -58,49 +58,49 @@ function Properties() {
 
                     {properties.length > 0 ? (
 
-                        properties.map((property) => (
+                        properties.map((Property) => (
 
                             <div
-                                className="property-card"
-                                key={property.id}
+                                className="Property-card"
+                                key={Property.id}
                             >
 
                                 {/* IMAGE */}
                                 <img
                                     src={
-                                        property.images && property.images.length > 0
-                                            ? getImageUrl(property.images[0].image)
+                                        Property.images && Property.images.length > 0
+                                            ? getImageUrl(Property.images[0].image)
                                             : "/placeholder.jpg"
                                     }
-                                    alt={property.title}
-                                    className="property-image"
+                                    alt={Property.title}
+                                    className="Property-image"
                                 />
 
                                 {/* CONTENT */}
-                                <div className="property-content">
+                                <div className="Property-content">
 
-                                    <span className="property-type">
-                                        {property.property_type}
+                                    <span className="Property-type">
+                                        {Property.Property_type}
                                     </span>
 
                                     <h2>
-                                        {property.title}
+                                        {Property.title}
                                     </h2>
 
-                                    <p className="property-location">
-                                        📍 {property.location}
+                                    <p className="Property-location">
+                                        📍 {Property.location}
                                     </p>
 
-                                    <p className="property-area">
-                                        {property.area} Sq.ft
+                                    <p className="Property-area">
+                                        {Property.area} Sq.ft
                                     </p>
 
-                                    <h3 className="property-price">
-                                        ₹ {Number(property.price).toLocaleString("en-IN")}
+                                    <h3 className="Property-price">
+                                        ₹ {Number(Property.price).toLocaleString("en-IN")}
                                     </h3>
 
                                     <Link
-                                        to={`/property/${property.id}`}
+                                        to={`/Property/${Property.id}`}
                                         className="details-btn"
                                     >
                                         View Details

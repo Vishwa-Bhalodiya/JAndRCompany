@@ -11,7 +11,7 @@ class SavedProperty(models.Model):
         related_name="saved_properties"
     )
 
-    property = models.ForeignKey(
+    Property = models.ForeignKey(
         Property,
         on_delete=models.CASCADE,
         related_name="saved_by"
@@ -20,7 +20,7 @@ class SavedProperty(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ("user", "property")
+        unique_together = ("user", "Property")
 
     def __str__(self):
-        return f"{self.user} - {self.property.title}"
+        return f"{self.user} - {self.Property.title}"

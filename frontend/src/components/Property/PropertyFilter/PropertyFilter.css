@@ -1,4 +1,4 @@
-.property-filter{
+.Property-filter{
 
 background:#181818;
 
@@ -12,8 +12,8 @@ border:1px solid rgba(212,175,55,.15);
 
 }
 
-.property-filter input,
-.property-filter select{
+.Property-filter input,
+.Property-filter select{
 
 width:100%;
 
@@ -33,8 +33,8 @@ margin-bottom:15px;
 
 }
 
-.property-filter input:focus,
-.property-filter select:focus{
+.Property-filter input:focus,
+.Property-filter select:focus{
 
 outline:none;
 

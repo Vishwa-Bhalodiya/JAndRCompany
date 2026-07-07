@@ -3,21 +3,21 @@ import "./PropertyDetails.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import Gallery from "../../components/property/Gallery";
-import PropertyInfo from "../../components/property/PropertyInfo";
-import Amenities from "../../components/property/Amenities";
-import PropertyMap from "../../components/property/PropertyMap";
-import AgentCard from "../../components/property/AgentCard";
+import Gallery from "../../components/Property/Gallery";
+import PropertyInfo from "../../components/Property/PropertyInfo";
+import Amenities from "../../components/Property/Amenities";
+import PropertyMap from "../../components/Property/PropertyMap";
+import AgentCard from "../../components/Property/AgentCard";
 
-import SimilarProperties from "../../components/property/SimilarProperties";
+import SimilarProperties from "../../components/Property/SimilarProperties";
 
-import PropertyDocuments from "../../components/property/PropertyDocuments";
+import PropertyDocuments from "../../components/Property/PropertyDocuments";
 
 function PropertyDetails() {
 
     const { id } = useParams();
 
-    const [property, setProperty] = useState(null);
+    const [Property, setProperty] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ function PropertyDetails() {
             const data = await res.json();
             setProperty(data);
         } catch (error) {
-            console.error("Failed to load property:", error);
+            console.error("Failed to load Property:", error);
         } finally {
             setLoading(false);
         }
@@ -46,7 +46,7 @@ function PropertyDetails() {
     }
 
     // NOT FOUND STATE
-    if (!property) {
+    if (!Property) {
         return (
             <div className="loading">
                 <h2>Property Not Found</h2>
@@ -57,34 +57,34 @@ function PropertyDetails() {
     return (
         <>
             {/* BANNER */}
-            <section className="property-banner">
+            <section className="Property-banner">
                 <div className="container">
-                    <h1>{property.title}</h1>
+                    <h1>{Property.title}</h1>
                     <p>
-                        {property.location} • {property.status}
+                        {Property.location} • {Property.status}
                     </p>
                 </div>
             </section>
 
             {/* DETAILS SECTION */}
-            <section className="property-details">
+            <section className="Property-details">
                 <div className="container">
 
                     {/* GALLERY */}
-                    <Gallery images={property.images} />
+                    <Gallery images={Property.images} />
 
                     <div className="row mt-5">
 
                         {/* LEFT SIDE */}
                         <div className="col-lg-8">
 
-                            <PropertyInfo property={property} />
-                            console.log(property.amenities);
-                            <Amenities amenities={property.amenities} />
+                            <PropertyInfo Property={Property} />
+                            console.log(Property.amenities);
+                            <Amenities amenities={Property.amenities} />
 
                             <PropertyMap
-                                googleMap={property.google_map}
-                                location={property.location}
+                                googleMap={Property.google_map}
+                                location={Property.location}
                             />
 
                             
@@ -96,9 +96,9 @@ function PropertyDetails() {
                         {/* RIGHT SIDE */}
                         <div className="col-lg-4">
 
-                            <AgentCard property={property} />
+                            <AgentCard Property={Property} />
 
-                            <PropertyDocuments documents={property.documents} />
+                            <PropertyDocuments documents={Property.documents} />
 
                             
 
@@ -112,7 +112,7 @@ function PropertyDetails() {
             </section>
 
             {/* SIMILAR PROPERTIES */}
-            <SimilarProperties propertyId={property.id} />
+            <SimilarProperties PropertyId={Property.id} />
         </>
     );
 }
