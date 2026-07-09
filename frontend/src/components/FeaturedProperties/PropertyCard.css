@@ -1,0 +1,170 @@
+.Property-card{
+    background:#161616;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid rgba(212,175,55,.15);
+    transition:.4s;
+    height:100%;
+}
+
+.Property-card:hover{
+    transform:translateY(-8px);
+    border-color:#37b5d4;
+    box-shadow:0 25px 60px rgba(212,175,55,.18);
+}
+
+/* IMAGE */
+
+.Property-image{
+    position:relative;
+    height:300px;
+    overflow:hidden;
+}
+
+.Property-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.Property-card:hover img{
+    transform:scale(1.08);
+}
+
+/* BADGES */
+
+.featured-badge{
+    position:absolute;
+    top:18px;
+    left:18px;
+    background:#37b5d4;
+    color:#111;
+    padding:8px 16px;
+    border-radius:30px;
+    font-weight:600;
+    font-size:14px;
+}
+
+.status-badge{
+    position:absolute;
+    bottom:18px;
+    left:18px;
+    background:#111;
+    color:white;
+    padding:8px 18px;
+    border-radius:30px;
+    border:1px solid #37b5d4;
+    font-size:14px;
+}
+
+/* HEART */
+
+.favorite-btn{
+    position:absolute;
+    top:18px;
+    right:18px;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:white;
+    color:#37b5d4;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:.3s;
+}
+
+.favorite-btn:hover{
+    background:#37b5d4;
+    color:black;
+}
+
+/* CONTENT */
+
+.Property-content{
+    padding:25px;
+}
+
+.Property-price{
+    color:#37b5d4;
+    font-size:34px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.Property-title{
+    color:white;
+    margin-bottom:12px;
+}
+
+.Property-location{
+    color:#bfbfbf;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+/* INFO */
+
+.Property-info{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+    border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    color:white;
+    margin-bottom:20px;
+}
+
+.Property-info span{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.Property-type{
+    background:#2a2412;
+    color:#37b5d4;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+/* BUTTON */
+
+.details-btn{
+    width:100%;
+    background:#37b5d4;
+    color:black;
+    text-decoration:none;
+    padding:15px;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.details-btn:hover{
+    background:white;
+    color:black;
+}
+
+@media(max-width:768px){
+
+.Property-image{
+    height:240px;
+}
+
+.Property-price{
+    font-size:28px;
+}
+
+}

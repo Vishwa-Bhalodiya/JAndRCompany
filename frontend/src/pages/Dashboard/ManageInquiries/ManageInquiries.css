@@ -1,0 +1,101 @@
+.mi-page{
+    padding:30px;
+    color:white;
+}
+
+.mi-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.mi-header h2{
+    color:#37b5d4;
+}
+
+.mi-header p{
+    color:#999;
+}
+
+.mi-header input{
+
+    width:300px;
+    padding:12px;
+    border:none;
+    outline:none;
+    border-radius:8px;
+    background:#161616;
+    color:white;
+
+}
+
+.mi-table{
+
+    width:100%;
+    border-collapse:collapse;
+    background:#111;
+    border-radius:12px;
+    overflow:hidden;
+
+}
+
+.mi-table th{
+
+    background:#1b1b1b;
+    color:#37b5d4;
+    padding:15px;
+
+}
+
+.mi-table td{
+
+    padding:15px;
+    border-top:1px solid #222;
+
+}
+
+.badge{
+
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:13px;
+
+}
+
+.pending{
+
+    background:#37b5d4;
+    color:white;
+
+}
+
+.contacted{
+
+    background:#2e8b57;
+    color:white;
+
+}
+
+.contact-btn{
+
+    background:#37b5d4;
+    border:none;
+    color:black;
+    padding:8px 15px;
+    border-radius:6px;
+    margin-right:8px;
+    cursor:pointer;
+
+}
+
+.delete-btn{
+
+    background:#dc3545;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:6px;
+    cursor:pointer;
+
+}

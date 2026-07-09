@@ -1,0 +1,109 @@
+.visit-form{
+
+    background:#181818;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(212,175,55,.2);
+
+    margin-top:30px;
+
+}
+
+.visit-form h3{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.visit-form p{
+
+    color:#bbb;
+
+    margin-bottom:25px;
+
+    line-height:1.6;
+
+}
+
+.visit-form form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.visit-form input,
+.visit-form select,
+.visit-form textarea{
+
+    width:100%;
+
+    background:#101010;
+
+    border:1px solid #333;
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    outline:none;
+
+    transition:.3s;
+
+    font-size:15px;
+
+}
+
+.visit-form textarea{
+
+    resize:none;
+
+}
+
+.visit-form input:focus,
+.visit-form select:focus,
+.visit-form textarea:focus{
+
+    border-color:#37b5d4;
+
+}
+
+.visit-form button{
+
+    background:#37b5d4;
+
+    color:black;
+
+    border:none;
+
+    padding:16px;
+
+    border-radius:8px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.visit-form button:hover{
+
+    background:white;
+
+    transform:translateY(-2px);
+
+}
