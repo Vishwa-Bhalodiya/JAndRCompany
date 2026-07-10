@@ -52,10 +52,10 @@ const services = [
             "Expert assistance with land registration, title verification, legal documentation, and complete 7/12 record preparation, correction, and updates."
     },
     {
-        icon: <FaBalanceScale />,
-        title: "Land Dispute & Legal Cases",
-        description:
-            "Professional legal guidance and representation for land disputes and Property-related cases."
+    icon: <FaBalanceScale />,
+    title: "Legal Assistance & Land Dispute Resolution",
+    description:
+        "Comprehensive legal support for property documentation, title verification, compliance, land disputes, and representation in property-related legal matters."
     },
     {
         icon: <FaLandmark />,
@@ -76,12 +76,7 @@ const services = [
         description:
             "Get expert guidance on buying, selling, investing, and maximizing returns from residential, commercial, and land properties with personalized consultation."
     },
-    {
-        icon: <FaFileContract />,
-        title: "Legal Assistance",
-        description:
-            "End-to-end legal documentation, verification, and compliance for secure Property transactions."
-    },
+    
 
     {
     icon: <FaHardHat />,

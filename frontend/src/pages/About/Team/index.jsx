@@ -36,11 +36,11 @@ image:"/RahulBariya.jpg"
 
 {
 
-name:"Jatin Panchal",
+name:"Shreya Patel",
 
-position:"Government Consultant",
+position:"Government Consultant & Account Related Problem",
 
-image:"/JatinPanchal.png"
+image:"/ShreyaPatel.jpeg"
 
 },
 
@@ -48,7 +48,7 @@ image:"/JatinPanchal.png"
 
 name:"Vishwa Bhalodiya",
 
-position:"Investment Advisor",
+position:"Investment Advisor & Service Related Problem ",
 
 image:"/VishwaBhalodiya.jpeg"
 
