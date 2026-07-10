@@ -58,7 +58,7 @@ image:"/VishwaBhalodiya.jpeg"
 
 name:"Rajkumarbhai Sharma",
 
-position:"Land Devlopment Consultant",
+position:"Land Devlopment Consultant & PMC Services",
 
 image:"https://i.pravatar.cc/400?img=11"
 
