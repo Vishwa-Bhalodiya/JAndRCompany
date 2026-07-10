@@ -48,7 +48,7 @@ image:"/ShreyaPatel.jpeg"
 
 name:"Vishwa Bhalodiya",
 
-position:"Investment Advisor & Service Related Problem ",
+position:"Investment Advisor & Service Related Problem",
 
 image:"/VishwaBhalodiya.jpeg"
 
