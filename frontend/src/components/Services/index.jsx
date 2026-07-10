@@ -21,17 +21,18 @@ import {
 
 const services = [
     {
-        icon: <FaHome />,
-        title: "Buy Property",
-        description:
-            "Explore residential, commercial, and agricultural properties with complete legal support."
-    },
-    {
         icon: <FaBuilding />,
         title: "Sell Property",
         description:
             "Sell your Property quickly with professional marketing, valuation, and verified buyers."
     },
+    {
+        icon: <FaHome />,
+        title: "Buy Property",
+        description:
+            "Explore residential, commercial, and agricultural properties with complete legal support."
+    },
+    
     {
         icon: <FaKey />,
         title: "Rent Property",
@@ -46,9 +47,9 @@ const services = [
     },
     {
         icon: <FaRegFileAlt />,
-        title: "Land Documentation",
+        title: "Land Documentation & 7/12 Services",
         description:
-            "Complete assistance with land documents, registration, title verification, and paperwork."
+            "Expert assistance with land registration, title verification, legal documentation, and complete 7/12 record preparation, correction, and updates."
     },
     {
         icon: <FaBalanceScale />,
@@ -62,12 +63,7 @@ const services = [
         description:
             "Expert assistance for government land matters, regularization, and legal procedures."
     },
-    {
-        icon: <FaClipboardList />,
-        title: "7/12 Record Services",
-        description:
-            "Correction, preparation, and updating of 7/12 land records with complete documentation."
-    },
+
     {
         icon: <FaLeaf />,
         title: "N.A. Land Conversion",
@@ -76,9 +72,9 @@ const services = [
     },
     {
         icon: <FaChartLine />,
-        title: "Investment Advice",
+        title: "Investment & Property Consultation",
         description:
-            "Receive expert guidance to maximize returns from residential, commercial, and land investments."
+            "Get expert guidance on buying, selling, investing, and maximizing returns from residential, commercial, and land properties with personalized consultation."
     },
     {
         icon: <FaFileContract />,
@@ -86,12 +82,7 @@ const services = [
         description:
             "End-to-end legal documentation, verification, and compliance for secure Property transactions."
     },
-    {
-        icon: <FaHandsHelping />,
-        title: "Property Consultation",
-        description:
-            "Personalized consultation to help you buy, sell, invest, or resolve Property-related matters."
-    },
+
     {
     icon: <FaHardHat />,
     title: "PMC Services",

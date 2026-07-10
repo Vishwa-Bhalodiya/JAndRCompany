@@ -8,7 +8,7 @@ name:"Jatin Panchal",
 
 position:"Founder & CEO",
 
-image:"https://i.pravatar.cc/400?img=11"
+image:"/JatinPanchal.png"
 
 },
 
@@ -20,7 +20,7 @@ name:"Kiran Patel(B. D. Patel)",
 
 position:"Legal Advisor",
 
-image:"https://i.pravatar.cc/400?img=32"
+image:"/KiranPatel.jpeg"
 
 },
 
@@ -30,7 +30,7 @@ name:"Rahul Baraiya",
 
 position:"Property Consultant & Buyer-Seller Consultant",
 
-image:"https://i.pravatar.cc/400?img=11"
+image:"/RahulBariya.jpg"
 
 },
 
@@ -40,7 +40,7 @@ name:"Jatin Panchal",
 
 position:"Government Consultant",
 
-image:"https://i.pravatar.cc/400?img=11"
+image:"/JatinPanchal.png"
 
 },
 
@@ -50,7 +50,7 @@ name:"Vishwa Bhalodiya",
 
 position:"Investment Advisor",
 
-image:"https://i.pravatar.cc/400?img=32"
+image:"/VishwaBhalodiya.jpeg"
 
 },
 
