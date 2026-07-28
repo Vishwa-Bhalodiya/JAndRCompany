@@ -6,7 +6,7 @@ const team=[
 
 name:"Jatin Panchal",
 
-position:"Founder & CEO",
+position:"Founder & CEO & Government Consultant & Legal Advisor & Account Related Problem & Land Devlopment Consultant & PMC Services",
 
 image:"/JatinPanchal.png"
 
@@ -28,7 +28,7 @@ image:"/KiranPatel.jpeg"
 
 name:"Rahul Baraiya",
 
-position:"Property Consultant & Buyer-Seller Consultant",
+position:"Buyer-Seller Consultant",
 
 image:"/RahulBariya.jpg"
 
@@ -38,7 +38,7 @@ image:"/RahulBariya.jpg"
 
 name:"Shreya Patel",
 
-position:"Government Consultant & Account Related Problem",
+position:"Account Related Problem",
 
 image:"/ShreyaPatel.jpeg"
 
@@ -48,7 +48,7 @@ image:"/ShreyaPatel.jpeg"
 
 name:"Vishwa Bhalodiya",
 
-position:"Investment Advisor & Service Related Problem",
+position:" Service Related Problem",
 
 image:"/VishwaBhalodiya.jpeg"
 
@@ -62,7 +62,18 @@ position:"Land Devlopment Consultant & PMC Services",
 
 image:"https://i.pravatar.cc/400?img=11"
 
+},
+
+{
+
+name:"Jitendra Nayak",
+
+position:"Investment Advisor & Property Consultant",
+
+image:"https://i.pravatar.cc/400?img=11"
+
 }
+
 
 
 ];
