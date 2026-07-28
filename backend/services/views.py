@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from properties.models import Property
 from .models import BuyRentService, SellService, MeasurementService, LegalCourtService, NAService, InvestmentService
 from .serializers import (
     BuyRentServiceSerializer,
@@ -16,6 +17,21 @@ class BuyRentServiceViewSet(viewsets.ModelViewSet):
 class SellServiceViewSet(viewsets.ModelViewSet):
     queryset = SellService.objects.all()
     serializer_class = SellServiceSerializer
+
+    def perform_create(self, serializer):
+        sell_service = serializer.save()
+        status_val = "For Sale" if sell_service.buy_rent == "Buy" else "For Rent"
+        title_val = f"{sell_service.property_type} at {sell_service.location}"
+        
+        Property.objects.create(
+            title=title_val,
+            description=f"Survey No: {sell_service.survey_no}, Village: {sell_service.village_name}, Taluka: {sell_service.taluka}, District: {sell_service.district}. Contact: {sell_service.name} ({sell_service.mobile_no})",
+            price=0.00,
+            location=sell_service.location,
+            Property_type=sell_service.property_type,
+            status=status_val,
+            area=0,
+        )
 
 class MeasurementServiceViewSet(viewsets.ModelViewSet):
     queryset = MeasurementService.objects.all()

@@ -51,9 +51,11 @@ const PropertyInquiryForm = ({ property }) => {
         }
     };
 
+    const formTitle = property?.status === "For Rent" ? "Inquire to Rent This Property" : "Inquire to Buy This Property";
+
     return (
         <div className="property-inquiry-form-wrapper mt-5">
-            <h3 className="mb-4">Inquire About This Property</h3>
+            <h3 className="mb-4">{formTitle}</h3>
             {successMsg && <div className="alert alert-success">{successMsg}</div>}
             {errorMsg && <div className="alert alert-danger">{errorMsg}</div>}
             

@@ -33,7 +33,7 @@ const services = [
         title: "Buy Property",
         description:
             "Explore residential, commercial, and agricultural properties with complete legal support.",
-        route: "/properties"
+        route: "/properties?status=For Sale"
     },
     
     {
@@ -41,7 +41,7 @@ const services = [
         title: "Rent Property",
         description:
             "Find residential and commercial rental properties that match your requirements and budget.",
-        route: "/properties"
+        route: "/properties?status=For Rent"
     },
     {
         icon: <FaDraftingCompass />,

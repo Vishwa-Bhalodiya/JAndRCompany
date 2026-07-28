@@ -2,7 +2,7 @@ import { API_BASE_URL } from "../../config";
 import "./Properties.css";
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { getProperties } from "../../api/propertyApi";
 
@@ -44,22 +44,29 @@ function Properties() {
         );
     }
 
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const statusFilter = queryParams.get("status");
+
+    const filteredProperties = properties.filter((Property) => {
+        if (!statusFilter) return true;
+        return Property.status === statusFilter;
+    });
+
     return (
         <section className="properties-page">
-
             <div className="container">
-
                 {/* PAGE TITLE */}
                 <h1 className="page-title">
-                     Properties
+                     {statusFilter ? `${statusFilter} Properties` : "Properties"}
                 </h1>
 
                 {/* GRID */}
                 <div className="properties-grid">
 
-                    {properties.length > 0 ? (
+                    {filteredProperties.length > 0 ? (
 
-                        properties.map((Property) => (
+                        filteredProperties.map((Property) => (
 
                             <div
                                 className="Property-card"
