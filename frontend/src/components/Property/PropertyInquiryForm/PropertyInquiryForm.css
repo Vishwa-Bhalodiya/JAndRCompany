@@ -1,0 +1,51 @@
+.property-inquiry-form-wrapper {
+    background: #1e1e1e;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.property-inquiry-form-wrapper h3 {
+    color: var(--primary-color, #43C6DB);
+    text-align: center;
+    font-weight: 600;
+}
+
+.property-inquiry-form .form-label {
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.property-inquiry-form .form-control {
+    background: #2a2a2a;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.property-inquiry-form .form-control:focus {
+    background: #333;
+    border-color: var(--primary-color, #43C6DB);
+    box-shadow: 0 0 0 2px rgba(67, 198, 219, 0.2);
+    outline: none;
+}
+
+.property-inquiry-form .submit-btn {
+    background: var(--primary-color, #43C6DB);
+    color: #000;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.property-inquiry-form .submit-btn:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+}

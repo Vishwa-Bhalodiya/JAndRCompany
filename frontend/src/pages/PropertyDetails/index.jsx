@@ -13,6 +13,7 @@ import AgentCard from "../../components/Property/AgentCard";
 import SimilarProperties from "../../components/Property/SimilarProperties";
 
 import PropertyDocuments from "../../components/Property/PropertyDocuments";
+import PropertyInquiryForm from "../../components/Property/PropertyInquiryForm";
 
 function PropertyDetails() {
 
@@ -80,13 +81,14 @@ function PropertyDetails() {
                         <div className="col-lg-8">
 
                             <PropertyInfo Property={Property} />
-                            console.log(Property.amenities);
                             <Amenities amenities={Property.amenities} />
 
                             <PropertyMap
                                 googleMap={Property.google_map}
                                 location={Property.location}
                             />
+
+                            <PropertyInquiryForm property={Property} />
 
                             
 
