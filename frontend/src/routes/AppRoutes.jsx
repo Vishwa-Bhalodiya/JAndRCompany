@@ -15,6 +15,7 @@ import Properties from "../pages/Properties";
 import PropertyDetails from "../pages/PropertyDetails";
 import Contact from "../pages/Contact";
 import Agents from "../pages/Agents";
+import ServiceForm from "../pages/ServiceForm";
 
 /* ================= AUTH PAGES ================= */
 import Login from "../pages/Login";
@@ -43,6 +44,7 @@ function AppRoutes() {
           <Route path="/agents" element={<Agents />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/services/:serviceType" element={<ServiceForm />} />
         </Route>
 
         {/* ================= AUTH ROUTES ================= */}

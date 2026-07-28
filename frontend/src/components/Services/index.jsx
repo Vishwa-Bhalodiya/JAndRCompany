@@ -1,5 +1,6 @@
 import "./Services.css";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import {
     FaHome,
@@ -24,57 +25,66 @@ const services = [
         icon: <FaBuilding />,
         title: "Sell Property",
         description:
-            "Sell your Property quickly with professional marketing, valuation, and verified buyers."
+            "Sell your Property quickly with professional marketing, valuation, and verified buyers.",
+        route: "/services/sell"
     },
     {
         icon: <FaHome />,
         title: "Buy Property",
         description:
-            "Explore residential, commercial, and agricultural properties with complete legal support."
+            "Explore residential, commercial, and agricultural properties with complete legal support.",
+        route: "/services/buy-rent"
     },
     
     {
         icon: <FaKey />,
         title: "Rent Property",
         description:
-            "Find residential and commercial rental properties that match your requirements and budget."
+            "Find residential and commercial rental properties that match your requirements and budget.",
+        route: "/services/buy-rent"
     },
     {
         icon: <FaDraftingCompass />,
         title: "Land Survey & Measurement",
         description:
-            "Accurate land measurement, boundary verification, and professional surveying services."
+            "Accurate land measurement, boundary verification, and professional surveying services.",
+        route: "/services/measurement"
     },
     {
         icon: <FaRegFileAlt />,
         title: "Land Documentation & 7/12 Services",
         description:
-            "Expert assistance with land registration, title verification, legal documentation, and complete 7/12 record preparation, correction, and updates."
+            "Expert assistance with land registration, title verification, legal documentation, and complete 7/12 record preparation, correction, and updates.",
+        route: "/services/measurement"
     },
     {
     icon: <FaBalanceScale />,
     title: "Legal Assistance & Land Dispute Resolution",
     description:
-        "Comprehensive legal support for property documentation, title verification, compliance, land disputes, and representation in property-related legal matters."
+        "Comprehensive legal support for property documentation, title verification, compliance, land disputes, and representation in property-related legal matters.",
+        route: "/services/legal-court"
     },
     {
         icon: <FaLandmark />,
         title: "Government Land Services",
         description:
-            "Expert assistance for government land matters, regularization, and legal procedures."
+            "Expert assistance for government land matters, regularization, and legal procedures.",
+        route: "/services/na-service"
     },
 
     {
         icon: <FaLeaf />,
         title: "N.A. Land Conversion",
         description:
-            "Complete Non-Agricultural (N.A.) land conversion services with government approvals."
+            "Complete Non-Agricultural (N.A.) land conversion services with government approvals.",
+        route: "/services/na-service"
     },
     {
         icon: <FaChartLine />,
         title: "Investment & Property Consultation",
         description:
-            "Get expert guidance on buying, selling, investing, and maximizing returns from residential, commercial, and land properties with personalized consultation."
+            "Get expert guidance on buying, selling, investing, and maximizing returns from residential, commercial, and land properties with personalized consultation.",
+        route: "/services/investment"
     },
     
 
@@ -82,7 +92,8 @@ const services = [
     icon: <FaHardHat />,
     title: "PMC Services",
     description:
-        "Expert Project Management Consultancy for construction projects, ensuring quality, budget control, and on-time completion."
+        "Expert Project Management Consultancy for construction projects, ensuring quality, budget control, and on-time completion.",
+        route: "/contact"
     }
 ];
 
@@ -114,41 +125,43 @@ function Services() {
                             key={index}
                         >
 
-                            <motion.div
-                                className="service-card"
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{
-                                    duration: 0.5,
-                                    delay: index * 0.1
-                                }}
-                                viewport={{ once: true }}
-                                whileHover={{
-                                    y: -10
-                                }}
-                            >
+                            <Link to={service.route} state={{ title: service.title }} style={{ textDecoration: 'none', color: 'inherit', display: 'block', height: '100%' }}>
+                                <motion.div
+                                    className="service-card"
+                                    initial={{ opacity: 0, y: 40 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{
+                                        duration: 0.5,
+                                        delay: index * 0.1
+                                    }}
+                                    viewport={{ once: true }}
+                                    whileHover={{
+                                        y: -10
+                                    }}
+                                >
 
-                                <div className="service-icon">
+                                    <div className="service-icon">
 
-                                    {service.icon}
+                                        {service.icon}
 
-                                </div>
+                                    </div>
 
-                                <h3>
+                                    <h3>
 
-                                    {service.title}
+                                        {service.title}
 
-                                </h3>
+                                    </h3>
 
-                                <p>
+                                    <p>
 
-                                    {service.description}
+                                        {service.description}
 
-                                </p>
+                                    </p>
 
-                                
+                                    
 
-                            </motion.div>
+                                </motion.div>
+                            </Link>
 
                         </div>
 

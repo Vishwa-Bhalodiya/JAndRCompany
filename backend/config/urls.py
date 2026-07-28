@@ -18,7 +18,8 @@ urlpatterns = [
     path("api/users/", include("users.urls")),
     path("api/inquiries/", include("inquiries.urls")),
     path("api/favorites/", include("favorites.urls")),
-   
+    path("api/services/", include("services.urls")),
+
 
     # JWT
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
