@@ -30,7 +30,7 @@ const SERVICE_CONFIG = {
             { name: "district", label: "District", type: "text", required: true },
             { name: "taluka", label: "Taluka", type: "text", required: true },
             { name: "property_type", label: "Property Type", type: "select", options: ["Land", "Home", "Shop", "Plot"], required: true },
-            { name: "buy_rent", label: "Sell / Rent", type: "select", options: ["Sell", "Rent"], required: true },
+            { name: "buy_rent", label: "Sell / Rent", type: "select", options: [{ label: "Sell", value: "Buy" }, { label: "Rent", value: "Rent" }], required: true },
         ]
     },
     "measurement": {
@@ -163,9 +163,13 @@ const ServiceForm = () => {
                                             required={field.required}
                                         >
                                             <option value="">Select...</option>
-                                            {field.options.map((opt, i) => (
-                                                <option key={i} value={opt}>{opt}</option>
-                                            ))}
+                                            {field.options.map((opt, i) => {
+                                                const val = typeof opt === "object" ? opt.value : opt;
+                                                const label = typeof opt === "object" ? opt.label : opt;
+                                                return (
+                                                    <option key={i} value={val}>{label}</option>
+                                                );
+                                            })}
                                         </select>
                                     ) : (
                                         <input
