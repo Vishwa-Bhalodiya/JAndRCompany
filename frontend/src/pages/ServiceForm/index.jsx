@@ -24,11 +24,12 @@ const SERVICE_CONFIG = {
         fields: [
             { name: "name", label: "Name", type: "text", required: true },
             { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
-            { name: "survey_no", label: "Survey No.", type: "text", required: true },
+            { name: "survey_no", label: "Survey No.", type: "text", required: false },
             { name: "location", label: "Location", type: "text", required: true },
             { name: "village_name", label: "Village Name", type: "text", required: true },
             { name: "district", label: "District", type: "text", required: true },
             { name: "taluka", label: "Taluka", type: "text", required: true },
+            { name: "building_name", label: "Building Name", type: "text", required: false },
             { name: "property_type", label: "Property Type", type: "select", options: ["Land", "Home", "Shop", "Plot"], required: true },
             { name: "buy_rent", label: "Sell / Rent", type: "select", options: [{ label: "Sell", value: "Buy" }, { label: "Rent", value: "Rent" }], required: true },
         ]
@@ -118,6 +119,17 @@ const ServiceForm = () => {
         setLoading(true);
         setSuccessMsg("");
         setErrorMsg("");
+
+        // For sell form: require at least one of survey_no or building_name
+        if (serviceType === "sell") {
+            const hasSurvey = formData.survey_no?.trim();
+            const hasBuilding = formData.building_name?.trim();
+            if (!hasSurvey && !hasBuilding) {
+                setErrorMsg("Please provide either a Survey No. or a Building Name.");
+                setLoading(false);
+                return;
+            }
+        }
 
         try {
             await axios.post(config.apiEndpoint, formData);
