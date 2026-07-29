@@ -2,14 +2,17 @@ import { API_BASE_URL } from "../../config";
 import "./Properties.css";
 
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { getProperties } from "../../api/propertyApi";
 
 function Properties() {
-
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    // ✅ All hooks must be at the top
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         loadProperties();
@@ -26,15 +29,21 @@ function Properties() {
         }
     };
 
-    // 🔥 Fix Django image URL issue
     const getImageUrl = (image) => {
         if (!image) return "/placeholder.jpg";
 
-        // If already full URL (Django media)
         if (image.startsWith("http")) return image;
 
         return `${API_BASE_URL}${image}`;
     };
+
+    const queryParams = new URLSearchParams(location.search);
+    const statusFilter = queryParams.get("status");
+
+    const filteredProperties = properties.filter((property) => {
+        if (!statusFilter) return true;
+        return property.status === statusFilter;
+    });
 
     if (loading) {
         return (
@@ -44,75 +53,74 @@ function Properties() {
         );
     }
 
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const statusFilter = queryParams.get("status");
-
-    const filteredProperties = properties.filter((Property) => {
-        if (!statusFilter) return true;
-        return Property.status === statusFilter;
-    });
-
     return (
         <section className="properties-page">
             <div className="container">
-                {/* PAGE TITLE */}
+
                 <h1 className="page-title">
-                     {statusFilter ? `${statusFilter} Properties` : "Properties"}
+                    {statusFilter
+                        ? `${statusFilter} Properties`
+                        : "Properties"}
                 </h1>
 
-                {/* GRID */}
                 <div className="properties-grid">
 
                     {filteredProperties.length > 0 ? (
 
-                        filteredProperties.map((Property) => (
+                        filteredProperties.map((property) => (
 
                             <div
                                 className="Property-card"
-                                key={Property.id}
+                                key={property.id}
                             >
 
-                                {/* IMAGE */}
                                 <img
                                     src={
-                                        Property.images && Property.images.length > 0
-                                            ? getImageUrl(Property.images[0].image)
+                                        property.images &&
+                                        property.images.length > 0
+                                            ? getImageUrl(property.images[0].image)
                                             : "/placeholder.jpg"
                                     }
-                                    alt={Property.title}
+                                    alt={property.title}
                                     className="Property-image"
                                 />
 
-                                {/* CONTENT */}
                                 <div className="Property-content">
 
                                     <span className="Property-type">
-                                        {Property.Property_type}
+                                        {property.Property_type}
                                     </span>
 
-                                    <h2>
-                                        {Property.title}
-                                    </h2>
+                                    <h2>{property.title}</h2>
 
                                     <p className="Property-location">
-                                        📍 {Property.location}
+                                        📍 {property.location}
                                     </p>
 
                                     <p className="Property-area">
-                                        {Property.area} Sq.ft
+                                        {property.area} Sq.ft
                                     </p>
 
                                     <h3 className="Property-price">
-                                        ₹ {Number(Property.price).toLocaleString("en-IN")}
+                                        ₹ {Number(property.price).toLocaleString("en-IN")}
                                     </h3>
 
-                                    <Link
-                                        to={`/Property/${Property.id}`}
+                                    <button
                                         className="details-btn"
+                                        onClick={() => {
+                                            const viewedProperties = JSON.parse(
+                                                localStorage.getItem("viewedProperties") || "[]"
+                                            );
+
+                                            if (viewedProperties.includes(property.id)) {
+                                                navigate(`/Property/${property.id}`);
+                                            } else {
+                                                navigate(`/inquiry/${property.id}`);
+                                            }
+                                        }}
                                     >
                                         View Details
-                                    </Link>
+                                    </button>
 
                                 </div>
 
@@ -127,7 +135,6 @@ function Properties() {
                 </div>
 
             </div>
-
         </section>
     );
 }

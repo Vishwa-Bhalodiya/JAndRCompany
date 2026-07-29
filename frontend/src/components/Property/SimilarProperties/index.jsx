@@ -87,9 +87,15 @@ function SimilarProperties({ PropertyId }) {
                                     {/* ✅ FIX NAVIGATION */}
                                     <button
                                         className="view-btn"
-                                        onClick={() =>
-                                            navigate(`/Property/${item.id}`)
-                                        }
+                                        onClick={() => {
+                                            const inquirySubmitted = localStorage.getItem("inquirySubmitted");
+
+                                            if (inquirySubmitted) {
+                                                navigate(`/Property/${item.id}`);
+                                            } else {
+                                                navigate(`/inquiry/${item.id}`);
+                                            }
+                                        }}
                                     >
                                         View Details
                                     </button>

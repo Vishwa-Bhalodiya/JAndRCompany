@@ -29,7 +29,7 @@ const SERVICE_CONFIG = {
             { name: "district", label: "District", type: "text", required: true },
             { name: "taluka", label: "Taluka", type: "text", required: true },
             { name: "property_type", label: "Property Type", type: "select", options: ["Land", "Home", "Shop", "Plot"], required: true },
-            { name: "buy_rent", label: "Buy / Rent", type: "select", options: ["Buy", "Rent"], required: true },
+            { name: "buy_rent", label: "Sell / Rent", type: "select", options: ["Sell", "Rent"], required: true },
         ]
     },
     "measurement": {

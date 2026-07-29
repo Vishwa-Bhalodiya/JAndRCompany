@@ -29,6 +29,7 @@ import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
 import EditProperty from "../pages/Dashboard/EditProperty";
 import ManageInquiries from "../pages/Dashboard/ManageInquiries";
 import Favorites from "../pages/Favorites/index";
+import PropertyInquiryForm from "../components/Property/PropertyInquiryForm";
 
 function AppRoutes() {
   return (
@@ -45,6 +46,7 @@ function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/services/:serviceType" element={<ServiceForm />} />
+          <Route path="/inquiry/:id" element={<PropertyInquiryForm />} />
         </Route>
 
         {/* ================= AUTH ROUTES ================= */}
@@ -72,7 +74,7 @@ function AppRoutes() {
           <Route path="properties" element={<ManageProperties />} />
           <Route path="add-Property" element={<AddProperty />} />
           <Route path="edit-Property/:id" element={<EditProperty />} />
-
+          
         </Route>
 
       </Routes>

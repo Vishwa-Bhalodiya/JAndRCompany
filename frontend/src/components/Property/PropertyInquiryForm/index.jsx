@@ -1,9 +1,12 @@
 import { useState } from "react";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import "./PropertyInquiryForm.css";
 import { API_BASE_URL } from "../../../config";
 
 const PropertyInquiryForm = ({ property }) => {
+    const navigate = useNavigate();
+    const {id} = useParams ();
     const [formData, setFormData] = useState({
         name: "",
         mobile_no: "",
@@ -33,7 +36,26 @@ const PropertyInquiryForm = ({ property }) => {
 
         try {
             await axios.post(`${API_BASE_URL}/api/services/buy-rent/`, formData);
+
+            // Save this property as already viewed
+            const viewedProperties = JSON.parse(
+                localStorage.getItem("viewProperties") || "[]"
+            );
+
+            if(!viewedProperties.includes(Number(id))){
+                viewedProperties.push(Number(id));
+            }
+
+            localStorage.setItem(
+                "viewedProperties",
+                JSON.stringify(viewedProperties)
+            );
             setSuccessMsg("Your inquiry has been submitted successfully!");
+
+            //Redirect after 1 second
+            setTimeout(() => {
+                navigate(`/Property/${id}`);
+            }, 1000);
             setFormData({
                 name: "",
                 mobile_no: "",
