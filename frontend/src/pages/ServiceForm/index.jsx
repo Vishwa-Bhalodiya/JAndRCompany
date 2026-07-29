@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../../config";
 import "./ServiceForm.css";
 
 const SERVICE_CONFIG = {
     "buy-rent": {
         title: "Buy & Rent Property Service",
-        apiEndpoint: "http://localhost:8000/api/services/buy-rent/",
+        apiEndpoint: `${API_BASE_URL}/api/services/buy-rent/`,
         fields: [
             { name: "name", label: "Name", type: "text", required: true },
             { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
@@ -19,7 +20,7 @@ const SERVICE_CONFIG = {
     },
     "sell": {
         title: "Sell Property Service",
-        apiEndpoint: "http://localhost:8000/api/services/sell/",
+        apiEndpoint: `${API_BASE_URL}/api/services/sell/`,
         fields: [
             { name: "name", label: "Name", type: "text", required: true },
             { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
@@ -34,7 +35,7 @@ const SERVICE_CONFIG = {
     },
     "measurement": {
         title: "Measurement (7/12) Service",
-        apiEndpoint: "http://localhost:8000/api/services/measurement/",
+        apiEndpoint: `${API_BASE_URL}/api/services/measurement/`,
         fields: [
             { name: "name", label: "Name", type: "text", required: true },
             { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
@@ -46,7 +47,7 @@ const SERVICE_CONFIG = {
     },
     "legal-court": {
         title: "Legal & Court Service",
-        apiEndpoint: "http://localhost:8000/api/services/legal-court/",
+        apiEndpoint: `${API_BASE_URL}/api/services/legal-court/`,
         fields: [
             { name: "name", label: "Name", type: "text", required: true },
             { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
@@ -59,7 +60,7 @@ const SERVICE_CONFIG = {
     },
     "na-service": {
         title: "N.A. (Non-Agricultural) Service",
-        apiEndpoint: "http://localhost:8000/api/services/na-service/",
+        apiEndpoint: `${API_BASE_URL}/api/services/na-service/`,
         fields: [
             { name: "name", label: "Name", type: "text", required: true },
             { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
@@ -72,7 +73,7 @@ const SERVICE_CONFIG = {
     },
     "investment": {
         title: "Investment Service",
-        apiEndpoint: "http://localhost:8000/api/services/investment/",
+        apiEndpoint: `${API_BASE_URL}/api/services/investment/`,
         fields: [
             { name: "name", label: "Name", type: "text", required: true },
             { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
