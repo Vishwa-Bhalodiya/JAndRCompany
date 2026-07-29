@@ -89,7 +89,7 @@ TEMPLATES = [
 # ================= DATABASE =================
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL", "sqlite:///" + str(BASE_DIR / "db.sqlite3"))
+        default=os.environ.get("DATABASE_URL", "postgres://avnadmin:AVNS_i0bm7-sfAhRnz8x1pqS@pg-19464f49-vishwabhalodiya13-bb7b.j.aivencloud.com:26563/defaultdb?sslmode=require")
     )
 }
 
