@@ -16,7 +16,8 @@ import {
     FaDraftingCompass,
     FaRegFileAlt,
     FaLeaf,
-    FaHardHat 
+    FaHardHat,
+    FaBell
 } from "react-icons/fa";
 
 
@@ -94,6 +95,13 @@ const services = [
     description:
         "Expert Project Management Consultancy for construction projects, ensuring quality, budget control, and on-time completion.",
         route: "/contact"
+    },
+    {
+        icon: <FaBell />,
+        title: "Property Alert",
+        description:
+            "Get notified as soon as properties matching your requirements become available for sale or rent.",
+        route: "/services/property-alert"
     }
 ];
 
