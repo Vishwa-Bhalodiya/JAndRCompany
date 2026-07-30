@@ -1,13 +1,14 @@
 from rest_framework import viewsets
 from properties.models import Property
-from .models import BuyRentService, SellService, MeasurementService, LegalCourtService, NAService, InvestmentService
+from .models import BuyRentService, SellService, MeasurementService, LegalCourtService, NAService, InvestmentService, PropertyAlertService
 from .serializers import (
     BuyRentServiceSerializer,
     SellServiceSerializer,
     MeasurementServiceSerializer,
     LegalCourtServiceSerializer,
     NAServiceSerializer,
-    InvestmentServiceSerializer
+    InvestmentServiceSerializer,
+    PropertyAlertServiceSerializer
 )
 
 class BuyRentServiceViewSet(viewsets.ModelViewSet):
@@ -49,3 +50,7 @@ class NAServiceViewSet(viewsets.ModelViewSet):
 class InvestmentServiceViewSet(viewsets.ModelViewSet):
     queryset = InvestmentService.objects.all()
     serializer_class = InvestmentServiceSerializer
+
+class PropertyAlertServiceViewSet(viewsets.ModelViewSet):
+    queryset = PropertyAlertService.objects.all()
+    serializer_class = PropertyAlertServiceSerializer

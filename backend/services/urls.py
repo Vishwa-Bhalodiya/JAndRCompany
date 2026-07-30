@@ -6,7 +6,8 @@ from .views import (
     MeasurementServiceViewSet,
     LegalCourtServiceViewSet,
     NAServiceViewSet,
-    InvestmentServiceViewSet
+    InvestmentServiceViewSet,
+    PropertyAlertServiceViewSet
 )
 
 router = DefaultRouter()
@@ -16,6 +17,7 @@ router.register(r'measurement', MeasurementServiceViewSet, basename='measurement
 router.register(r'legal-court', LegalCourtServiceViewSet, basename='legal-court')
 router.register(r'na-service', NAServiceViewSet, basename='na-service')
 router.register(r'investment', InvestmentServiceViewSet, basename='investment')
+router.register(r'property-alert', PropertyAlertServiceViewSet, basename='property-alert')
 
 urlpatterns = [
     path('', include(router.urls)),

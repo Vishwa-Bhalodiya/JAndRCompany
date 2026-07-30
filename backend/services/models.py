@@ -86,3 +86,29 @@ class InvestmentService(models.Model):
 
     def __str__(self):
         return f"{self.name} - Investment"
+
+class PropertyAlertService(models.Model):
+    PROPERTY_TYPES = (
+        ('Land', 'Land'),
+        ('Home', 'Home'),
+        ('Shop', 'Shop'),
+        ('Plot', 'Plot'),
+    )
+    BUY_RENT = (
+        ('Buy', 'Buy'),
+        ('Rent', 'Rent'),
+    )
+    name = models.CharField(max_length=255)
+    mobile_no = models.CharField(max_length=20)
+    property_type = models.CharField(max_length=50, choices=PROPERTY_TYPES)
+    buy_rent = models.CharField(max_length=10, choices=BUY_RENT)
+    survey_no = models.CharField(max_length=100, blank=True, default="")
+    building_name = models.CharField(max_length=255, blank=True, default="")
+    location = models.CharField(max_length=255)
+    district = models.CharField(max_length=255)
+    taluka = models.CharField(max_length=255)
+    budget_range = models.CharField(max_length=255, blank=True, default="")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - Property Alert"
