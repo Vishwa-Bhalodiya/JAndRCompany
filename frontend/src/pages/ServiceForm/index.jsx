@@ -18,7 +18,8 @@ const SERVICE_CONFIG = {
         fields: [
             { name: "name", label: "Name", type: "text", required: true },
             { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
-            { name: "survey_no", label: "Survey No.", type: "text", required: true },
+            { name: "survey_no", label: "Survey No.", type: "text", required: false },
+            { name: "building_name", label: "Building Name", type: "text", required: false },
             { name: "location", label: "Location", type: "text", required: true },
             { name: "village_name", label: "Village Name", type: "text", required: true },
             { name: "district_name", label: "District Name", type: "text", required: true },
@@ -39,6 +40,10 @@ const SERVICE_CONFIG = {
             { name: "taluka", label: "Taluka", type: "text", required: true },
             { name: "property_type", label: "Property Type", type: "select", options: ["Land", "Home", "Shop", "Plot"], required: true },
             { name: "buy_rent", label: "Sell / Rent", type: "select", options: [{ label: "Sell", value: "Buy" }, { label: "Rent", value: "Rent" }], required: true },
+            { name: "price", label: "Expected Price (₹)", type: "number", required: true },
+            { name: "area", label: "Area (Sq.ft)", type: "number", required: true },
+            { name: "images", label: "Property Images", type: "file", multiple: true, required: false },
+            { name: "documents", label: "Property Documents", type: "file", multiple: true, required: false, accept: ".pdf,.doc,.docx,image/*" },
         ]
     },
     "measurement": {
@@ -47,10 +52,11 @@ const SERVICE_CONFIG = {
         fields: [
             { name: "name", label: "Name", type: "text", required: true },
             { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
-            { name: "survey_no", label: "Survey No.", type: "text", required: true },
+            { name: "survey_no", label: "Survey No.", type: "text", required: false },
+            { name: "building_name", label: "Building Name", type: "text", required: false },
             { name: "village", label: "Village", type: "text", required: true },
             { name: "district", label: "District", type: "text", required: true },
-            { name: "taluka", label: "Taluka", type: "text", required: true },
+            { name: "taluka", label: "Taluka", type: "text", required: true, full: true },
         ]
     },
     "legal-court": {
@@ -59,10 +65,11 @@ const SERVICE_CONFIG = {
         fields: [
             { name: "name", label: "Name", type: "text", required: true },
             { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
-            { name: "survey_no", label: "Survey No.", type: "text", required: true },
+            { name: "survey_no", label: "Survey No.", type: "text", required: false },
+            { name: "building_name", label: "Building Name", type: "text", required: false },
             { name: "village", label: "Village", type: "text", required: true },
             { name: "taluka", label: "Taluka", type: "text", required: true },
-            { name: "district", label: "District", type: "text", required: true },
+            { name: "district", label: "District", type: "text", required: true, full: true },
             { name: "problem_description", label: "Problem Description", type: "textarea", required: true },
         ]
     },
@@ -76,7 +83,33 @@ const SERVICE_CONFIG = {
             { name: "village", label: "Village", type: "text", required: true },
             { name: "taluka", label: "Taluka", type: "text", required: true },
             { name: "district", label: "District", type: "text", required: true },
-            { name: "na_papers", label: "N.A. Papers Details", type: "text", required: true },
+            { name: "na_papers", label: "N.A. Papers Details", type: "text", required: true, full: true },
+        ]
+    },
+    "land-documentation": {
+        title: "Land Documentation & 7/12 Service",
+        apiEndpoint: `${API_BASE_URL}/api/services/land-documentation/`,
+        fields: [
+            { name: "name", label: "Name", type: "text", required: true },
+            { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
+            { name: "survey_no", label: "Survey No.", type: "text", required: false },
+            { name: "building_name", label: "Building Name", type: "text", required: false },
+            { name: "village", label: "Village", type: "text", required: true },
+            { name: "district", label: "District", type: "text", required: true },
+            { name: "taluka", label: "Taluka", type: "text", required: true, full: true },
+        ]
+    },
+    "government-land": {
+        title: "Government Land Service",
+        apiEndpoint: `${API_BASE_URL}/api/services/government-land/`,
+        fields: [
+            { name: "name", label: "Name", type: "text", required: true },
+            { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
+            { name: "survey_no", label: "Survey No.", type: "text", required: true },
+            { name: "village", label: "Village", type: "text", required: true },
+            { name: "taluka", label: "Taluka", type: "text", required: true },
+            { name: "district", label: "District", type: "text", required: true },
+            { name: "matter_details", label: "Details of Government Land Matter", type: "text", required: true, full: true },
         ]
     },
     "investment": {
@@ -96,13 +129,11 @@ const SERVICE_CONFIG = {
             { name: "name", label: "Name", type: "text", required: true },
             { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
             { name: "property_type", label: "Property Type", type: "select", options: ["Land", "Home", "Shop", "Plot"], required: true },
-            { name: "buy_rent", label: "Buy / Rent", type: "select", options: [{ label: "Buy", value: "Buy" }, { label: "Rent", value: "Rent" }], required: true },
+            { name: "location", label: "Preferred Location", type: "text", required: true },
             { name: "survey_no", label: "Survey No.", type: "text", required: false },
             { name: "building_name", label: "Building Name", type: "text", required: false },
-            { name: "location", label: "Preferred Location", type: "text", required: true },
             { name: "district", label: "District", type: "text", required: true },
             { name: "taluka", label: "Taluka", type: "text", required: true },
-            { name: "budget_range", label: "Budget Range", type: "text", required: false },
         ]
     }
 };
@@ -116,9 +147,11 @@ const ServiceForm = () => {
     const formTitle = location.state?.title || config?.title;
 
     const [formData, setFormData] = useState({});
+    const [files, setFiles] = useState({});
     const [loading, setLoading] = useState(false);
     const [successMsg, setSuccessMsg] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
+    const [formKey, setFormKey] = useState(0);
 
     if (!config) {
         return (
@@ -141,6 +174,13 @@ const ServiceForm = () => {
         });
     };
 
+    const handleFileChange = (name, fileList) => {
+        setFiles({
+            ...files,
+            [name]: Array.from(fileList)
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -160,10 +200,28 @@ const ServiceForm = () => {
             }
         }
 
+        const hasFileField = config.fields.some((f) => f.type === "file");
+        let payload = formData;
+
+        if (hasFileField) {
+            const data = new FormData();
+            Object.entries(formData).forEach(([key, value]) => {
+                if (value !== undefined && value !== null && value !== "") {
+                    data.append(key, value);
+                }
+            });
+            Object.entries(files).forEach(([key, fileList]) => {
+                fileList.forEach((file) => data.append(key, file));
+            });
+            payload = data;
+        }
+
         try {
-            await axios.post(config.apiEndpoint, formData);
+            await axios.post(config.apiEndpoint, payload);
             setSuccessMsg("Your inquiry has been submitted successfully!");
             setFormData({}); // clear form
+            setFiles({});
+            setFormKey((k) => k + 1); // remount form to clear uncontrolled file inputs
             setTimeout(() => navigate("/about"), 3000);
         } catch (error) {
             console.error("Error submitting form:", error);
@@ -213,6 +271,27 @@ const ServiceForm = () => {
             );
         }
 
+        if (field.type === "file") {
+            const selectedCount = files[field.name]?.length || 0;
+
+            return (
+                <>
+                    <input
+                        type="file"
+                        className="form-control"
+                        name={field.name}
+                        accept={field.accept || "image/*"}
+                        multiple={field.multiple}
+                        onChange={(e) => handleFileChange(field.name, e.target.files)}
+                        required={field.required}
+                    />
+                    {selectedCount > 0 && (
+                        <span className="file-hint">{selectedCount} file(s) selected</span>
+                    )}
+                </>
+            );
+        }
+
         return (
             <input
                 type={field.type}
@@ -258,7 +337,7 @@ const ServiceForm = () => {
                     </div>
                 )}
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} key={formKey}>
                     <div className="form-grid">
                         {config.fields.map((field, idx) => {
 
@@ -304,7 +383,7 @@ const ServiceForm = () => {
                                 );
                             }
 
-                            const fieldClass = field.type === "textarea" ? "field field-full" : "field";
+                            const fieldClass = (field.type === "textarea" || field.type === "file" || field.full) ? "field field-full" : "field";
 
                             return (
                                 <div className={fieldClass} key={idx}>

@@ -2,6 +2,7 @@ import { API_BASE_URL } from "../../config";
 import "./Contact.css";
 
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import {
     FaPhoneAlt,
@@ -10,18 +11,25 @@ import {
     FaClock,
     FaFacebookF,
     FaInstagram,
-    FaLinkedinIn
+    FaLinkedinIn,
+    FaCheckCircle,
+    FaExclamationTriangle
 } from "react-icons/fa";
 
 function Contact() {
 
+    const location = useLocation();
+    const presetSubject = location.state?.title ? `${location.state.title} Inquiry` : "";
+
     const [loading, setLoading] = useState(false);
+    const [successMsg, setSuccessMsg] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
 
     const [form, setForm] = useState({
         name: "",
         email: "",
         phone: "",
-        subject: "",
+        subject: presetSubject,
         message: ""
     });
 
@@ -39,6 +47,8 @@ function Contact() {
         e.preventDefault();
 
         setLoading(true);
+        setSuccessMsg("");
+        setErrorMsg("");
 
         try {
 
@@ -59,7 +69,7 @@ function Contact() {
 
                 console.log(data);
 
-                alert("Failed to send inquiry.");
+                setErrorMsg("Failed to send inquiry. Please try again later.");
 
                 setLoading(false);
 
@@ -67,13 +77,13 @@ function Contact() {
 
             }
 
-            alert("Inquiry sent successfully!");
+            setSuccessMsg("Inquiry sent successfully!");
 
             setForm({
                 name: "",
                 email: "",
                 phone: "",
-                subject: "",
+                subject: presetSubject,
                 message: ""
             });
 
@@ -83,7 +93,7 @@ function Contact() {
 
             console.error(error);
 
-            alert("Server Error");
+            setErrorMsg("Server error. Please try again later.");
 
         }
 
@@ -159,6 +169,20 @@ function Contact() {
                         Fill the form below and our team will contact you.
                     </p>
 
+                    {successMsg && (
+                        <div className="form-alert form-alert-success">
+                            <FaCheckCircle />
+                            <span>{successMsg}</span>
+                        </div>
+                    )}
+
+                    {errorMsg && (
+                        <div className="form-alert form-alert-error">
+                            <FaExclamationTriangle />
+                            <span>{errorMsg}</span>
+                        </div>
+                    )}
+
                     <form onSubmit={handleSubmit}>
 
                         <input
@@ -194,6 +218,8 @@ function Contact() {
                             value={form.subject}
                             onChange={handleChange}
                             placeholder="Subject"
+                            readOnly={!!presetSubject}
+                            className={presetSubject ? "locked-field" : ""}
                             required
                         />
 

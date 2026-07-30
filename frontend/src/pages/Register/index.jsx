@@ -11,7 +11,9 @@ import {
   FaPhone,
   FaLock,
   FaEye,
-  FaEyeSlash
+  FaEyeSlash,
+  FaCheckCircle,
+  FaExclamationTriangle
 } from "react-icons/fa";
 
 function Register() {
@@ -21,6 +23,8 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const [form, setForm] = useState({
     username: "",
@@ -39,18 +43,21 @@ function Register() {
 
   const handleRegister = async () => {
 
+    setSuccessMsg("");
+    setErrorMsg("");
+
     if (
       !form.username ||
       !form.email ||
       !form.password ||
       !form.confirmPassword
     ) {
-      alert("Please fill all fields.");
+      setErrorMsg("Please fill all fields.");
       return;
     }
 
     if (form.password !== form.confirmPassword) {
-      alert("Passwords do not match.");
+      setErrorMsg("Passwords do not match.");
       return;
     }
 
@@ -77,13 +84,13 @@ function Register() {
 
       if (response.ok) {
 
-        alert("Registration Successful!");
+        setSuccessMsg("Registration successful! Redirecting to login...");
 
-        navigate("/login");
+        setTimeout(() => navigate("/login"), 1200);
 
       } else {
 
-        alert(data.message);
+        setErrorMsg(data.message || "Registration failed.");
 
       }
 
@@ -91,7 +98,7 @@ function Register() {
 
       console.error(error);
 
-      alert("Server Error");
+      setErrorMsg("Server error. Please try again later.");
 
     }
 
@@ -125,6 +132,20 @@ function Register() {
         >
 
           <h2>Create Account</h2>
+
+          {successMsg && (
+            <div className="form-alert form-alert-success">
+              <FaCheckCircle />
+              <span>{successMsg}</span>
+            </div>
+          )}
+
+          {errorMsg && (
+            <div className="form-alert form-alert-error">
+              <FaExclamationTriangle />
+              <span>{errorMsg}</span>
+            </div>
+          )}
 
           {/* NAME */}
 

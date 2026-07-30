@@ -103,6 +103,34 @@
     gap:18px;
 }
 
+.form-alert{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 18px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:500;
+    margin-bottom:20px;
+}
+
+.form-alert svg{
+    flex-shrink:0;
+    font-size:18px;
+}
+
+.form-alert-success{
+    background:rgba(34,197,94,.12);
+    border:1px solid rgba(34,197,94,.3);
+    color:#4ade80;
+}
+
+.form-alert-error{
+    background:rgba(239,68,68,.12);
+    border:1px solid rgba(239,68,68,.3);
+    color:#f87171;
+}
+
 .contact-left input,
 .contact-left textarea{
 
@@ -120,6 +148,18 @@
 .contact-left textarea:focus{
 
     border-color:#37b5d4;
+
+}
+
+.contact-left input.locked-field{
+
+    background:#1c1c1c;
+
+    color:#37b5d4;
+
+    font-weight:600;
+
+    cursor:not-allowed;
 
 }
 

@@ -2,189 +2,215 @@ import { API_BASE_URL } from "../../../config";
 import { useEffect, useState } from "react";
 import "./ManageInquiries.css";
 
+const ENDPOINTS = {
+    sell: "services/sell",
+    buyRent: "services/buy-rent",
+    measurement: "services/measurement",
+    landDocumentation: "services/land-documentation",
+    legalCourt: "services/legal-court",
+    governmentLand: "services/government-land",
+    naService: "services/na-service",
+    investment: "services/investment",
+    propertyAlert: "services/property-alert",
+    inquiries: "inquiries",
+};
+
+const SECTIONS = [
+    { key: "sell", label: "Sell Inquiries", dataKey: "sell" },
+    { key: "buy", label: "Buy Inquiries", dataKey: "buyRent", filter: (r) => r.buy_rent === "Buy" },
+    { key: "rent", label: "Rent Inquiries", dataKey: "buyRent", filter: (r) => r.buy_rent === "Rent" },
+    { key: "buy-rent-unspecified", label: "Unspecified Buy/Rent Inquiries", dataKey: "buyRent", filter: (r) => !r.buy_rent, hideIfEmpty: true },
+    { key: "measurement", label: "Land Survey & Measurement Inquiries", dataKey: "measurement" },
+    { key: "land-documentation", label: "Land Documentation & 7/12 Services Inquiries", dataKey: "landDocumentation" },
+    { key: "legal-court", label: "Legal Assistance & Land Dispute Resolution Inquiries", dataKey: "legalCourt" },
+    { key: "government-land", label: "Government Land Services Inquiries", dataKey: "governmentLand" },
+    { key: "na-service", label: "N.A. Land Conversion Inquiries", dataKey: "naService" },
+    { key: "investment", label: "Investment & Property Consultation Inquiries", dataKey: "investment" },
+    { key: "pmc", label: "PMC Services Inquiries", dataKey: "inquiries", filter: (r) => r.subject === "PMC Services Inquiry" },
+    { key: "property-alert", label: "Property Alert Inquiries", dataKey: "propertyAlert" },
+    { key: "contact", label: "Contact Inquiries", dataKey: "inquiries", filter: (r) => r.subject !== "PMC Services Inquiry" },
+];
+
+const humanize = (key) =>
+    key
+        .replace(/_/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase());
+
+const formatValue = (key, value) => {
+    if (value === null || value === undefined || value === "") return "—";
+    if (key === "created_at") return new Date(value).toLocaleString();
+    if (typeof value === "boolean") return value ? "Yes" : "No";
+    return String(value);
+};
+
 function ManageInquiries() {
-
-    const [inquiries, setInquiries] = useState([]);
-    const [search, setSearch] = useState("");
+    const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [activeSection, setActiveSection] = useState(SECTIONS[0].key);
+    const [search, setSearch] = useState("");
 
-    const fetchInquiries = async () => {
+    const authHeaders = () => ({
+        Authorization: `Bearer ${localStorage.getItem("access")}`,
+    });
 
+    const fetchAll = async () => {
+        setLoading(true);
+        setError("");
         try {
-
-            const response = await fetch(
-                `${API_BASE_URL}/api/inquiries/`
+            const entries = Object.entries(ENDPOINTS);
+            const results = await Promise.all(
+                entries.map(([, path]) =>
+                    fetch(`${API_BASE_URL}/api/${path}/`, { headers: authHeaders() }).then((res) => {
+                        if (!res.ok) throw new Error(`Failed to load ${path}`);
+                        return res.json();
+                    })
+                )
             );
 
-            const data = await response.json();
-
-            setInquiries(data);
-
-        } catch (error) {
-
-            console.error(error);
-
+            const next = {};
+            entries.forEach(([key], i) => {
+                next[key] = Array.isArray(results[i]) ? results[i] : results[i]?.results || [];
+            });
+            setData(next);
+        } catch (err) {
+            console.error(err);
+            setError("Failed to load inquiries. Please make sure you are logged in as an admin.");
         } finally {
-
             setLoading(false);
-
         }
-
     };
 
     useEffect(() => {
-        fetchInquiries();
+        fetchAll();
     }, []);
 
     const markContacted = async (item) => {
-
-        await fetch(
-            `${API_BASE_URL}/api/inquiries/${item.id}/`,
-            {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    contacted: !item.contacted
-                })
-            }
-        );
-
-        fetchInquiries();
-
+        await fetch(`${API_BASE_URL}/api/inquiries/${item.id}/`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                ...authHeaders(),
+            },
+            body: JSON.stringify({ contacted: !item.contacted }),
+        });
+        fetchAll();
     };
 
-    const deleteInquiry = async (id) => {
-
+    const deleteRecord = async (dataKey, id) => {
         if (!window.confirm("Delete this inquiry?")) return;
 
-        await fetch(
-            `${API_BASE_URL}/api/inquiries/${id}/`,
-            {
-                method: "DELETE"
-            }
-        );
-
-        fetchInquiries();
-
+        await fetch(`${API_BASE_URL}/api/${ENDPOINTS[dataKey]}/${id}/`, {
+            method: "DELETE",
+            headers: authHeaders(),
+        });
+        fetchAll();
     };
 
-    const filtered = inquiries.filter((item) =>
-        item.name.toLowerCase().includes(search.toLowerCase()) ||
-        item.email.toLowerCase().includes(search.toLowerCase()) ||
-        item.subject.toLowerCase().includes(search.toLowerCase())
+    if (loading) return <h2 className="mi-status">Loading inquiries...</h2>;
+    if (error) return <h2 className="mi-status mi-error">{error}</h2>;
+
+    const visibleSections = SECTIONS.filter((section) => {
+        const records = data[section.dataKey] || [];
+        const filtered = section.filter ? records.filter(section.filter) : records;
+        return !section.hideIfEmpty || filtered.length > 0;
+    });
+
+    const currentSection = SECTIONS.find((s) => s.key === activeSection) || SECTIONS[0];
+    const currentRecords = (data[currentSection.dataKey] || []).filter(
+        currentSection.filter || (() => true)
     );
 
-    if (loading) return <h2>Loading...</h2>;
+    const searched = currentRecords.filter((record) =>
+        JSON.stringify(record).toLowerCase().includes(search.toLowerCase())
+    );
+
+    const sorted = [...searched].sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    );
 
     return (
-
         <div className="mi-page">
-
             <div className="mi-header">
-
                 <div>
-
                     <h2>Manage Inquiries</h2>
-
-                    <p>Customer Leads & Contact Requests</p>
-
+                    <p>Customer Leads & Service Requests</p>
                 </div>
 
                 <input
                     type="text"
-                    placeholder="Search..."
+                    placeholder="Search in this section..."
                     value={search}
-                    onChange={(e)=>setSearch(e.target.value)}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
-
             </div>
 
-            <table className="mi-table">
+            <div className="mi-layout">
+                <div className="mi-sidebar">
+                    {visibleSections.map((section) => {
+                        const records = data[section.dataKey] || [];
+                        const count = (section.filter ? records.filter(section.filter) : records).length;
 
-                <thead>
+                        return (
+                            <button
+                                key={section.key}
+                                className={`mi-tab ${activeSection === section.key ? "active" : ""}`}
+                                onClick={() => {
+                                    setActiveSection(section.key);
+                                    setSearch("");
+                                }}
+                            >
+                                <span>{section.label}</span>
+                                <span className="mi-count">{count}</span>
+                            </button>
+                        );
+                    })}
+                </div>
 
-                    <tr>
+                <div className="mi-content">
+                    <h3 className="mi-content-title">{currentSection.label}</h3>
 
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Subject</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                        <th>Actions</th>
+                    {sorted.length === 0 ? (
+                        <div className="mi-empty">No inquiries in this category yet.</div>
+                    ) : (
+                        <div className="mi-cards">
+                            {sorted.map((record) => (
+                                <div className="mi-card" key={record.id}>
+                                    <div className="mi-card-grid">
+                                        {Object.entries(record)
+                                            .filter(([key]) => key !== "id")
+                                            .map(([key, value]) => (
+                                                <div className="mi-field" key={key}>
+                                                    <span className="mi-field-label">{humanize(key)}</span>
+                                                    <span className="mi-field-value">{formatValue(key, value)}</span>
+                                                </div>
+                                            ))}
+                                    </div>
 
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    {filtered.map((item)=>(
-
-                        <tr key={item.id}>
-
-                            <td>{item.name}</td>
-
-                            <td>{item.email}</td>
-
-                            <td>{item.phone}</td>
-
-                            <td>{item.subject}</td>
-
-                            <td>
-
-                                <span
-                                    className={
-                                        item.contacted
-                                        ? "badge contacted"
-                                        : "badge pending"
-                                    }
-                                >
-
-                                    {item.contacted
-                                    ? "Contacted"
-                                    : "Pending"}
-
-                                </span>
-
-                            </td>
-
-                            <td>
-                                {new Date(item.created_at).toLocaleDateString()}
-                            </td>
-
-                            <td>
-
-                                <button
-                                    className="contact-btn"
-                                    onClick={()=>markContacted(item)}
-                                >
-                                    Status
-                                </button>
-
-                                <button
-                                    className="delete-btn"
-                                    onClick={()=>deleteInquiry(item.id)}
-                                >
-                                    Delete
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                    ))}
-
-                </tbody>
-
-            </table>
-
+                                    <div className="mi-card-actions">
+                                        {Object.prototype.hasOwnProperty.call(record, "contacted") && (
+                                            <button
+                                                className="contact-btn"
+                                                onClick={() => markContacted(record)}
+                                            >
+                                                {record.contacted ? "Mark Pending" : "Mark Contacted"}
+                                            </button>
+                                        )}
+                                        <button
+                                            className="delete-btn"
+                                            onClick={() => deleteRecord(currentSection.dataKey, record.id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
-
     );
-
 }
 
 export default ManageInquiries;

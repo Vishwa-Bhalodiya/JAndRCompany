@@ -1,5 +1,6 @@
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
+import { Collapse } from "bootstrap";
 import { getUser, logout } from "../../services/auth";
 import { FaHeart } from "react-icons/fa";
 
@@ -8,7 +9,15 @@ function Navbar() {
 
     const user = getUser();
 
+    const closeMenu = () => {
+        const menu = document.getElementById("navbarMenu");
+        if (menu && menu.classList.contains("show")) {
+            Collapse.getOrCreateInstance(menu).hide();
+        }
+    };
+
     const handleLogout = () => {
+        closeMenu();
         logout();
         navigate("/");
         window.location.reload();
@@ -44,6 +53,7 @@ function Navbar() {
                 <div
                     className="collapse navbar-collapse"
                     id="navbarMenu"
+                    onClick={closeMenu}
                 >
 
                     <ul className="navbar-nav ms-auto align-items-lg-center">

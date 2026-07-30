@@ -1,6 +1,8 @@
 import { useState } from "react";
 import {useNavigate, useParams} from "react-router-dom";
+import { motion } from "framer-motion";
 import axios from "axios";
+import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import "./PropertyInquiryForm.css";
 import { API_BASE_URL } from "../../../config";
 
@@ -10,7 +12,7 @@ const PropertyInquiryForm = ({ property }) => {
     const [formData, setFormData] = useState({
         name: "",
         mobile_no: "",
-        survey_no: property?.survey_no || "",
+        buy_rent: property?.status === "For Rent" ? "Rent" : "Buy",
         location: property?.location || "",
         village_name: property?.village_name || "",
         district_name: property?.district || "",
@@ -39,7 +41,7 @@ const PropertyInquiryForm = ({ property }) => {
 
             // Save this property as already viewed
             const viewedProperties = JSON.parse(
-                localStorage.getItem("viewProperties") || "[]"
+                localStorage.getItem("viewedProperties") || "[]"
             );
 
             if(!viewedProperties.includes(Number(id))){
@@ -59,7 +61,7 @@ const PropertyInquiryForm = ({ property }) => {
             setFormData({
                 name: "",
                 mobile_no: "",
-                survey_no: property?.survey_no || "",
+                buy_rent: property?.status === "For Rent" ? "Rent" : "Buy",
                 location: property?.location || "",
                 village_name: property?.village_name || "",
                 district_name: property?.district || "",
@@ -76,49 +78,62 @@ const PropertyInquiryForm = ({ property }) => {
     const formTitle = property?.status === "For Rent" ? "Inquire to Rent This Property" : "Inquire to Buy This Property";
 
     return (
-        <div className="property-inquiry-form-wrapper mt-5">
-            <h3 className="mb-4">{formTitle}</h3>
-            {successMsg && <div className="alert alert-success">{successMsg}</div>}
-            {errorMsg && <div className="alert alert-danger">{errorMsg}</div>}
-            
+        <motion.div
+            className="property-inquiry-form-wrapper mt-5"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+        >
+            <div className="form-header">
+                <h3>{formTitle}</h3>
+                <p>Share your details below and our team will get back to you shortly.</p>
+            </div>
+
+            {successMsg && (
+                <div className="form-alert form-alert-success">
+                    <FaCheckCircle />
+                    <span>{successMsg}</span>
+                </div>
+            )}
+            {errorMsg && (
+                <div className="form-alert form-alert-error">
+                    <FaExclamationTriangle />
+                    <span>{errorMsg}</span>
+                </div>
+            )}
+
             <form onSubmit={handleSubmit} className="property-inquiry-form">
-                <div className="row">
-                    <div className="col-md-6 mb-3">
-                        <label className="form-label">Name</label>
-                        <input type="text" className="form-control" name="name" value={formData.name} onChange={handleChange} required />
+                <div className="form-grid">
+                    <div className="field">
+                        <label className="form-label">Name<span className="required-mark">*</span></label>
+                        <input type="text" className="form-control" name="name" value={formData.name} onChange={handleChange} placeholder="Enter name" required />
                     </div>
-                    <div className="col-md-6 mb-3">
-                        <label className="form-label">Mobile No.</label>
-                        <input type="text" className="form-control" name="mobile_no" value={formData.mobile_no} onChange={handleChange} required />
+                    <div className="field">
+                        <label className="form-label">Mobile No.<span className="required-mark">*</span></label>
+                        <input type="text" className="form-control" name="mobile_no" value={formData.mobile_no} onChange={handleChange} placeholder="Enter mobile no." required />
                     </div>
-                    <div className="col-md-6 mb-3">
-                        <label className="form-label">Survey No.</label>
-                        <input type="text" className="form-control" name="survey_no" value={formData.survey_no} onChange={handleChange} required />
+
+                    <div className="field">
+                        <label className="form-label">Village Name<span className="required-mark">*</span></label>
+                        <input type="text" className="form-control" name="village_name" value={formData.village_name} onChange={handleChange} placeholder="Enter village name" required />
                     </div>
-                    <div className="col-md-6 mb-3">
-                        <label className="form-label">Location</label>
-                        <input type="text" className="form-control" name="location" value={formData.location} onChange={handleChange} required />
+                    <div className="field">
+                        <label className="form-label">Taluka Name<span className="required-mark">*</span></label>
+                        <input type="text" className="form-control" name="taluka_name" value={formData.taluka_name} onChange={handleChange} placeholder="Enter taluka name" required />
                     </div>
-                    <div className="col-md-4 mb-3">
-                        <label className="form-label">Village Name</label>
-                        <input type="text" className="form-control" name="village_name" value={formData.village_name} onChange={handleChange} required />
-                    </div>
-                    <div className="col-md-4 mb-3">
-                        <label className="form-label">Taluka Name</label>
-                        <input type="text" className="form-control" name="taluka_name" value={formData.taluka_name} onChange={handleChange} required />
-                    </div>
-                    <div className="col-md-4 mb-3">
-                        <label className="form-label">District Name</label>
-                        <input type="text" className="form-control" name="district_name" value={formData.district_name} onChange={handleChange} required />
+                    <div className="field field-full">
+                        <label className="form-label">District Name<span className="required-mark">*</span></label>
+                        <input type="text" className="form-control" name="district_name" value={formData.district_name} onChange={handleChange} placeholder="Enter district name" required />
                     </div>
                 </div>
-                <div className="text-center mt-3">
-                    <button type="submit" className="btn submit-btn w-100" disabled={loading}>
+                <div className="text-center mt-4">
+                    <button type="submit" className="submit-btn" disabled={loading}>
                         {loading ? "Submitting..." : "Submit Inquiry"}
                     </button>
                 </div>
             </form>
-        </div>
+        </motion.div>
     );
 };
 

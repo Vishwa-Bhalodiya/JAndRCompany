@@ -1,12 +1,44 @@
+import { useState } from "react";
 import "./PropertyDocuments.css";
 
 import {
     FaFilePdf,
     FaDownload,
-    FaCheckCircle
+    FaCheckCircle,
+    FaSpinner
 } from "react-icons/fa";
 
 function PropertyDocuments({ documents = [] }) {
+    const [downloadingId, setDownloadingId] = useState(null);
+
+    const handleDownload = async (doc, index) => {
+        setDownloadingId(doc.id);
+
+        try {
+            const response = await fetch(doc.document);
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch document");
+            }
+
+            const blob = await response.blob();
+            const extension = doc.document.split(".").pop().split("?")[0];
+            const blobUrl = window.URL.createObjectURL(blob);
+
+            const link = document.createElement("a");
+            link.href = blobUrl;
+            link.download = `property-document-${index + 1}.${extension}`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(blobUrl);
+        } catch (error) {
+            console.error("Error downloading document:", error);
+            window.open(doc.document, "_blank", "noopener,noreferrer");
+        } finally {
+            setDownloadingId(null);
+        }
+    };
 
     return (
 
@@ -22,7 +54,7 @@ function PropertyDocuments({ documents = [] }) {
 
             {documents.length > 0 ? (
 
-                documents.map((doc) => (
+                documents.map((doc, index) => (
 
                     <div
                         className="document-card"
@@ -36,7 +68,7 @@ function PropertyDocuments({ documents = [] }) {
                             <div>
 
                                 <h5>
-                                    {doc.name}
+                                    Document {index + 1}
                                 </h5>
 
                                 <span>
@@ -51,15 +83,24 @@ function PropertyDocuments({ documents = [] }) {
 
                         </div>
 
-                        <a
-                            href={doc.file}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
+                            type="button"
                             className="download-btn"
+                            onClick={() => handleDownload(doc, index)}
+                            disabled={downloadingId === doc.id}
                         >
-                            <FaDownload />
-                            Download
-                        </a>
+                            {downloadingId === doc.id ? (
+                                <>
+                                    <FaSpinner className="spin" />
+                                    Downloading...
+                                </>
+                            ) : (
+                                <>
+                                    <FaDownload />
+                                    Download
+                                </>
+                            )}
+                        </button>
 
                     </div>
 

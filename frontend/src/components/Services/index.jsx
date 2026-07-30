@@ -56,7 +56,7 @@ const services = [
         title: "Land Documentation & 7/12 Services",
         description:
             "Expert assistance with land registration, title verification, legal documentation, and complete 7/12 record preparation, correction, and updates.",
-        route: "/services/measurement"
+        route: "/services/land-documentation"
     },
     {
     icon: <FaBalanceScale />,
@@ -70,7 +70,7 @@ const services = [
         title: "Government Land Services",
         description:
             "Expert assistance for government land matters, regularization, and legal procedures.",
-        route: "/services/na-service"
+        route: "/services/government-land"
     },
 
     {

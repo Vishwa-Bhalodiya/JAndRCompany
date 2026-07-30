@@ -12,7 +12,8 @@ import {
   FaLock,
   FaEye,
   FaEyeSlash,
-  FaGoogle
+  FaGoogle,
+  FaExclamationTriangle
 } from "react-icons/fa";
 
 function Login() {
@@ -22,6 +23,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const [form, setForm] = useState({
     email: "",
@@ -38,6 +40,7 @@ function Login() {
 const handleLogin = async (e) => {
   e.preventDefault();
   setLoading(true);
+  setErrorMsg("");
 
   try {
     const response = await fetch(`${API_BASE_URL}/api/users/login/`, {
@@ -54,7 +57,7 @@ const handleLogin = async (e) => {
     const data = await response.json();
 
     if (!response.ok) {
-      alert(data.message || "Login failed");
+      setErrorMsg(data.message || "Login failed");
       setLoading(false);
       return;
     }
@@ -82,7 +85,7 @@ const handleLogin = async (e) => {
 
   } catch (error) {
     console.error(error);
-    alert("Server connection failed.");
+    setErrorMsg("Server connection failed.");
   }
 
   setLoading(false);
@@ -116,6 +119,13 @@ const handleLogin = async (e) => {
           {/* 💛 GOLD TEXT CLASSES ADDED */}
           <h2 className="login-title">Welcome Back</h2>
           <p className="login-subtitle">Login to continue</p>
+
+          {errorMsg && (
+            <div className="form-alert form-alert-error">
+              <FaExclamationTriangle />
+              <span>{errorMsg}</span>
+            </div>
+          )}
 
           {/* EMAIL */}
           <div className="login-input-box">

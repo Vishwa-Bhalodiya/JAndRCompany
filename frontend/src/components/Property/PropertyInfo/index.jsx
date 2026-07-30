@@ -1,6 +1,7 @@
 import { API_BASE_URL } from "../../../config";
 import "./PropertyInfo.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import {
   FaHeart,
@@ -13,12 +14,20 @@ import {
 
 function PropertyInfo({ Property }) {
 
+  const navigate = useNavigate();
+
   if (!Property) return null;
 
 const saveProperty = async () => {
-    try {
+    const token = localStorage.getItem("access");
 
-        const token = localStorage.getItem("access");
+    if (!token) {
+        alert("Login to save property");
+        navigate("/login");
+        return;
+    }
+
+    try {
 
         const res = await axios.post(
             `${API_BASE_URL}/api/favorites/${Property.id}/`,
@@ -38,7 +47,12 @@ const saveProperty = async () => {
         console.log("Data:", error.response?.data);
         console.log("Headers:", error.response?.headers);
 
-        alert("Failed to save Property");
+        if (error.response?.status === 401) {
+            alert("Login to save property");
+            navigate("/login");
+        } else {
+            alert("Failed to save Property");
+        }
     }
 };
 

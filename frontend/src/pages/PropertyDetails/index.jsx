@@ -2,7 +2,7 @@ import { API_BASE_URL } from "../../config";
 import "./PropertyDetails.css";
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 
 import Gallery from "../../components/Property/Gallery";
 import PropertyInfo from "../../components/Property/PropertyInfo";
@@ -13,7 +13,6 @@ import AgentCard from "../../components/Property/AgentCard";
 import SimilarProperties from "../../components/Property/SimilarProperties";
 
 import PropertyDocuments from "../../components/Property/PropertyDocuments";
-import PropertyInquiryForm from "../../components/Property/PropertyInquiryForm";
 
 function PropertyDetails() {
 
@@ -22,9 +21,14 @@ function PropertyDetails() {
     const [Property, setProperty] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const viewedProperties = JSON.parse(localStorage.getItem("viewedProperties") || "[]");
+    const hasAccess = viewedProperties.includes(Number(id));
+
     useEffect(() => {
-        loadProperty();
-    }, [id]);
+        if (hasAccess) {
+            loadProperty();
+        }
+    }, [id, hasAccess]);
 
     const loadProperty = async () => {
         try {
@@ -37,6 +41,11 @@ function PropertyDetails() {
             setLoading(false);
         }
     };
+
+    // Require an inquiry submission before the full details unlock
+    if (!hasAccess) {
+        return <Navigate to={`/inquiry/${id}`} replace />;
+    }
 
     // LOADING STATE
     if (loading) {
@@ -87,12 +96,6 @@ function PropertyDetails() {
                                 googleMap={Property.google_map}
                                 location={Property.location}
                             />
-
-                            <PropertyInquiryForm property={Property} />
-
-                            
-
-                           
 
                         </div>
 

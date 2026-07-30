@@ -15,28 +15,38 @@
 
 .search-box select,
 .search-box input{
-    background:#1c1c1c;
+    background:#0f0f0f;
     color:white;
     border:1px solid #333;
     height:52px;
+    border-radius:8px;
+    transition:all .3s ease;
 }
 
 .search-box select:focus,
 .search-box input:focus{
     border-color:var(--gold);
-    box-shadow:none;
-    background:#1c1c1c;
+    box-shadow:0 0 0 3px rgba(55,181,212,.15);
+    background:#0f0f0f;
     color:white;
+    outline:none;
 }
 
 .search-btn{
     width:100%;
     height:52px;
     background:var(--gold);
-    color:black;
+    color:#0f0f0f;
     border:none;
-    border-radius:6px;
+    border-radius:8px;
     font-weight:600;
+    transition:all .3s ease;
+}
+
+.search-btn:hover{
+    background:var(--darkGold);
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(55,181,212,.25);
 }
 
 .search-wrapper{

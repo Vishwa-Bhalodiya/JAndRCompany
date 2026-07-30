@@ -1,51 +1,168 @@
 .property-inquiry-form-wrapper {
-    background: #1e1e1e;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #181818;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
-.property-inquiry-form-wrapper h3 {
-    color: var(--primary-color, #43C6DB);
+.property-inquiry-form-wrapper .form-header {
     text-align: center;
-    font-weight: 600;
+    margin-bottom: 28px;
+}
+
+.property-inquiry-form-wrapper .form-header h3 {
+    color: #37b5d4;
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.property-inquiry-form-wrapper .form-header p {
+    color: #a3a3a3;
+    font-size: 14px;
+    margin: 0;
+}
+
+.property-inquiry-form-wrapper .form-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.property-inquiry-form-wrapper .form-alert svg {
+    flex-shrink: 0;
+    font-size: 18px;
+}
+
+.property-inquiry-form-wrapper .form-alert-success {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+}
+
+.property-inquiry-form-wrapper .form-alert-error {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+
+.property-inquiry-form .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 24px;
+}
+
+.property-inquiry-form .field-full {
+    grid-column: 1 / -1;
 }
 
 .property-inquiry-form .form-label {
-    color: #e0e0e0;
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
+    display: block;
+    color: #e2e8f0;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.property-inquiry-form .required-mark {
+    color: #37b5d4;
+    margin-left: 3px;
 }
 
 .property-inquiry-form .form-control {
-    background: #2a2a2a;
+    width: 100%;
+    background: #0f0f0f;
     border: 1px solid #333;
     color: #fff;
+    padding: 12px 15px;
     border-radius: 8px;
-    padding: 10px 15px;
+    font-size: 15px;
     transition: all 0.3s ease;
 }
 
 .property-inquiry-form .form-control:focus {
-    background: #333;
-    border-color: var(--primary-color, #43C6DB);
-    box-shadow: 0 0 0 2px rgba(67, 198, 219, 0.2);
+    border-color: #37b5d4;
+    box-shadow: 0 0 0 3px rgba(55, 181, 212, 0.15);
     outline: none;
 }
 
-.property-inquiry-form .submit-btn {
-    background: var(--primary-color, #43C6DB);
-    color: #000;
+.property-inquiry-form .form-control::placeholder {
+    color: #6b7280;
+}
+
+.property-inquiry-form .or-group {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+}
+
+.property-inquiry-form .or-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(55, 181, 212, 0.1);
+    border: 1px solid rgba(55, 181, 212, 0.3);
+    color: #37b5d4;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 14px;
+}
+
+.property-inquiry-form-wrapper .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #37b5d4;
+    color: #0f0f0f;
     font-weight: 600;
-    padding: 12px 25px;
+    padding: 14px 40px;
     border-radius: 8px;
     border: none;
+    font-size: 16px;
+    width: 100%;
+    max-width: 320px;
     transition: all 0.3s ease;
 }
 
-.property-inquiry-form .submit-btn:hover {
-    background: #fff;
-    color: #000;
+.property-inquiry-form-wrapper .submit-btn:hover:not(:disabled) {
+    background: #0b9eb8;
     transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(55, 181, 212, 0.25);
+}
+
+.property-inquiry-form-wrapper .submit-btn:disabled {
+    background: #4b5563;
+    color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .property-inquiry-form-wrapper {
+        padding: 26px 20px;
+        border-radius: 12px;
+    }
+
+    .property-inquiry-form .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .property-inquiry-form .or-group {
+        grid-template-columns: 1fr;
+    }
+
+    .property-inquiry-form .or-divider {
+        margin: 0 auto;
+    }
 }

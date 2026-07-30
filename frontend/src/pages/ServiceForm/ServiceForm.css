@@ -161,6 +161,36 @@
     margin-top: 14px;
 }
 
+.service-form-section .form-control[type="file"] {
+    padding: 10px 15px;
+    color: #a3a3a3;
+    cursor: pointer;
+}
+
+.service-form-section .form-control[type="file"]::file-selector-button {
+    background: rgba(55, 181, 212, 0.15);
+    color: #37b5d4;
+    border: 1px solid rgba(55, 181, 212, 0.3);
+    border-radius: 6px;
+    padding: 7px 14px;
+    margin-right: 14px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.service-form-section .form-control[type="file"]:hover::file-selector-button {
+    background: rgba(55, 181, 212, 0.25);
+}
+
+.service-form-section .file-hint {
+    display: block;
+    color: #37b5d4;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
 .service-form-section .submit-btn {
     display: inline-flex;
     align-items: center;
