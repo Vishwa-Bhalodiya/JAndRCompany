@@ -1,10 +1,16 @@
 from django.db import models
 
 class BuyRentService(models.Model):
+    BUY_RENT = (
+        ('Buy', 'Buy'),
+        ('Rent', 'Rent'),
+    )
     name = models.CharField(max_length=255)
     mobile_no = models.CharField(max_length=20)
-    survey_no = models.CharField(max_length=100)
-    location = models.CharField(max_length=255)
+    buy_rent = models.CharField(max_length=10, choices=BUY_RENT, blank=True, default="")
+    survey_no = models.CharField(max_length=100, blank=True, default="")
+    building_name = models.CharField(max_length=255, blank=True, default="")
+    location = models.CharField(max_length=255, blank=True, default="")
     village_name = models.CharField(max_length=255)
     district_name = models.CharField(max_length=255)
     taluka_name = models.CharField(max_length=255)
@@ -34,6 +40,8 @@ class SellService(models.Model):
     building_name = models.CharField(max_length=255, blank=True, default="")
     property_type = models.CharField(max_length=50, choices=PROPERTY_TYPES)
     buy_rent = models.CharField(max_length=10, choices=BUY_RENT)
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    area = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -42,7 +50,8 @@ class SellService(models.Model):
 class MeasurementService(models.Model):
     name = models.CharField(max_length=255)
     mobile_no = models.CharField(max_length=20)
-    survey_no = models.CharField(max_length=100)
+    survey_no = models.CharField(max_length=100, blank=True, default="")
+    building_name = models.CharField(max_length=255, blank=True, default="")
     village = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
     taluka = models.CharField(max_length=255)
@@ -54,7 +63,8 @@ class MeasurementService(models.Model):
 class LegalCourtService(models.Model):
     name = models.CharField(max_length=255)
     mobile_no = models.CharField(max_length=20)
-    survey_no = models.CharField(max_length=100)
+    survey_no = models.CharField(max_length=100, blank=True, default="")
+    building_name = models.CharField(max_length=255, blank=True, default="")
     village = models.CharField(max_length=255)
     taluka = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
@@ -94,21 +104,41 @@ class PropertyAlertService(models.Model):
         ('Shop', 'Shop'),
         ('Plot', 'Plot'),
     )
-    BUY_RENT = (
-        ('Buy', 'Buy'),
-        ('Rent', 'Rent'),
-    )
     name = models.CharField(max_length=255)
     mobile_no = models.CharField(max_length=20)
     property_type = models.CharField(max_length=50, choices=PROPERTY_TYPES)
-    buy_rent = models.CharField(max_length=10, choices=BUY_RENT)
     survey_no = models.CharField(max_length=100, blank=True, default="")
     building_name = models.CharField(max_length=255, blank=True, default="")
     location = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
     taluka = models.CharField(max_length=255)
-    budget_range = models.CharField(max_length=255, blank=True, default="")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.name} - Property Alert"
+
+class LandDocumentationService(models.Model):
+    name = models.CharField(max_length=255)
+    mobile_no = models.CharField(max_length=20)
+    survey_no = models.CharField(max_length=100, blank=True, default="")
+    building_name = models.CharField(max_length=255, blank=True, default="")
+    village = models.CharField(max_length=255)
+    district = models.CharField(max_length=255)
+    taluka = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - Land Documentation"
+
+class GovernmentLandService(models.Model):
+    name = models.CharField(max_length=255)
+    mobile_no = models.CharField(max_length=20)
+    survey_no = models.CharField(max_length=100)
+    village = models.CharField(max_length=255)
+    taluka = models.CharField(max_length=255)
+    district = models.CharField(max_length=255)
+    matter_details = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - Government Land"
