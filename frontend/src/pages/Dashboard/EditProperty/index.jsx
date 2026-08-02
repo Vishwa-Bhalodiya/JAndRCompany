@@ -1,6 +1,7 @@
 import { API_BASE_URL } from "../../../config";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import PropertyLocationPicker from "../../../components/Property/PropertyLocationPicker";
 import "../AddProperty/AddProperty.css";
 
 function EditProperty() {
@@ -24,7 +25,9 @@ function EditProperty() {
         Property_type: "Residential",
         status: "For Sale",
         area: "",
-        google_map: ""
+        google_map: "",
+        latitude: "",
+        longitude: ""
     });
 
     useEffect(() => {
@@ -64,7 +67,9 @@ function EditProperty() {
                 Property_type: data.Property_type || "Residential",
                 status: data.status || "For Sale",
                 area: data.area || "",
-                google_map: data.google_map || ""
+                google_map: data.google_map || "",
+                latitude: data.latitude || "",
+                longitude: data.longitude || ""
             });
 
             setSelectedAmenities(
@@ -122,6 +127,10 @@ function EditProperty() {
             formData.append("status", form.status);
             formData.append("area", form.area);
             formData.append("google_map", form.google_map);
+            if (form.latitude && form.longitude) {
+                formData.append("latitude", form.latitude);
+                formData.append("longitude", form.longitude);
+            }
 
             selectedAmenities.forEach(item => {
                 formData.append("amenity_ids", item);
@@ -139,6 +148,9 @@ function EditProperty() {
                 `${API_BASE_URL}/api/properties/${id}/`,
                 {
                     method: "PUT",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("access")}`
+                    },
                     body: formData
                 }
             );
@@ -309,6 +321,20 @@ function EditProperty() {
                         value={form.google_map}
                         onChange={handleChange}
                         placeholder="https://maps.google.com/..."
+                    />
+
+                </div>
+
+                <div className="form-group">
+
+                    <label>Map Location</label>
+
+                    <PropertyLocationPicker
+                        latitude={form.latitude}
+                        longitude={form.longitude}
+                        onChange={(lat, lng) =>
+                            setForm((prev) => ({ ...prev, latitude: lat, longitude: lng }))
+                        }
                     />
 
                 </div>

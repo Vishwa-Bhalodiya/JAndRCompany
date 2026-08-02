@@ -63,7 +63,16 @@ class Property(models.Model):
 
     google_map = models.URLField(max_length=2000, blank=True, null=True)
 
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+
     featured = models.BooleanField(default=False)
+
+    # Properties created directly by admins default to published (True).
+    # Properties auto-created from a public Sell Property submission start
+    # unpublished until an admin verifies documents, sets a location, and
+    # explicitly publishes them.
+    is_approved = models.BooleanField(default=True)
 
     amenities = models.ManyToManyField(Amenity, blank=True)
 
@@ -109,6 +118,12 @@ class PropertyImage(models.Model):
 # Property DOCUMENTS
 # =========================
 class PropertyDocument(models.Model):
+    STATUS_CHOICES = (
+        ("pending", "Pending"),
+        ("verified", "Verified"),
+        ("rejected", "Rejected"),
+    )
+
     Property = models.ForeignKey(
         Property,
         on_delete=models.CASCADE,
@@ -116,6 +131,18 @@ class PropertyDocument(models.Model):
     )
 
     document = models.FileField(upload_to="Property_documents/")
+
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="pending")
+    rejection_reason = models.CharField(max_length=255, blank=True, default="")
+    verified_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="verified_documents"
+    )
+    verified_at = models.DateTimeField(null=True, blank=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.Property.title} - Document {self.id}"

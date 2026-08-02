@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import BuyRentService, SellService, MeasurementService, LegalCourtService, NAService, InvestmentService, PropertyAlertService, LandDocumentationService, GovernmentLandService
+from .models import BuyRentService, SellService, MeasurementService, LegalCourtService, NAService, InvestmentService, PropertyAlertService, LandDocumentationService, GovernmentLandService, LandFinanceService
 
 class SurveyOrBuildingSerializer(serializers.ModelSerializer):
     survey_no = serializers.CharField(required=False, allow_blank=True, default="")
@@ -24,6 +24,7 @@ class SellServiceSerializer(SurveyOrBuildingSerializer):
     class Meta:
         model = SellService
         fields = '__all__'
+        read_only_fields = ['property']
 
 class MeasurementServiceSerializer(SurveyOrBuildingSerializer):
     class Meta:
@@ -58,4 +59,9 @@ class LandDocumentationServiceSerializer(SurveyOrBuildingSerializer):
 class GovernmentLandServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = GovernmentLandService
+        fields = '__all__'
+
+class LandFinanceServiceSerializer(SurveyOrBuildingSerializer):
+    class Meta:
+        model = LandFinanceService
         fields = '__all__'

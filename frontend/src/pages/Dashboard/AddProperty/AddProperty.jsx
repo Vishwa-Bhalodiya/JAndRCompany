@@ -1,5 +1,6 @@
 import { API_BASE_URL } from "../../../config";
 import { useEffect, useState } from "react";
+import PropertyLocationPicker from "../../../components/Property/PropertyLocationPicker";
 import "./AddProperty.css";
 
 function AddProperty() {
@@ -12,7 +13,9 @@ function AddProperty() {
         Property_type: "Residential",
         status: "For Sale",
         area: "",
-        google_map: ""
+        google_map: "",
+        latitude: "",
+        longitude: ""
     });
 
     const [amenities, setAmenities] = useState([]);
@@ -99,6 +102,10 @@ function AddProperty() {
         formData.append("status", form.status);
         formData.append("area", form.area);
         formData.append("google_map", form.google_map);
+        if (form.latitude && form.longitude) {
+            formData.append("latitude", form.latitude);
+            formData.append("longitude", form.longitude);
+        }
 
         // Amenities
         selectedAmenities.forEach(id => {
@@ -119,6 +126,9 @@ function AddProperty() {
             `${API_BASE_URL}/api/properties/`,
             {
                 method: "POST",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("access")}`
+                },
                 body: formData
             }
         );
@@ -144,7 +154,9 @@ function AddProperty() {
             Property_type: "Residential",
             status: "For Sale",
             area: "",
-            google_map: ""
+            google_map: "",
+            latitude: "",
+            longitude: ""
         });
 
         setSelectedAmenities([]);
@@ -310,6 +322,20 @@ function AddProperty() {
                             value={form.google_map}
                             onChange={handleChange}
                             placeholder="https://maps.google.com/..."
+                        />
+
+                    </div>
+
+                    <div className="form-group">
+
+                        <label>Map Location</label>
+
+                        <PropertyLocationPicker
+                            latitude={form.latitude}
+                            longitude={form.longitude}
+                            onChange={(lat, lng) =>
+                                setForm((prev) => ({ ...prev, latitude: lat, longitude: lng }))
+                            }
                         />
 
                     </div>

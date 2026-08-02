@@ -31,6 +31,14 @@ function Sidebar() {
                     📨 Manage Inquiries
                 </Link>
 
+                <Link style={linkStyle} to="/Dashboard/documents">
+                    📄 Document Verification
+                </Link>
+
+                <Link style={linkStyle} to="/Dashboard/gis">
+                    🗺️ GIS Dashboard
+                </Link>
+
             </nav>
         </div>
     );

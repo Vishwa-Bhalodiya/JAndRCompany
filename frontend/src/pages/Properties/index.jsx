@@ -3,12 +3,15 @@ import "./Properties.css";
 
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaThLarge, FaMapMarkedAlt } from "react-icons/fa";
 
 import { getProperties } from "../../api/propertyApi";
+import PropertiesMapView from "../../components/Property/PropertiesMapView";
 
 function Properties() {
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [view, setView] = useState("grid");
 
     // ✅ All hooks must be at the top
     const navigate = useNavigate();
@@ -57,12 +60,32 @@ function Properties() {
         <section className="properties-page">
             <div className="container">
 
-                <h1 className="page-title">
-                    {statusFilter
-                        ? `${statusFilter} Properties`
-                        : "Properties"}
-                </h1>
+                <div className="properties-header">
+                    <h1 className="page-title">
+                        {statusFilter
+                            ? `${statusFilter} Properties`
+                            : "Properties"}
+                    </h1>
 
+                    <div className="view-toggle">
+                        <button
+                            className={view === "grid" ? "active" : ""}
+                            onClick={() => setView("grid")}
+                        >
+                            <FaThLarge /> Grid
+                        </button>
+                        <button
+                            className={view === "map" ? "active" : ""}
+                            onClick={() => setView("map")}
+                        >
+                            <FaMapMarkedAlt /> Map
+                        </button>
+                    </div>
+                </div>
+
+                {view === "map" ? (
+                    <PropertiesMapView properties={filteredProperties} />
+                ) : (
                 <div className="properties-grid">
 
                     {filteredProperties.length > 0 ? (
@@ -133,6 +156,7 @@ function Properties() {
                     )}
 
                 </div>
+                )}
 
             </div>
         </section>

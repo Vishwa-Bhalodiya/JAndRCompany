@@ -17,7 +17,8 @@ import {
     FaRegFileAlt,
     FaLeaf,
     FaHardHat,
-    FaBell
+    FaBell,
+    FaHandHoldingUsd
 } from "react-icons/fa";
 
 
@@ -102,6 +103,13 @@ const services = [
         description:
             "Get notified as soon as properties matching your requirements become available for sale or rent.",
         route: "/services/property-alert"
+    },
+    {
+        icon: <FaHandHoldingUsd />,
+        title: "Land Against Finance",
+        description:
+            "Get a loan against your land or property with expert guidance on documentation and financing options.",
+        route: "/services/land-finance"
     }
 ];
 

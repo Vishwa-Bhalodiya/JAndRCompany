@@ -74,14 +74,20 @@
 
 .document-left span{
 
-    color:#81c784;
-
     display:flex;
 
     gap:8px;
 
     align-items:center;
 
+}
+
+.status-verified{
+    color:#81c784;
+}
+
+.status-pending{
+    color:#eab308;
 }
 
 .document-card button{

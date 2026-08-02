@@ -11,6 +11,23 @@ export async function getProperties() {
     return response.json();
 }
 
+// Admin-only: includes properties still pending publish approval.
+export async function getAllPropertiesAdmin() {
+    const response = await fetch(`${BASE_URL}?all=true`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("access")}`
+        }
+    });
+
+    if (!response.ok) {
+        const error = new Error("Failed to fetch properties");
+        error.status = response.status;
+        throw error;
+    }
+
+    return response.json();
+}
+
 export async function getProperty(id) {
     const response = await fetch(`${BASE_URL}${id}/`);
 

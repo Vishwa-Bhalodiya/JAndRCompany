@@ -2,11 +2,13 @@ import { API_BASE_URL } from "../../../config";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { isAuthError, handleAdminAuthError } from "../../../utils/adminAuth";
 import "./ManageProperties.css";
 
 function ManageProperties() {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
@@ -14,12 +16,24 @@ function ManageProperties() {
 
   const navigate = useNavigate();
 
+  const authHeaders = () => ({
+    Authorization: `Bearer ${localStorage.getItem("access")}`,
+  });
+
   const fetchProperties = async () => {
+    setError("");
     try {
-      const res = await axios.get(`${API_BASE_URL}/api/properties/`);
+      const res = await axios.get(`${API_BASE_URL}/api/properties/?all=true`, {
+        headers: authHeaders(),
+      });
       setProperties(res.data);
     } catch (err) {
       console.error(err);
+      if (isAuthError(err.response?.status)) {
+        handleAdminAuthError();
+        return;
+      }
+      setError("Failed to load properties. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -32,7 +46,9 @@ function ManageProperties() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure?")) return;
 
-    await axios.delete(`${API_BASE_URL}/api/properties/${id}/`);
+    await axios.delete(`${API_BASE_URL}/api/properties/${id}/`, {
+      headers: authHeaders(),
+    });
     fetchProperties();
   };
 
@@ -55,6 +71,20 @@ function ManageProperties() {
     navigate(`/Dashboard/edit-Property/${id}`);
   };
 
+  const handlePublish = async (id) => {
+    try {
+      await axios.patch(
+        `${API_BASE_URL}/api/properties/${id}/`,
+        { is_approved: true },
+        { headers: authHeaders() }
+      );
+      fetchProperties();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to publish property.");
+    }
+  };
+
   const filtered = properties.filter((p) => {
     return (
       (p.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -66,6 +96,9 @@ function ManageProperties() {
 
   if (loading)
     return <h3 className="loading-text">Loading properties...</h3>;
+
+  if (error)
+    return <h3 className="loading-text error-text">{error}</h3>;
 
   return (
     <div className="mp-container">
@@ -128,6 +161,7 @@ function ManageProperties() {
               <th>Location</th>
               <th>Type</th>
               <th>Status</th>
+              <th>Publish Status</th>
               <th>Actions</th>
               <th> Featured</th>
             </tr>
@@ -136,7 +170,7 @@ function ManageProperties() {
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan="7" className="no-data">
+                <td colSpan="8" className="no-data">
                   No properties found
                 </td>
               </tr>
@@ -152,6 +186,22 @@ function ManageProperties() {
                     <span className={`status ${p.status}`}>
                       {p.status}
                     </span>
+                  </td>
+
+                  <td>
+                    {p.is_approved ? (
+                      <span className="publish-badge published">Published</span>
+                    ) : (
+                      <div className="publish-pending-cell">
+                        <span className="publish-badge pending">Pending Review</span>
+                        <button
+                          className="publish-btn"
+                          onClick={() => handlePublish(p.id)}
+                        >
+                          Publish
+                        </button>
+                      </div>
+                    )}
                   </td>
 
                   <td>

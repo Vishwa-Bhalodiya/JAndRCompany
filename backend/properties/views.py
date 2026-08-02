@@ -1,13 +1,17 @@
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
     ListAPIView,
 )
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from users.permissions import IsAdminRole
 
 from .models import (
     Property,
@@ -19,14 +23,30 @@ from .models import (
 from .serializers import (
     PropertySerializer,
     AmenitySerializer,
+    PropertyDocumentSerializer,
 )
 
 
 class PropertyList(APIView):
 
+    def get_permissions(self):
+        if self.request.method == "POST":
+            return [IsAdminRole()]
+        return [AllowAny()]
+
     def get(self, request):
 
-        properties = Property.objects.all().order_by("-created_at")
+        show_all = request.query_params.get("all") == "true"
+
+        if show_all:
+            if not IsAdminRole().has_permission(request, self):
+                return Response(
+                    {"detail": "Admin access required."},
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+            properties = Property.objects.all().order_by("-created_at")
+        else:
+            properties = Property.objects.filter(is_approved=True).order_by("-created_at")
 
         serializer = PropertySerializer(
             properties,
@@ -90,6 +110,11 @@ class PropertyDetail(RetrieveUpdateDestroyAPIView):
 
     serializer_class = PropertySerializer
 
+    def get_permissions(self):
+        if self.request.method in ("PUT", "PATCH", "DELETE"):
+            return [IsAdminRole()]
+        return [AllowAny()]
+
 
 class AmenityListAPIView(ListAPIView):
 
@@ -126,7 +151,8 @@ def similar_properties(request, id):
         similar = Property.objects.filter(
             Q(Property_type__iexact=Property_obj.Property_type) &
             Q(location__icontains=Property_obj.location) &
-            Q(status=Property_obj.status)
+            Q(status=Property_obj.status) &
+            Q(is_approved=True)
         ).exclude(id=id)
 
         similar = similar[:6]
@@ -136,3 +162,19 @@ def similar_properties(request, id):
 
     except Property.DoesNotExist:
         return Response({"error": "Property not found"}, status=404)
+
+
+class PropertyDocumentViewSet(viewsets.ModelViewSet):
+    """Admin-only document verification workflow. Documents are uploaded via
+    PropertyList.post(); this viewset is only for reviewing/verifying/rejecting them."""
+
+    queryset = PropertyDocument.objects.select_related("Property", "verified_by").order_by("-uploaded_at")
+    serializer_class = PropertyDocumentSerializer
+    permission_classes = [IsAdminRole]
+
+    def perform_update(self, serializer):
+        status_changed = "status" in serializer.validated_data
+        if status_changed:
+            serializer.save(verified_by=self.request.user, verified_at=timezone.now())
+        else:
+            serializer.save()

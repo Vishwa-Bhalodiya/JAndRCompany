@@ -75,6 +75,61 @@
     color: #4ade80;
 }
 
+.sell-reference-card {
+    text-align: center;
+    padding: 20px 10px 10px;
+}
+
+.sell-reference-icon {
+    font-size: 48px;
+    color: #4ade80;
+    margin-bottom: 16px;
+}
+
+.sell-reference-card h3 {
+    color: #fff;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.sell-reference-card p {
+    color: #a3a3a3;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 16px;
+}
+
+.sell-reference-id {
+    background: rgba(55, 181, 212, 0.1);
+    border: 1px solid rgba(55, 181, 212, 0.3);
+    color: #37b5d4;
+    font-size: 18px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.sell-reference-hint {
+    font-size: 13px !important;
+    color: #6b7280 !important;
+}
+
+.sell-reference-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.sell-reference-secondary {
+    background: transparent !important;
+    border: 1px solid #37b5d4 !important;
+    color: #37b5d4 !important;
+}
+
 .service-form-section .form-alert-error {
     background: rgba(239, 68, 68, 0.12);
     border: 1px solid rgba(239, 68, 68, 0.3);

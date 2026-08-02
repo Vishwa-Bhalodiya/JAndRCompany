@@ -5,11 +5,14 @@ import {
     FaFilePdf,
     FaDownload,
     FaCheckCircle,
+    FaClock,
     FaSpinner
 } from "react-icons/fa";
 
 function PropertyDocuments({ documents = [] }) {
     const [downloadingId, setDownloadingId] = useState(null);
+
+    const visibleDocuments = documents.filter((doc) => doc.status !== "rejected");
 
     const handleDownload = async (doc, index) => {
         setDownloadingId(doc.id);
@@ -52,9 +55,9 @@ function PropertyDocuments({ documents = [] }) {
                 All legal documents are verified and available for buyers.
             </p>
 
-            {documents.length > 0 ? (
+            {visibleDocuments.length > 0 ? (
 
-                documents.map((doc, index) => (
+                visibleDocuments.map((doc, index) => (
 
                     <div
                         className="document-card"
@@ -71,13 +74,17 @@ function PropertyDocuments({ documents = [] }) {
                                     Document {index + 1}
                                 </h5>
 
-                                <span>
-
-                                    <FaCheckCircle />
-
-                                    Available
-
-                                </span>
+                                {doc.status === "verified" ? (
+                                    <span className="status-verified">
+                                        <FaCheckCircle />
+                                        Verified
+                                    </span>
+                                ) : (
+                                    <span className="status-pending">
+                                        <FaClock />
+                                        Pending Review
+                                    </span>
+                                )}
 
                             </div>
 

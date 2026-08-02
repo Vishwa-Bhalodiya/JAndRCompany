@@ -9,7 +9,8 @@ from .views import (
     InvestmentServiceViewSet,
     PropertyAlertServiceViewSet,
     LandDocumentationServiceViewSet,
-    GovernmentLandServiceViewSet
+    GovernmentLandServiceViewSet,
+    LandFinanceServiceViewSet
 )
 
 router = DefaultRouter()
@@ -22,6 +23,7 @@ router.register(r'investment', InvestmentServiceViewSet, basename='investment')
 router.register(r'property-alert', PropertyAlertServiceViewSet, basename='property-alert')
 router.register(r'land-documentation', LandDocumentationServiceViewSet, basename='land-documentation')
 router.register(r'government-land', GovernmentLandServiceViewSet, basename='government-land')
+router.register(r'land-finance', LandFinanceServiceViewSet, basename='land-finance')
 
 urlpatterns = [
     path('', include(router.urls)),

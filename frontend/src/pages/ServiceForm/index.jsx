@@ -135,6 +135,22 @@ const SERVICE_CONFIG = {
             { name: "district", label: "District", type: "text", required: true },
             { name: "taluka", label: "Taluka", type: "text", required: true },
         ]
+    },
+    "land-finance": {
+        title: "Land Against Finance",
+        apiEndpoint: `${API_BASE_URL}/api/services/land-finance/`,
+        fields: [
+            { name: "name", label: "Name", type: "text", required: true },
+            { name: "mobile_no", label: "Mobile No.", type: "text", required: true },
+            { name: "survey_no", label: "Survey No.", type: "text", required: false },
+            { name: "building_name", label: "Building Name", type: "text", required: false },
+            { name: "village", label: "Village", type: "text", required: true },
+            { name: "taluka", label: "Taluka", type: "text", required: true },
+            { name: "district", label: "District", type: "text", required: true },
+            { name: "land_area", label: "Land Area (Sq.ft)", type: "number", required: true },
+            { name: "loan_amount_required", label: "Loan Amount Required (₹)", type: "number", required: true },
+            { name: "purpose", label: "Purpose of Loan", type: "text", required: true, full: true },
+        ]
     }
 };
 
@@ -152,6 +168,7 @@ const ServiceForm = () => {
     const [successMsg, setSuccessMsg] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
     const [formKey, setFormKey] = useState(0);
+    const [sellReference, setSellReference] = useState(null);
 
     if (!config) {
         return (
@@ -217,12 +234,20 @@ const ServiceForm = () => {
         }
 
         try {
-            await axios.post(config.apiEndpoint, payload);
-            setSuccessMsg("Your inquiry has been submitted successfully!");
-            setFormData({}); // clear form
-            setFiles({});
-            setFormKey((k) => k + 1); // remount form to clear uncontrolled file inputs
-            setTimeout(() => navigate("/about"), 3000);
+            const response = await axios.post(config.apiEndpoint, payload);
+
+            if (serviceType === "sell") {
+                setSellReference({ id: response.data.id, mobileNo: response.data.mobile_no });
+                setFormData({});
+                setFiles({});
+                setFormKey((k) => k + 1);
+            } else {
+                setSuccessMsg("Your inquiry has been submitted successfully!");
+                setFormData({});
+                setFiles({});
+                setFormKey((k) => k + 1);
+                setTimeout(() => navigate("/about"), 3000);
+            }
         } catch (error) {
             console.error("Error submitting form:", error);
             setErrorMsg("Failed to submit the form. Please try again later.");
@@ -337,6 +362,36 @@ const ServiceForm = () => {
                     </div>
                 )}
 
+                {sellReference ? (
+                    <div className="sell-reference-card">
+                        <FaCheckCircle className="sell-reference-icon" />
+                        <h3>Your property has been submitted!</h3>
+                        <p>
+                            Before your property appears for buyers and renters, our team needs to verify your
+                            documents and confirm the property's map location. This usually takes a short while
+                            — we'll keep it under review until then.
+                        </p>
+                        <div className="sell-reference-id">
+                            Reference ID: <strong>#{sellReference.id}</strong>
+                        </div>
+                        <p className="sell-reference-hint">
+                            Save this ID — you'll need it along with your mobile number to track your
+                            verification status.
+                        </p>
+                        <div className="sell-reference-actions">
+                            <Link to={`/track-submission?id=${sellReference.id}&mobile_no=${sellReference.mobileNo}`} className="submit-btn">
+                                Track Your Submission
+                            </Link>
+                            <button
+                                type="button"
+                                className="btn submit-btn sell-reference-secondary"
+                                onClick={() => setSellReference(null)}
+                            >
+                                Submit Another Property
+                            </button>
+                        </div>
+                    </div>
+                ) : (
                 <form onSubmit={handleSubmit} key={formKey}>
                     <div className="form-grid">
                         {config.fields.map((field, idx) => {
@@ -407,6 +462,7 @@ const ServiceForm = () => {
                         </button>
                     </div>
                 </form>
+                )}
             </motion.div>
         </div>
     </section>

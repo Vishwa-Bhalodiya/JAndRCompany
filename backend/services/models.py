@@ -1,4 +1,5 @@
 from django.db import models
+from properties.models import Property
 
 class BuyRentService(models.Model):
     BUY_RENT = (
@@ -42,6 +43,13 @@ class SellService(models.Model):
     buy_rent = models.CharField(max_length=10, choices=BUY_RENT)
     price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     area = models.IntegerField(default=0)
+    property = models.ForeignKey(
+        Property,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="sell_inquiries"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -142,3 +150,19 @@ class GovernmentLandService(models.Model):
 
     def __str__(self):
         return f"{self.name} - Government Land"
+
+class LandFinanceService(models.Model):
+    name = models.CharField(max_length=255)
+    mobile_no = models.CharField(max_length=20)
+    survey_no = models.CharField(max_length=100, blank=True, default="")
+    building_name = models.CharField(max_length=255, blank=True, default="")
+    village = models.CharField(max_length=255)
+    taluka = models.CharField(max_length=255)
+    district = models.CharField(max_length=255)
+    land_area = models.IntegerField(default=0)
+    loan_amount_required = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    purpose = models.CharField(max_length=255, blank=True, default="")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - Land Against Finance"

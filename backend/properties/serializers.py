@@ -24,9 +24,13 @@ class PropertyImageSerializer(serializers.ModelSerializer):
 
 class PropertyDocumentSerializer(serializers.ModelSerializer):
 
+    property_title = serializers.CharField(source="Property.title", read_only=True)
+    verified_by_username = serializers.CharField(source="verified_by.username", read_only=True, default=None)
+
     class Meta:
         model = PropertyDocument
         fields = "__all__"
+        read_only_fields = ["verified_by", "verified_at"]
 
 
 class PropertySerializer(serializers.ModelSerializer):
@@ -68,7 +72,10 @@ class PropertySerializer(serializers.ModelSerializer):
             "status",
             "area",
             "google_map",
+            "latitude",
+            "longitude",
             "featured",
+            "is_approved",
             "amenities",
             "amenity_ids",
             "images",

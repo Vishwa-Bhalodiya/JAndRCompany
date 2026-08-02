@@ -1,5 +1,6 @@
 import { API_BASE_URL } from "../../../config";
 import { useEffect, useState } from "react";
+import { isAuthError, handleAdminAuthError } from "../../../utils/adminAuth";
 import "./ManageInquiries.css";
 
 const ENDPOINTS = {
@@ -12,6 +13,7 @@ const ENDPOINTS = {
     naService: "services/na-service",
     investment: "services/investment",
     propertyAlert: "services/property-alert",
+    landFinance: "services/land-finance",
     inquiries: "inquiries",
 };
 
@@ -28,6 +30,7 @@ const SECTIONS = [
     { key: "investment", label: "Investment & Property Consultation Inquiries", dataKey: "investment" },
     { key: "pmc", label: "PMC Services Inquiries", dataKey: "inquiries", filter: (r) => r.subject === "PMC Services Inquiry" },
     { key: "property-alert", label: "Property Alert Inquiries", dataKey: "propertyAlert" },
+    { key: "land-finance", label: "Land Against Finance Inquiries", dataKey: "landFinance" },
     { key: "contact", label: "Contact Inquiries", dataKey: "inquiries", filter: (r) => r.subject !== "PMC Services Inquiry" },
 ];
 
@@ -62,7 +65,11 @@ function ManageInquiries() {
             const results = await Promise.all(
                 entries.map(([, path]) =>
                     fetch(`${API_BASE_URL}/api/${path}/`, { headers: authHeaders() }).then((res) => {
-                        if (!res.ok) throw new Error(`Failed to load ${path}`);
+                        if (!res.ok) {
+                            const err = new Error(`Failed to load ${path}`);
+                            err.status = res.status;
+                            throw err;
+                        }
                         return res.json();
                     })
                 )
@@ -75,7 +82,11 @@ function ManageInquiries() {
             setData(next);
         } catch (err) {
             console.error(err);
-            setError("Failed to load inquiries. Please make sure you are logged in as an admin.");
+            if (isAuthError(err.status)) {
+                handleAdminAuthError();
+                return;
+            }
+            setError("Failed to load inquiries. Please try again.");
         } finally {
             setLoading(false);
         }

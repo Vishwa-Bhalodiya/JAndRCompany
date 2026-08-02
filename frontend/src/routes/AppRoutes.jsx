@@ -16,6 +16,7 @@ import PropertyDetails from "../pages/PropertyDetails";
 import Contact from "../pages/Contact";
 import Agents from "../pages/Agents";
 import ServiceForm from "../pages/ServiceForm";
+import TrackSubmission from "../pages/TrackSubmission";
 
 /* ================= AUTH PAGES ================= */
 import Login from "../pages/Login";
@@ -28,6 +29,8 @@ import ManageProperties from "../pages/Dashboard/ManageProperties";
 import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
 import EditProperty from "../pages/Dashboard/EditProperty";
 import ManageInquiries from "../pages/Dashboard/ManageInquiries";
+import DocumentVerification from "../pages/Dashboard/DocumentVerification";
+import GISDashboard from "../pages/Dashboard/GISDashboard";
 import Favorites from "../pages/Favorites/index";
 import PropertyInquiry from "../pages/PropertyInquiry";
 
@@ -47,6 +50,7 @@ function AppRoutes() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/services/:serviceType" element={<ServiceForm />} />
           <Route path="/inquiry/:id" element={<PropertyInquiry />} />
+          <Route path="/track-submission" element={<TrackSubmission />} />
         </Route>
 
         {/* ================= AUTH ROUTES ================= */}
@@ -66,6 +70,8 @@ function AppRoutes() {
           <Route index element={<DashboardHome />} />
           <Route path="inquiries" element={<ManageInquiries />}
 />
+          <Route path="documents" element={<DocumentVerification />} />
+          <Route path="gis" element={<GISDashboard />} />
 
           {/* USER PROFILE */}
           <Route path="profile" element={<Profile />} />

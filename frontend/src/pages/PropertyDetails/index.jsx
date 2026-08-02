@@ -95,6 +95,8 @@ function PropertyDetails() {
                             <PropertyMap
                                 googleMap={Property.google_map}
                                 location={Property.location}
+                                latitude={Property.latitude}
+                                longitude={Property.longitude}
                             />
 
                         </div>

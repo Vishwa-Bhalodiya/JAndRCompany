@@ -1,3 +1,44 @@
+.properties-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 8px;
+    background: #141414;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 10px;
+    padding: 6px;
+}
+
+.view-toggle button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: #999;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-toggle button:hover {
+    color: #fff;
+}
+
+.view-toggle button.active {
+    background: #37b5d4;
+    color: #0b0b0b;
+}
+
 /* GRID → 3 COLUMN LAYOUT */
 .properties-grid {
     display: grid;
