@@ -1,5 +1,4 @@
 import { useState } from "react";
-import {useNavigate, useParams} from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
@@ -7,8 +6,6 @@ import "./PropertyInquiryForm.css";
 import { API_BASE_URL } from "../../../config";
 
 const PropertyInquiryForm = ({ property }) => {
-    const navigate = useNavigate();
-    const {id} = useParams ();
     const [formData, setFormData] = useState({
         name: "",
         mobile_no: "",
@@ -16,7 +13,8 @@ const PropertyInquiryForm = ({ property }) => {
         location: property?.location || "",
         village_name: property?.village_name || "",
         district_name: property?.district || "",
-        taluka_name: property?.taluka || ""
+        taluka_name: property?.taluka || "",
+        property: property?.id || null
     });
     
     const [loading, setLoading] = useState(false);
@@ -39,25 +37,7 @@ const PropertyInquiryForm = ({ property }) => {
         try {
             await axios.post(`${API_BASE_URL}/api/services/buy-rent/`, formData);
 
-            // Save this property as already viewed
-            const viewedProperties = JSON.parse(
-                localStorage.getItem("viewedProperties") || "[]"
-            );
-
-            if(!viewedProperties.includes(Number(id))){
-                viewedProperties.push(Number(id));
-            }
-
-            localStorage.setItem(
-                "viewedProperties",
-                JSON.stringify(viewedProperties)
-            );
-            setSuccessMsg("Your inquiry has been submitted successfully!");
-
-            //Redirect after 1 second
-            setTimeout(() => {
-                navigate(`/Property/${id}`);
-            }, 1000);
+            setSuccessMsg("Your inquiry has been submitted successfully! Our team will get back to you shortly.");
             setFormData({
                 name: "",
                 mobile_no: "",
@@ -65,7 +45,8 @@ const PropertyInquiryForm = ({ property }) => {
                 location: property?.location || "",
                 village_name: property?.village_name || "",
                 district_name: property?.district || "",
-                taluka_name: property?.taluka || ""
+                taluka_name: property?.taluka || "",
+                property: property?.id || null
             });
         } catch (error) {
             console.error("Error submitting form:", error);

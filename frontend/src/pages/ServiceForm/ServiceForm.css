@@ -146,6 +146,16 @@
     grid-column: 1 / -1;
 }
 
+.sell-location-field {
+    margin-top: 22px;
+}
+
+.sell-location-hint {
+    color: #94a3b8;
+    font-size: 13px;
+    margin: 0 0 12px;
+}
+
 .service-form-section .form-label {
     display: block;
     color: #e2e8f0;

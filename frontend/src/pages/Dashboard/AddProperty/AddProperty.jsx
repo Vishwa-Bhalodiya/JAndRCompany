@@ -10,6 +10,7 @@ function AddProperty() {
         description: "",
         price: "",
         location: "",
+        survey_no: "",
         Property_type: "Residential",
         status: "For Sale",
         area: "",
@@ -17,6 +18,8 @@ function AddProperty() {
         latitude: "",
         longitude: ""
     });
+
+    const [boundaryPoints, setBoundaryPoints] = useState([]);
 
     const [amenities, setAmenities] = useState([]);
     const [selectedAmenities, setSelectedAmenities] = useState([]);
@@ -98,6 +101,7 @@ function AddProperty() {
         formData.append("description", form.description);
         formData.append("price", form.price);
         formData.append("location", form.location);
+        formData.append("survey_no", form.survey_no);
         formData.append("Property_type", form.Property_type);
         formData.append("status", form.status);
         formData.append("area", form.area);
@@ -106,6 +110,7 @@ function AddProperty() {
             formData.append("latitude", form.latitude);
             formData.append("longitude", form.longitude);
         }
+        formData.append("boundary_points", JSON.stringify(boundaryPoints));
 
         // Amenities
         selectedAmenities.forEach(id => {
@@ -151,6 +156,7 @@ function AddProperty() {
             description: "",
             price: "",
             location: "",
+            survey_no: "",
             Property_type: "Residential",
             status: "For Sale",
             area: "",
@@ -162,6 +168,7 @@ function AddProperty() {
         setSelectedAmenities([]);
         setImages([]);
         setDocuments([]);
+        setBoundaryPoints([]);
 
     }
 
@@ -271,6 +278,19 @@ function AddProperty() {
 
                         <div className="form-group">
 
+                            <label>Survey No.</label>
+
+                            <input
+                                name="survey_no"
+                                value={form.survey_no}
+                                onChange={handleChange}
+                                placeholder="Survey No."
+                            />
+
+                        </div>
+
+                        <div className="form-group">
+
                             <label>Property Type</label>
 
                             <select
@@ -336,6 +356,8 @@ function AddProperty() {
                             onChange={(lat, lng) =>
                                 setForm((prev) => ({ ...prev, latitude: lat, longitude: lng }))
                             }
+                            boundaryPoints={boundaryPoints}
+                            onBoundaryChange={setBoundaryPoints}
                         />
 
                     </div>

@@ -130,17 +130,7 @@ function Properties() {
 
                                     <button
                                         className="details-btn"
-                                        onClick={() => {
-                                            const viewedProperties = JSON.parse(
-                                                localStorage.getItem("viewedProperties") || "[]"
-                                            );
-
-                                            if (viewedProperties.includes(property.id)) {
-                                                navigate(`/Property/${property.id}`);
-                                            } else {
-                                                navigate(`/inquiry/${property.id}`);
-                                            }
-                                        }}
+                                        onClick={() => navigate(`/Property/${property.id}`)}
                                     >
                                         View Details
                                     </button>

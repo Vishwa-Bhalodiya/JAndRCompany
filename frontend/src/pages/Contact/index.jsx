@@ -2,7 +2,8 @@ import { API_BASE_URL } from "../../config";
 import "./Contact.css";
 
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
+import { isAuthenticated } from "../../services/auth";
 
 import {
     FaPhoneAlt,
@@ -32,6 +33,16 @@ function Contact() {
         subject: presetSubject,
         message: ""
     });
+
+    if (!isAuthenticated()) {
+        return (
+            <Navigate
+                to="/login"
+                state={{ from: location.pathname + location.search, message: "Please log in to submit this form." }}
+                replace
+            />
+        );
+    }
 
     const handleChange = (e) => {
 

@@ -189,6 +189,32 @@
 
 }
 
+.anyror-link-btn{
+
+    background:transparent;
+    border:1px solid #37b5d4;
+    color:#37b5d4;
+    padding:8px 15px;
+    border-radius:6px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+
+}
+
+.upload-doc-btn{
+
+    background:#37b5d4;
+    color:black;
+    padding:8px 15px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    display:inline-block;
+
+}
+
 @media(max-width:900px){
 
     .mi-layout{

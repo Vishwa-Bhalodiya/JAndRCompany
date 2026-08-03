@@ -76,6 +76,12 @@ function Navbar() {
                             </Link>
                         </li>
 
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/bhunaksha">
+                                Bhunaksha
+                            </Link>
+                        </li>
+
                         {user && (
                             <li className="nav-item">
                                 <Link

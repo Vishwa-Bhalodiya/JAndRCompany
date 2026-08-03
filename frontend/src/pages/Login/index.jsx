@@ -3,7 +3,7 @@ import "./Login.css";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import { setAuth } from "../../services/auth";
 
@@ -13,12 +13,16 @@ import {
   FaEye,
   FaEyeSlash,
   FaGoogle,
-  FaExclamationTriangle
+  FaExclamationTriangle,
+  FaInfoCircle
 } from "react-icons/fa";
 
 function Login() {
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectFrom = location.state?.from;
+  const gateMessage = location.state?.message;
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -76,8 +80,10 @@ const handleLogin = async (e) => {
       setAuth(data.access, data.user);
     }
 
-    // 🚀 ROLE-BASED REDIRECT (FIXED)
-    if (data.user.role === "admin") {
+    // 🚀 Return to the page that required login, if any; otherwise role-based redirect
+    if (redirectFrom) {
+      navigate(redirectFrom);
+    } else if (data.user.role === "admin") {
       navigate("/Dashboard");
     } else {
       navigate("/");
@@ -119,6 +125,13 @@ const handleLogin = async (e) => {
           {/* 💛 GOLD TEXT CLASSES ADDED */}
           <h2 className="login-title">Welcome Back</h2>
           <p className="login-subtitle">Login to continue</p>
+
+          {gateMessage && !errorMsg && (
+            <div className="form-alert form-alert-info">
+              <FaInfoCircle />
+              <span>{gateMessage}</span>
+            </div>
+          )}
 
           {errorMsg && (
             <div className="form-alert form-alert-error">

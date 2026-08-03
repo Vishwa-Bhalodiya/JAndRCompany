@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, LayersControl, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, LayersControl, Marker, Popup, Tooltip } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
 import "./PropertiesMapView.css";
 
@@ -17,12 +17,7 @@ function PropertiesMapView({ properties }) {
         : DEFAULT_CENTER;
 
     const goToProperty = (property) => {
-        const viewedProperties = JSON.parse(localStorage.getItem("viewedProperties") || "[]");
-        if (viewedProperties.includes(property.id)) {
-            navigate(`/Property/${property.id}`);
-        } else {
-            navigate(`/inquiry/${property.id}`);
-        }
+        navigate(`/Property/${property.id}`);
     };
 
     return (
@@ -53,6 +48,11 @@ function PropertiesMapView({ properties }) {
                             key={property.id}
                             position={[Number(property.latitude), Number(property.longitude)]}
                         >
+                            {property.survey_no && (
+                                <Tooltip permanent direction="top" offset={[0, -35]} className="survey-no-tooltip">
+                                    Survey No: {property.survey_no}
+                                </Tooltip>
+                            )}
                             <Popup>
                                 <div className="map-popup">
                                     <h4>{property.title}</h4>

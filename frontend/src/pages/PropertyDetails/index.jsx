@@ -2,33 +2,31 @@ import { API_BASE_URL } from "../../config";
 import "./PropertyDetails.css";
 
 import { useEffect, useState } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams, useLocation, Navigate } from "react-router-dom";
 
 import Gallery from "../../components/Property/Gallery";
 import PropertyInfo from "../../components/Property/PropertyInfo";
 import Amenities from "../../components/Property/Amenities";
 import PropertyMap from "../../components/Property/PropertyMap";
 import AgentCard from "../../components/Property/AgentCard";
+import PropertyInquiryForm from "../../components/Property/PropertyInquiryForm";
 
 import SimilarProperties from "../../components/Property/SimilarProperties";
 
 import PropertyDocuments from "../../components/Property/PropertyDocuments";
+import { isAuthenticated } from "../../services/auth";
 
 function PropertyDetails() {
 
     const { id } = useParams();
+    const location = useLocation();
 
     const [Property, setProperty] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const viewedProperties = JSON.parse(localStorage.getItem("viewedProperties") || "[]");
-    const hasAccess = viewedProperties.includes(Number(id));
-
     useEffect(() => {
-        if (hasAccess) {
-            loadProperty();
-        }
-    }, [id, hasAccess]);
+        loadProperty();
+    }, [id]);
 
     const loadProperty = async () => {
         try {
@@ -42,9 +40,14 @@ function PropertyDetails() {
         }
     };
 
-    // Require an inquiry submission before the full details unlock
-    if (!hasAccess) {
-        return <Navigate to={`/inquiry/${id}`} replace />;
+    if (!isAuthenticated()) {
+        return (
+            <Navigate
+                to="/login"
+                state={{ from: location.pathname + location.search, message: "Please log in to view property details." }}
+                replace
+            />
+        );
     }
 
     // LOADING STATE
@@ -97,7 +100,11 @@ function PropertyDetails() {
                                 location={Property.location}
                                 latitude={Property.latitude}
                                 longitude={Property.longitude}
+                                boundaryPoints={Property.boundary_points}
+                                surveyNo={Property.survey_no}
                             />
+
+                            <PropertyInquiryForm property={Property} />
 
                         </div>
 

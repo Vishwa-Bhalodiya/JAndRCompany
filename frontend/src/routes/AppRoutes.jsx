@@ -17,6 +17,7 @@ import Contact from "../pages/Contact";
 import Agents from "../pages/Agents";
 import ServiceForm from "../pages/ServiceForm";
 import TrackSubmission from "../pages/TrackSubmission";
+import Bhunaksha from "../pages/Bhunaksha";
 
 /* ================= AUTH PAGES ================= */
 import Login from "../pages/Login";
@@ -32,7 +33,6 @@ import ManageInquiries from "../pages/Dashboard/ManageInquiries";
 import DocumentVerification from "../pages/Dashboard/DocumentVerification";
 import GISDashboard from "../pages/Dashboard/GISDashboard";
 import Favorites from "../pages/Favorites/index";
-import PropertyInquiry from "../pages/PropertyInquiry";
 
 function AppRoutes() {
   return (
@@ -49,8 +49,8 @@ function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/services/:serviceType" element={<ServiceForm />} />
-          <Route path="/inquiry/:id" element={<PropertyInquiry />} />
           <Route path="/track-submission" element={<TrackSubmission />} />
+          <Route path="/bhunaksha" element={<Bhunaksha />} />
         </Route>
 
         {/* ================= AUTH ROUTES ================= */}

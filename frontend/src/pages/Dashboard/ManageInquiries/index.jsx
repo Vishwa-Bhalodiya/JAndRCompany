@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "../../../config";
+import { API_BASE_URL, ANYROR_PORTAL_URL } from "../../../config";
 import { useEffect, useState } from "react";
 import { isAuthError, handleAdminAuthError } from "../../../utils/adminAuth";
 import "./ManageInquiries.css";
@@ -52,6 +52,7 @@ function ManageInquiries() {
     const [error, setError] = useState("");
     const [activeSection, setActiveSection] = useState(SECTIONS[0].key);
     const [search, setSearch] = useState("");
+    const [uploadingId, setUploadingId] = useState(null);
 
     const authHeaders = () => ({
         Authorization: `Bearer ${localStorage.getItem("access")}`,
@@ -116,6 +117,29 @@ function ManageInquiries() {
             headers: authHeaders(),
         });
         fetchAll();
+    };
+
+    const uploadResultDocument = async (dataKey, record, file) => {
+        setUploadingId(record.id);
+        try {
+            const formData = new FormData();
+            // A full PUT/PATCH still needs the record's other required fields present.
+            Object.entries(record).forEach(([key, value]) => {
+                if (key !== "id" && key !== "result_document" && value !== null && value !== undefined) {
+                    formData.append(key, value);
+                }
+            });
+            formData.append("result_document", file);
+
+            await fetch(`${API_BASE_URL}/api/${ENDPOINTS[dataKey]}/${record.id}/`, {
+                method: "PATCH",
+                headers: authHeaders(),
+                body: formData,
+            });
+            fetchAll();
+        } finally {
+            setUploadingId(null);
+        }
     };
 
     if (loading) return <h2 className="mi-status">Loading inquiries...</h2>;
@@ -189,16 +213,56 @@ function ManageInquiries() {
                                 <div className="mi-card" key={record.id}>
                                     <div className="mi-card-grid">
                                         {Object.entries(record)
-                                            .filter(([key]) => key !== "id")
+                                            .filter(([key]) => key !== "id" && key !== "result_document")
                                             .map(([key, value]) => (
                                                 <div className="mi-field" key={key}>
                                                     <span className="mi-field-label">{humanize(key)}</span>
                                                     <span className="mi-field-value">{formatValue(key, value)}</span>
                                                 </div>
                                             ))}
+
+                                        {Object.prototype.hasOwnProperty.call(record, "result_document") && (
+                                            <div className="mi-field">
+                                                <span className="mi-field-label">Result Document</span>
+                                                <span className="mi-field-value">
+                                                    {record.result_document ? (
+                                                        <a href={record.result_document} target="_blank" rel="noopener noreferrer">
+                                                            View Document
+                                                        </a>
+                                                    ) : "—"}
+                                                </span>
+                                            </div>
+                                        )}
                                     </div>
 
                                     <div className="mi-card-actions">
+                                        {currentSection.key === "land-documentation" && ANYROR_PORTAL_URL && (
+                                            <a
+                                                className="anyror-link-btn"
+                                                href={ANYROR_PORTAL_URL}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Look Up on AnyROR
+                                            </a>
+                                        )}
+                                        {currentSection.key === "land-documentation" && (
+                                            <label className="upload-doc-btn">
+                                                {uploadingId === record.id
+                                                    ? "Uploading..."
+                                                    : record.result_document ? "Replace Document" : "Upload Document"}
+                                                <input
+                                                    type="file"
+                                                    hidden
+                                                    disabled={uploadingId === record.id}
+                                                    onChange={(e) => {
+                                                        const file = e.target.files[0];
+                                                        if (file) uploadResultDocument(currentSection.dataKey, record, file);
+                                                        e.target.value = "";
+                                                    }}
+                                                />
+                                            </label>
+                                        )}
                                         {Object.prototype.hasOwnProperty.call(record, "contacted") && (
                                             <button
                                                 className="contact-btn"

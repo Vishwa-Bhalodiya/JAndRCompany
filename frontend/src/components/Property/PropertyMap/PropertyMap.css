@@ -12,6 +12,26 @@
 
 }
 
+.survey-no-tooltip{
+
+    background:#37b5d4 !important;
+
+    color:#0f0f0f !important;
+
+    font-weight:600 !important;
+
+    border:none !important;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.3) !important;
+
+}
+
+.survey-no-tooltip::before{
+
+    border-top-color:#37b5d4 !important;
+
+}
+
 .Property-map h2{
 
     color:white;
@@ -31,6 +51,60 @@
     gap:10px;
 
     margin-bottom:25px;
+
+}
+
+.map-boundary-hint{
+
+    color:#f59e0b;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:-15px 0 20px;
+
+    font-size:14px;
+
+}
+
+.land-records-link-row{
+
+    color:#ccc;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:-15px 0 20px;
+
+    font-size:14px;
+
+}
+
+.land-records-link{
+
+    color:#37b5d4;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+}
+
+.land-records-link:hover{
+
+    text-decoration:underline;
 
 }
 

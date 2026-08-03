@@ -6,6 +6,7 @@ import {
     Marker,
     Polyline,
     Polygon,
+    Tooltip,
     useMapEvents
 } from "react-leaflet";
 import {
@@ -14,8 +15,10 @@ import {
     FaDrawPolygon,
     FaMapMarkedAlt,
     FaRoute,
-    FaTimes
+    FaTimes,
+    FaExternalLinkAlt
 } from "react-icons/fa";
+import { LAND_RECORDS_PORTAL_URL } from "../../../config";
 import {
     fetchNearbyPlaces,
     fetchRoute,
@@ -45,7 +48,7 @@ function DrawClickHandler({ onMapClick }) {
     return null;
 }
 
-function PropertyMap({ googleMap, location, latitude, longitude }) {
+function PropertyMap({ googleMap, location, latitude, longitude, boundaryPoints = [], surveyNo }) {
     const [activeTool, setActiveTool] = useState(null);
     const [drawPoints, setDrawPoints] = useState([]);
     const [nearbyPlaces, setNearbyPlaces] = useState([]);
@@ -61,6 +64,9 @@ function PropertyMap({ googleMap, location, latitude, longitude }) {
         latitude !== null && latitude !== undefined && latitude !== "" &&
         longitude !== null && longitude !== undefined && longitude !== "";
     const position = hasCoords ? [Number(latitude), Number(longitude)] : null;
+
+    const hasBoundary = Array.isArray(boundaryPoints) && boundaryPoints.length >= 3;
+    const boundaryArea = hasBoundary ? formatArea(computePolygonArea(boundaryPoints)) : null;
 
     const resetTools = () => {
         setDrawPoints([]);
@@ -149,6 +155,26 @@ function PropertyMap({ googleMap, location, latitude, longitude }) {
                 <FaMapMarkerAlt />
                 {location || "Location not available"}
             </p>
+
+            {hasBoundary && (
+                <p className="map-boundary-hint">
+                    <FaDrawPolygon /> Property Boundary &middot; Area: <strong>{boundaryArea}</strong>
+                </p>
+            )}
+
+            {surveyNo && LAND_RECORDS_PORTAL_URL && (
+                <p className="land-records-link-row">
+                    Survey No: <strong>{surveyNo}</strong>
+                    <a
+                        href={LAND_RECORDS_PORTAL_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="land-records-link"
+                    >
+                        View Official Land Records <FaExternalLinkAlt />
+                    </a>
+                </p>
+            )}
 
             {hasCoords && (
                 <div className="map-toolbar">
@@ -264,7 +290,26 @@ function PropertyMap({ googleMap, location, latitude, longitude }) {
                             </LayersControl.BaseLayer>
                         </LayersControl>
 
-                        <Marker position={position} />
+                        <Marker position={position}>
+                            {surveyNo && !hasBoundary && (
+                                <Tooltip permanent direction="top" offset={[0, -35]} className="survey-no-tooltip">
+                                    Survey No: {surveyNo}
+                                </Tooltip>
+                            )}
+                        </Marker>
+
+                        {hasBoundary && (
+                            <Polygon
+                                positions={boundaryPoints}
+                                pathOptions={{ color: "#f59e0b", fillColor: "#f59e0b", fillOpacity: 0.12, weight: 3, dashArray: "6 4" }}
+                            >
+                                {surveyNo && (
+                                    <Tooltip permanent direction="center" className="survey-no-tooltip">
+                                        Survey No: {surveyNo}
+                                    </Tooltip>
+                                )}
+                            </Polygon>
+                        )}
 
                         <DrawClickHandler onMapClick={handleMapClick} />
 

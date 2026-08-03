@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, useNavigate, useLocation, Link } from "react-router-dom";
+import { useParams, useNavigate, useLocation, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 import {
@@ -9,6 +9,8 @@ import {
     FaPaperPlane
 } from "react-icons/fa";
 import { API_BASE_URL } from "../../config";
+import PropertyLocationPicker from "../../components/Property/PropertyLocationPicker";
+import { isAuthenticated } from "../../services/auth";
 import "./ServiceForm.css";
 
 const SERVICE_CONFIG = {
@@ -168,7 +170,21 @@ const ServiceForm = () => {
     const [successMsg, setSuccessMsg] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
     const [formKey, setFormKey] = useState(0);
-    const [sellReference, setSellReference] = useState(null);
+    const [trackableReference, setTrackableReference] = useState(null);
+    const [sellLocation, setSellLocation] = useState({ latitude: "", longitude: "" });
+    const [sellBoundaryPoints, setSellBoundaryPoints] = useState([]);
+
+    const TRACKABLE_SERVICES = ["sell", "land-documentation"];
+
+    if (!isAuthenticated()) {
+        return (
+            <Navigate
+                to="/login"
+                state={{ from: location.pathname + location.search, message: "Please log in to submit this form." }}
+                replace
+            />
+        );
+    }
 
     if (!config) {
         return (
@@ -230,17 +246,33 @@ const ServiceForm = () => {
             Object.entries(files).forEach(([key, fileList]) => {
                 fileList.forEach((file) => data.append(key, file));
             });
+            if (serviceType === "sell") {
+                if (sellLocation.latitude && sellLocation.longitude) {
+                    data.append("latitude", sellLocation.latitude);
+                    data.append("longitude", sellLocation.longitude);
+                }
+                data.append("boundary_points", JSON.stringify(sellBoundaryPoints));
+            }
             payload = data;
         }
 
         try {
             const response = await axios.post(config.apiEndpoint, payload);
 
-            if (serviceType === "sell") {
-                setSellReference({ id: response.data.id, mobileNo: response.data.mobile_no });
+            if (TRACKABLE_SERVICES.includes(serviceType)) {
+                setTrackableReference({
+                    serviceType,
+                    id: response.data.id,
+                    mobileNo: response.data.mobile_no,
+                    hadLocation: serviceType === "sell"
+                        ? Boolean(sellLocation.latitude && sellLocation.longitude)
+                        : undefined,
+                });
                 setFormData({});
                 setFiles({});
                 setFormKey((k) => k + 1);
+                setSellLocation({ latitude: "", longitude: "" });
+                setSellBoundaryPoints([]);
             } else {
                 setSuccessMsg("Your inquiry has been submitted successfully!");
                 setFormData({});
@@ -362,32 +394,49 @@ const ServiceForm = () => {
                     </div>
                 )}
 
-                {sellReference ? (
+                {trackableReference ? (
                     <div className="sell-reference-card">
                         <FaCheckCircle className="sell-reference-icon" />
-                        <h3>Your property has been submitted!</h3>
-                        <p>
-                            Before your property appears for buyers and renters, our team needs to verify your
-                            documents and confirm the property's map location. This usually takes a short while
-                            — we'll keep it under review until then.
-                        </p>
+                        {trackableReference.serviceType === "land-documentation" ? (
+                            <>
+                                <h3>Your request has been submitted!</h3>
+                                <p>
+                                    Our team will process your Land Documentation &amp; 7/12 request and upload the
+                                    completed document once ready. This usually takes a short while — track its
+                                    status any time using the reference below.
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                <h3>Your property has been submitted!</h3>
+                                <p>
+                                    {trackableReference.hadLocation
+                                        ? "Before your property appears for buyers and renters, our team needs to verify your documents and confirm the map location you provided."
+                                        : "Before your property appears for buyers and renters, our team needs to verify your documents and add the property's map location."}
+                                    {" "}This usually takes a short while — we'll keep it under review until then.
+                                </p>
+                            </>
+                        )}
                         <div className="sell-reference-id">
-                            Reference ID: <strong>#{sellReference.id}</strong>
+                            Reference ID: <strong>#{trackableReference.id}</strong>
                         </div>
                         <p className="sell-reference-hint">
                             Save this ID — you'll need it along with your mobile number to track your
-                            verification status.
+                            {trackableReference.serviceType === "land-documentation" ? " request" : " verification"} status.
                         </p>
                         <div className="sell-reference-actions">
-                            <Link to={`/track-submission?id=${sellReference.id}&mobile_no=${sellReference.mobileNo}`} className="submit-btn">
+                            <Link
+                                to={`/track-submission?service=${trackableReference.serviceType}&id=${trackableReference.id}&mobile_no=${trackableReference.mobileNo}`}
+                                className="submit-btn"
+                            >
                                 Track Your Submission
                             </Link>
                             <button
                                 type="button"
                                 className="btn submit-btn sell-reference-secondary"
-                                onClick={() => setSellReference(null)}
+                                onClick={() => setTrackableReference(null)}
                             >
-                                Submit Another Property
+                                Submit Another Request
                             </button>
                         </div>
                     </div>
@@ -451,6 +500,25 @@ const ServiceForm = () => {
                             );
                         })}
                     </div>
+
+                    {serviceType === "sell" && (
+                        <div className="field field-full sell-location-field">
+                            <label className="form-label">
+                                Property Location &amp; Boundary (Optional)
+                            </label>
+                            <p className="sell-location-hint">
+                                Pin your property's location and trace its boundary on the map to help us
+                                verify it faster. You can skip this — our team can also set it during review.
+                            </p>
+                            <PropertyLocationPicker
+                                latitude={sellLocation.latitude}
+                                longitude={sellLocation.longitude}
+                                onChange={(lat, lng) => setSellLocation({ latitude: lat, longitude: lng })}
+                                boundaryPoints={sellBoundaryPoints}
+                                onBoundaryChange={setSellBoundaryPoints}
+                            />
+                        </div>
+                    )}
 
                     <div className="text-center mt-4">
                         <button

@@ -11,13 +11,20 @@ import {
 import { API_BASE_URL } from "../../config";
 import "./TrackSubmission.css";
 
+const SERVICE_OPTIONS = [
+    { value: "sell", label: "Sell Property" },
+    { value: "land-documentation", label: "Land Documentation & 7/12" },
+];
+
 function TrackSubmission() {
     const [searchParams] = useSearchParams();
+    const [serviceType, setServiceType] = useState(searchParams.get("service") || "sell");
     const [refId, setRefId] = useState(searchParams.get("id") || "");
     const [mobileNo, setMobileNo] = useState(searchParams.get("mobile_no") || "");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [result, setResult] = useState(null);
+    const [trackedService, setTrackedService] = useState(serviceType);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,10 +35,11 @@ function TrackSubmission() {
         setResult(null);
 
         try {
-            const res = await axios.get(`${API_BASE_URL}/api/services/sell/track/`, {
+            const res = await axios.get(`${API_BASE_URL}/api/services/${serviceType}/track/`, {
                 params: { id: refId.trim(), mobile_no: mobileNo.trim() }
             });
             setResult(res.data);
+            setTrackedService(serviceType);
         } catch (err) {
             console.error(err);
             setError(
@@ -60,6 +68,14 @@ function TrackSubmission() {
                 <div className="ts-card">
                     <form className="ts-form" onSubmit={handleSubmit}>
                         <div className="ts-field">
+                            <label>Submission Type</label>
+                            <select value={serviceType} onChange={(e) => setServiceType(e.target.value)}>
+                                {SERVICE_OPTIONS.map((opt) => (
+                                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="ts-field">
                             <label>Reference ID</label>
                             <input
                                 type="text"
@@ -86,7 +102,37 @@ function TrackSubmission() {
 
                     {error && <div className="ts-error">{error}</div>}
 
-                    {result && (
+                    {result && trackedService === "land-documentation" && (
+                        <div className="ts-result">
+                            <div className={`ts-status-banner ${result.has_document ? "ts-live" : "ts-pending"}`}>
+                                {result.has_document ? (
+                                    <>
+                                        <FaCheckCircle />
+                                        <span>Your document is ready!</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <FaClock />
+                                        <span>Your request is still being processed.</span>
+                                    </>
+                                )}
+                            </div>
+
+                            {result.has_document && (
+                                <a
+                                    href={result.document_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="ts-submit-btn"
+                                    style={{ display: "inline-block", textAlign: "center", textDecoration: "none", marginTop: "15px" }}
+                                >
+                                    <FaFileAlt /> Download Document
+                                </a>
+                            )}
+                        </div>
+                    )}
+
+                    {result && trackedService === "sell" && (
                         <div className="ts-result">
                             <div className={`ts-status-banner ${result.is_published ? "ts-live" : "ts-pending"}`}>
                                 {result.is_published ? (

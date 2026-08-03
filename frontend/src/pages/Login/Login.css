@@ -131,6 +131,12 @@
   color: #f87171;
 }
 
+.form-alert-info {
+  background: rgba(55, 181, 212, 0.12);
+  border: 1px solid rgba(55, 181, 212, 0.3);
+  color: #37b5d4;
+}
+
 /* buttons */
 .login-btn {
   width: 100%;

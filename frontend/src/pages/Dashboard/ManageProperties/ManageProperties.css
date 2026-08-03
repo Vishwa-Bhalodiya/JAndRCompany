@@ -151,6 +151,19 @@
   background: #0b9eb8;
 }
 
+.location-hint {
+  font-size: 11px;
+  max-width: 200px;
+}
+
+.location-hint-set {
+  color: #4ade80;
+}
+
+.location-hint-missing {
+  color: #eab308;
+}
+
 /* BUTTONS */
 .edit-btn {
   background: #1f6feb;

@@ -194,6 +194,15 @@ function ManageProperties() {
                     ) : (
                       <div className="publish-pending-cell">
                         <span className="publish-badge pending">Pending Review</span>
+                        {p.latitude && p.longitude ? (
+                          <span className="location-hint location-hint-set">
+                            📍 Location added by seller — just verify it
+                          </span>
+                        ) : (
+                          <span className="location-hint location-hint-missing">
+                            ⚠ No location yet — add one in Edit
+                          </span>
+                        )}
                         <button
                           className="publish-btn"
                           onClick={() => handlePublish(p.id)}

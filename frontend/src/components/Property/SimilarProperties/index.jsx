@@ -84,18 +84,9 @@ function SimilarProperties({ PropertyId }) {
 
                                     <h5>₹{item.price}</h5>
 
-                                    {/* ✅ FIX NAVIGATION */}
                                     <button
                                         className="view-btn"
-                                        onClick={() => {
-                                            const inquirySubmitted = localStorage.getItem("inquirySubmitted");
-
-                                            if (inquirySubmitted) {
-                                                navigate(`/Property/${item.id}`);
-                                            } else {
-                                                navigate(`/inquiry/${item.id}`);
-                                            }
-                                        }}
+                                        onClick={() => navigate(`/Property/${item.id}`)}
                                     >
                                         View Details
                                     </button>

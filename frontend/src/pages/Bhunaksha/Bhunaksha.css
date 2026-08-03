@@ -1,0 +1,215 @@
+.bhunaksha-page {
+    padding: 40px 20px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bn-status {
+    text-align: center;
+    padding: 80px 20px;
+    color: #ccc;
+}
+
+.bn-header {
+    margin-bottom: 25px;
+}
+
+.bn-header h1 {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+    font-size: 28px;
+}
+
+.bn-subtitle {
+    color: #37b5d4;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.bn-disclaimer {
+    color: #999;
+    font-size: 13px;
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+.bn-disclaimer a {
+    color: #37b5d4;
+}
+
+.bn-error {
+    color: #f87171;
+    margin-bottom: 15px;
+}
+
+.bn-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 25px;
+}
+
+@media (max-width: 900px) {
+    .bn-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.bn-sidebar {
+    background: #181818;
+    border: 1px solid rgba(212, 175, 55, .15);
+    border-radius: 12px;
+    padding: 20px;
+    align-self: start;
+}
+
+.bn-field {
+    margin-bottom: 20px;
+}
+
+.bn-field label {
+    display: block;
+    color: #e2e8f0;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.bn-field select {
+    width: 100%;
+    background: #161616;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 10px 12px;
+    border-radius: 8px;
+}
+
+.bn-empty-hint {
+    color: #999;
+    font-size: 13px;
+}
+
+.bn-survey-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bn-survey-item {
+    width: 100%;
+    text-align: left;
+    background: #161616;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.bn-survey-item.active {
+    border-color: #c0392b;
+    background: rgba(192, 57, 43, 0.1);
+}
+
+.bn-survey-no {
+    color: #37b5d4;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.bn-survey-title {
+    color: #ccc;
+    font-size: 12px;
+}
+
+.bn-no-pin-hint {
+    color: #eab308;
+    font-size: 11px;
+}
+
+.bn-plot-info {
+    background: #161616;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.bn-plot-info h3 {
+    color: #c0392b;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.bn-plot-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 13px;
+    color: #ccc;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bn-plot-row strong {
+    color: #fff;
+    text-align: right;
+}
+
+.bn-view-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    background: #37b5d4;
+    color: #0f0f0f;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.bn-map {
+    position: relative;
+    width: 100%;
+    height: 650px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, .15);
+}
+
+.bn-map-hint {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 15, 15, 0.85);
+    color: #ccc;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.bn-plot-tooltip {
+    background: #fffdf5 !important;
+    color: #1a1a1a !important;
+    font-weight: 700 !important;
+    font-size: 11px !important;
+    border: 1px solid #3a3a3a !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .25) !important;
+    padding: 2px 6px !important;
+}
+
+.bn-plot-tooltip::before {
+    border-top-color: #3a3a3a !important;
+}

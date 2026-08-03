@@ -17,6 +17,18 @@
     color: #999;
 }
 
+.survey-no-tooltip {
+    background: #37b5d4 !important;
+    color: #0f0f0f !important;
+    font-weight: 600 !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .3) !important;
+}
+
+.survey-no-tooltip::before {
+    border-top-color: #37b5d4 !important;
+}
+
 .map-popup h4 {
     margin: 0 0 6px;
     color: #111;

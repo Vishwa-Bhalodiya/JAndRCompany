@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { MapContainer, TileLayer, LayersControl, CircleMarker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, LayersControl, CircleMarker, Popup, Tooltip } from "react-leaflet";
 import { getAllPropertiesAdmin } from "../../../api/propertyApi";
 import { isAuthError, handleAdminAuthError } from "../../../utils/adminAuth";
 import "./GISDashboard.css";
@@ -131,6 +131,11 @@ function GISDashboard() {
                                     weight: 2,
                                 }}
                             >
+                                {property.survey_no && (
+                                    <Tooltip permanent direction="top" offset={[0, -9]} className="survey-no-tooltip">
+                                        Survey No: {property.survey_no}
+                                    </Tooltip>
+                                )}
                                 <Popup>
                                     <div className="gis-popup">
                                         <h4>{property.title}</h4>
