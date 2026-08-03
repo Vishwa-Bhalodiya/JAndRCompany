@@ -8,9 +8,7 @@ from properties.serializers import PropertySerializer
 class HomeAPIView(APIView):
 
     def get(self, request):
-
         featured = Property.objects.filter(featured=True)[:6]
-
         featured_properties = PropertySerializer(
             featured,
             many=True,
