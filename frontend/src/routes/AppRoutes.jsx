@@ -1,0 +1,91 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+/* ================= LAYOUTS ================= */
+import MainLayout from "../layouts/MainLayout";
+import DashboardLayout from "../layouts/DashboardLayout";
+
+/* ================= AUTH GUARD ================= */
+import AdminRoute from "./AdminRoute";
+import ProtectedRoute from "./ProtectedRoute";
+
+/* ================= PUBLIC PAGES ================= */
+import Home from "../pages/Home";
+import About from "../pages/About";
+import Properties from "../pages/Properties";
+import PropertyDetails from "../pages/PropertyDetails";
+import Contact from "../pages/Contact";
+import Agents from "../pages/Agents";
+import ServiceForm from "../pages/ServiceForm";
+import TrackSubmission from "../pages/TrackSubmission";
+
+/* ================= AUTH PAGES ================= */
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+
+/* ================= Dashboard PAGES ================= */
+import DashboardHome from "../pages/Dashboard/DashboardHome";
+import Profile from "../pages/Dashboard/Profile";
+import ManageProperties from "../pages/Dashboard/ManageProperties";
+import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
+import EditProperty from "../pages/Dashboard/EditProperty";
+import ManageInquiries from "../pages/Dashboard/ManageInquiries";
+import DocumentVerification from "../pages/Dashboard/DocumentVerification";
+import GISDashboard from "../pages/Dashboard/GISDashboard";
+import Favorites from "../pages/Favorites/index";
+import PropertyInquiry from "../pages/PropertyInquiry";
+
+function AppRoutes() {
+  return (
+    <BrowserRouter>
+      <Routes>
+
+        {/* ================= PUBLIC ROUTES ================= */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/properties" element={<Properties />} />
+          <Route path="/Property/:id" element={<PropertyDetails />} />
+          <Route path="/agents" element={<Agents />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/services/:serviceType" element={<ServiceForm />} />
+          <Route path="/inquiry/:id" element={<PropertyInquiry />} />
+          <Route path="/track-submission" element={<TrackSubmission />} />
+        </Route>
+
+        {/* ================= AUTH ROUTES ================= */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* ================= Dashboard (SAAS CORE) ================= */}
+        <Route
+          path="/Dashboard"
+          element={
+            <AdminRoute>
+              <DashboardLayout />
+            </AdminRoute>
+          }
+        >
+          {/* DEFAULT Dashboard */}
+          <Route index element={<DashboardHome />} />
+          <Route path="inquiries" element={<ManageInquiries />}
+/>
+          <Route path="documents" element={<DocumentVerification />} />
+          <Route path="gis" element={<GISDashboard />} />
+
+          {/* USER PROFILE */}
+          <Route path="profile" element={<Profile />} />
+
+          {/* Property MANAGEMENT (CRM CORE) */}
+          <Route path="properties" element={<ManageProperties />} />
+          <Route path="add-Property" element={<AddProperty />} />
+          <Route path="edit-Property/:id" element={<EditProperty />} />
+          
+        </Route>
+
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default AppRoutes;

@@ -1,0 +1,93 @@
+.amenities-section{
+
+    margin-top:60px;
+
+    background:#181818;
+
+    padding:40px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(212,175,55,.15);
+
+}
+
+.amenities-section h2{
+
+    color:white;
+
+    margin-bottom:35px;
+
+}
+
+.amenity-card{
+
+    background:#111;
+
+    border:1px solid rgba(212,175,55,.12);
+
+    border-radius:12px;
+
+    padding:30px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    height:100%;
+
+}
+
+.amenity-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#37b5d4;
+
+    box-shadow:0 15px 30px rgba(212,175,55,.15);
+
+}
+
+.amenity-icon{
+
+    width:70px;
+
+    height:70px;
+
+    background:#37b5d4;
+
+    color:black;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+    font-size:28px;
+
+}
+
+.amenity-card h5{
+
+    color:white;
+
+    margin:0;
+
+}
+
+@media(max-width:768px){
+
+.amenities-section{
+
+padding:25px;
+
+}
+
+}

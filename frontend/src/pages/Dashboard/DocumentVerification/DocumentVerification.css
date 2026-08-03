@@ -1,0 +1,203 @@
+.dv-page {
+    padding: 30px;
+    color: white;
+}
+
+.dv-status {
+    padding: 30px;
+    color: #e2e8f0;
+}
+
+.dv-error {
+    color: #f87171;
+}
+
+.dv-header h2 {
+    color: #37b5d4;
+    margin-bottom: 6px;
+}
+
+.dv-header p {
+    color: #999;
+    margin-bottom: 25px;
+}
+
+.dv-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.dv-tab {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #c7c7c7;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.dv-tab:hover {
+    color: #fff;
+}
+
+.dv-tab.active {
+    background: rgba(55, 181, 212, 0.12);
+    border-color: rgba(55, 181, 212, 0.35);
+    color: #37b5d4;
+}
+
+.dv-count {
+    background: #1b1b1b;
+    color: #e2e8f0;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+.dv-tab.active .dv-count {
+    background: #37b5d4;
+    color: #0f0f0f;
+}
+
+.dv-empty {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    color: #999;
+}
+
+.dv-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dv-card {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.dv-card-info h4 {
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.dv-card-info a {
+    color: #37b5d4;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.dv-card-info a:hover {
+    text-decoration: underline;
+}
+
+.dv-meta {
+    color: #999;
+    font-size: 13px;
+    margin: 6px 0 0;
+}
+
+.dv-rejection-reason {
+    color: #f87171;
+    font-size: 13px;
+    margin: 6px 0 0;
+}
+
+.dv-card-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    min-width: 180px;
+}
+
+.dv-badge {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.dv-badge-pending {
+    background: rgba(234, 179, 8, 0.15);
+    color: #eab308;
+}
+
+.dv-badge-verified {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+}
+
+.dv-badge-rejected {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+
+.dv-card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.dv-btn {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.dv-btn-verify {
+    background: #37b5d4;
+    color: #0f0f0f;
+}
+
+.dv-btn-reject {
+    background: #dc3545;
+    color: white;
+}
+
+.dv-btn-cancel {
+    background: #4b5563;
+    color: white;
+}
+
+.dv-reject-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 220px;
+}
+
+.dv-reject-form input {
+    background: #161616;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.dv-reject-actions {
+    display: flex;
+    gap: 8px;
+}

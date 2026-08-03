@@ -1,0 +1,85 @@
+.main-image{
+
+    width:100%;
+
+    height:550px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.main-image:hover{
+
+    transform:scale(1.01);
+
+}
+
+.thumbs{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.thumb{
+
+    width:130px;
+
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    opacity:.7;
+
+    border:3px solid transparent;
+
+    transition:.3s;
+
+}
+
+.thumb:hover{
+
+    opacity:1;
+
+}
+
+.thumb.active{
+
+    opacity:1;
+
+    border-color:#37b5d4;
+
+}
+
+@media(max-width:768px){
+
+.main-image{
+
+height:300px;
+
+}
+
+.thumb{
+
+width:80px;
+
+height:60px;
+
+}
+
+}

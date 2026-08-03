@@ -1,0 +1,161 @@
+.documents-section{
+
+    background:#181818;
+
+    padding:40px;
+
+    border-radius:15px;
+
+    margin-top:60px;
+
+    border:1px solid rgba(212,175,55,.15);
+
+}
+
+.documents-section h2{
+
+    color:white;
+
+}
+
+.documents-section p{
+
+    color:#bbb;
+
+    margin-bottom:30px;
+
+}
+
+.document-card{
+
+    background:#111;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.document-left{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:center;
+
+}
+
+.document-left svg{
+
+    font-size:30px;
+
+    color:#37b5d4;
+
+}
+
+.document-left h5{
+
+    color:white;
+
+    margin-bottom:8px;
+
+}
+
+.document-left span{
+
+    display:flex;
+
+    gap:8px;
+
+    align-items:center;
+
+}
+
+.status-verified{
+    color:#81c784;
+}
+
+.status-pending{
+    color:#eab308;
+}
+
+.document-card button{
+
+    background:#37b5d4;
+
+    border:none;
+
+    color:black;
+
+    padding:12px 25px;
+
+    border-radius:8px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    cursor:pointer;
+
+}
+
+.document-card button:hover:not(:disabled){
+
+    background:white;
+
+}
+
+.document-card button:disabled{
+
+    background:#4b5563;
+
+    color:#9ca3af;
+
+    cursor:not-allowed;
+
+}
+
+.document-card .spin{
+
+    animation:spin 0.8s linear infinite;
+
+}
+
+@keyframes spin{
+
+    from{ transform:rotate(0deg); }
+
+    to{ transform:rotate(360deg); }
+
+}
+
+@media(max-width:768px){
+
+.document-card{
+
+flex-direction:column;
+
+gap:20px;
+
+align-items:flex-start;
+
+}
+
+}

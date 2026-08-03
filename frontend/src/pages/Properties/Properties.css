@@ -1,0 +1,127 @@
+.properties-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 8px;
+    background: #141414;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 10px;
+    padding: 6px;
+}
+
+.view-toggle button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: #999;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-toggle button:hover {
+    color: #fff;
+}
+
+.view-toggle button.active {
+    background: #37b5d4;
+    color: #0b0b0b;
+}
+
+/* GRID → 3 COLUMN LAYOUT */
+.properties-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+}
+
+/* Property CARD (DARK LUXURY STYLE) */
+.Property-card {
+    background: #141414;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.Property-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* IMAGE */
+.Property-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* CONTENT */
+.Property-content {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* TYPE BADGE */
+.Property-type {
+    display: inline-block;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(212, 175, 55, 0.1);
+    color: #37b5d4;
+    width: fit-content;
+}
+
+/* TEXT */
+.Property-content h2 {
+    font-size: 18px;
+    color: #fff;
+}
+
+.Property-location,
+.Property-area {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* PRICE */
+.Property-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #37b5d4;
+}
+
+/* BUTTON */
+.details-btn {
+    margin-top: auto;
+    padding: 10px;
+    text-align: center;
+    background: #37b5d4;
+    color: #0b0b0b;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.details-btn:hover {
+    background: #37b5d4;
+}

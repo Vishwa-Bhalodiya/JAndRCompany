@@ -1,0 +1,71 @@
+.nearby-section{
+
+    background:#181818;
+
+    padding:40px;
+
+    border-radius:15px;
+
+    margin-top:60px;
+
+    border:1px solid rgba(212,175,55,.15);
+
+}
+
+.nearby-section h2{
+
+    color:white;
+
+    margin-bottom:30px;
+
+}
+
+.nearby-card{
+
+    background:#111;
+
+    border-radius:12px;
+
+    padding:30px;
+
+    text-align:center;
+
+    transition:.3s;
+
+    height:100%;
+
+    border:1px solid rgba(212,175,55,.1);
+
+}
+
+.nearby-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#37b5d4;
+
+}
+
+.nearby-icon{
+
+    font-size:38px;
+
+    color:#37b5d4;
+
+    margin-bottom:20px;
+
+}
+
+.nearby-card h5{
+
+    color:white;
+
+}
+
+.nearby-card p{
+
+    color:#bbb;
+
+    margin-top:10px;
+
+}
