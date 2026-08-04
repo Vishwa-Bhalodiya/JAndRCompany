@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Collapse } from "bootstrap";
 import { getUser, logout } from "../../services/auth";
 import { FaHeart } from "react-icons/fa";
+import GoogleTranslate from "../GoogleTranslate";
 
 function Navbar() {
     const navigate = useNavigate();
@@ -100,9 +101,13 @@ function Navbar() {
                             </Link>
                         </li>
 
+                        <li className="nav-item">
+                            <GoogleTranslate />
+                        </li>
+
                     </ul>
 
-                    <div className="d-flex ms-lg-4 mt-3 mt-lg-0">
+                    <div className="d-flex align-items-center flex-wrap gap-2 ms-lg-4 mt-3 mt-lg-0">
 
                         {user ? (
                             <button

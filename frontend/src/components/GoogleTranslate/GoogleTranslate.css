@@ -1,0 +1,176 @@
+.lang-switcher {
+    position: relative;
+    margin-left: 20px;
+}
+
+/* The real Google widget is never shown — it only needs to exist in the
+   DOM so Google's script can read the language cookie and translate the
+   page. Our own button + panel below is the actual UI. */
+.lang-switcher-hidden-widget {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lang-switcher-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid #37b5d4;
+    color: #fff;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.lang-switcher-trigger svg {
+    flex-shrink: 0;
+}
+
+.lang-switcher-trigger:hover,
+.lang-switcher-trigger.active {
+    background: #37b5d4;
+    color: #0f0f0f;
+}
+
+.lang-switcher-caret {
+    font-size: 10px;
+    transition: transform 0.2s;
+}
+
+.lang-switcher-caret.flipped {
+    transform: rotate(180deg);
+}
+
+.lang-switcher-panel {
+    position: fixed;
+    max-width: 90vw;
+    background: #161616;
+    border: 1px solid rgba(55, 181, 212, 0.25);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    z-index: 100000;
+    animation: lang-panel-in 0.15s ease-out;
+}
+
+@keyframes lang-panel-in {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lang-switcher-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #888;
+}
+
+.lang-switcher-search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+.lang-switcher-search input::placeholder {
+    color: #777;
+}
+
+.lang-switcher-list {
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 6px;
+}
+
+.lang-switcher-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lang-switcher-list::-webkit-scrollbar-thumb {
+    background: rgba(55, 181, 212, 0.35);
+    border-radius: 4px;
+}
+
+.lang-switcher-empty {
+    padding: 16px;
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+}
+
+.lang-switcher-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: transparent;
+    border: none;
+    color: #e2e8f0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.lang-switcher-item:hover {
+    background: rgba(55, 181, 212, 0.12);
+    color: #fff;
+}
+
+.lang-switcher-item.selected {
+    background: rgba(55, 181, 212, 0.18);
+    color: #37b5d4;
+    font-weight: 600;
+}
+
+.lang-switcher-item-native {
+    color: #999;
+    font-weight: 400;
+}
+
+.lang-switcher-item-check {
+    color: #37b5d4;
+    flex-shrink: 0;
+}
+
+/* Suppress Google's own translate banner + reset body offset it injects */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+@media (max-width: 991px) {
+    .lang-switcher {
+        margin: 12px 0;
+        width: 100%;
+    }
+
+    .lang-switcher-trigger {
+        width: 100%;
+        justify-content: center;
+    }
+}
