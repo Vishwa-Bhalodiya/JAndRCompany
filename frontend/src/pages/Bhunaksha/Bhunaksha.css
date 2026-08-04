@@ -1,7 +1,9 @@
 .bhunaksha-page {
-    padding: 40px 20px 60px;
+    padding: 140px 20px 80px;
     max-width: 1400px;
     margin: 0 auto;
+    background: #0f0f0f;
+    min-height: 100vh;
 }
 
 .bn-status {

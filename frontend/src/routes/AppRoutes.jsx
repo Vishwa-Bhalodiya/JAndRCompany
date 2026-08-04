@@ -32,6 +32,7 @@ import EditProperty from "../pages/Dashboard/EditProperty";
 import ManageInquiries from "../pages/Dashboard/ManageInquiries";
 import DocumentVerification from "../pages/Dashboard/DocumentVerification";
 import GISDashboard from "../pages/Dashboard/GISDashboard";
+import ManageChats from "../pages/Dashboard/ManageChats";
 import Favorites from "../pages/Favorites/index";
 
 function AppRoutes() {
@@ -72,6 +73,7 @@ function AppRoutes() {
 />
           <Route path="documents" element={<DocumentVerification />} />
           <Route path="gis" element={<GISDashboard />} />
+          <Route path="chats" element={<ManageChats />} />
 
           {/* USER PROFILE */}
           <Route path="profile" element={<Profile />} />

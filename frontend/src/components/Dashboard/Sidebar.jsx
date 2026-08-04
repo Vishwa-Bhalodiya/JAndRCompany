@@ -39,6 +39,10 @@ function Sidebar() {
                     🗺️ GIS Dashboard
                 </Link>
 
+                <Link style={linkStyle} to="/Dashboard/chats">
+                    💬 Customer Chats
+                </Link>
+
             </nav>
         </div>
     );
