@@ -48,6 +48,8 @@ class Property(models.Model):
 
     location = models.CharField(max_length=255)
 
+    survey_no = models.CharField(max_length=100, blank=True, default="")
+
     Property_type = models.CharField(
         max_length=50,
         choices=Property_TYPES
@@ -65,6 +67,11 @@ class Property(models.Model):
 
     latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+
+    # Admin-drawn land parcel boundary: a list of [lat, lng] point pairs
+    # tracing the property's outline on the map (no government survey data
+    # integration exists yet, so this is manually traced per property).
+    boundary_points = models.JSONField(default=list, blank=True)
 
     featured = models.BooleanField(default=False)
 

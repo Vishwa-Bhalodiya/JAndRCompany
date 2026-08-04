@@ -59,6 +59,18 @@ class PropertySerializer(serializers.ModelSerializer):
         read_only=True
     )
 
+    # Written manually in the view (from a JSON-encoded form field), not
+    # through normal serializer validation, since it arrives as a plain
+    # string inside multipart/form-data requests.
+    boundary_points = serializers.JSONField(read_only=True)
+
+    # DRF treats a BooleanField omitted from multipart/form-data as an
+    # explicit False (HTML checkbox semantics), which would silently
+    # unpublish every property saved through the FormData-based admin
+    # forms. Handled manually in the view instead, where it's only
+    # touched when a caller (e.g. the Publish button) explicitly sends it.
+    is_approved = serializers.BooleanField(read_only=True)
+
     class Meta:
         model = Property
 
@@ -68,12 +80,14 @@ class PropertySerializer(serializers.ModelSerializer):
             "description",
             "price",
             "location",
+            "survey_no",
             "Property_type",
             "status",
             "area",
             "google_map",
             "latitude",
             "longitude",
+            "boundary_points",
             "featured",
             "is_approved",
             "amenities",

@@ -3,6 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from properties.models import Property, PropertyImage, PropertyDocument
+from properties.views import _parse_boundary_points
 from users.permissions import IsAdminRole
 from .models import BuyRentService, SellService, MeasurementService, LegalCourtService, NAService, InvestmentService, PropertyAlertService, LandDocumentationService, GovernmentLandService, LandFinanceService
 from .serializers import (
@@ -51,14 +52,35 @@ class SellServiceViewSet(PublicCreateAdminManageMixin, viewsets.ModelViewSet):
         building_part = f" - {sell_service.building_name}" if sell_service.building_name else ""
         title_val = f"{sell_service.property_type} at {sell_service.location}{building_part}"
 
+        # Sellers may optionally pin their property's location and trace its
+        # boundary directly on the form; admins can still adjust both later
+        # during verification.
+        latitude = None
+        longitude = None
+        lat_raw = self.request.data.get("latitude")
+        lng_raw = self.request.data.get("longitude")
+        if lat_raw not in (None, "") and lng_raw not in (None, ""):
+            try:
+                latitude = round(float(lat_raw), 6)
+                longitude = round(float(lng_raw), 6)
+            except (TypeError, ValueError):
+                latitude = None
+                longitude = None
+
+        boundary_points = _parse_boundary_points(self.request.data.get("boundary_points")) or []
+
         property_instance = Property.objects.create(
             title=title_val,
             description=f"Survey No: {sell_service.survey_no}, Village: {sell_service.village_name}, Taluka: {sell_service.taluka}, District: {sell_service.district}, Building: {sell_service.building_name}. Contact: {sell_service.name} ({sell_service.mobile_no})",
             price=sell_service.price,
             location=sell_service.location,
+            survey_no=sell_service.survey_no,
             Property_type=self.SELL_TO_PROPERTY_TYPE.get(sell_service.property_type, "Residential"),
             status=status_val,
             area=sell_service.area,
+            latitude=latitude,
+            longitude=longitude,
+            boundary_points=boundary_points,
             is_approved=False,
         )
 
@@ -139,6 +161,40 @@ class PropertyAlertServiceViewSet(PublicCreateAdminManageMixin, viewsets.ModelVi
 class LandDocumentationServiceViewSet(PublicCreateAdminManageMixin, viewsets.ModelViewSet):
     queryset = LandDocumentationService.objects.all()
     serializer_class = LandDocumentationServiceSerializer
+
+    def perform_update(self, serializer):
+        instance = serializer.save()
+
+        result_document = self.request.FILES.get("result_document")
+        if result_document:
+            instance.result_document = result_document
+            instance.save(update_fields=["result_document"])
+
+    @action(detail=False, methods=["get"], url_path="track")
+    def track(self, request):
+        ref_id = request.query_params.get("id")
+        mobile_no = request.query_params.get("mobile_no")
+
+        if not ref_id or not mobile_no:
+            return Response(
+                {"detail": "Both id and mobile_no are required."},
+                status=400,
+            )
+
+        inquiry = LandDocumentationService.objects.filter(id=ref_id, mobile_no=mobile_no).first()
+        if not inquiry:
+            return Response(
+                {"detail": "No matching submission found. Check your reference ID and mobile number."},
+                status=404,
+            )
+
+        return Response({
+            "id": inquiry.id,
+            "name": inquiry.name,
+            "submitted_at": inquiry.created_at,
+            "has_document": bool(inquiry.result_document),
+            "document_url": request.build_absolute_uri(inquiry.result_document.url) if inquiry.result_document else None,
+        })
 
 class GovernmentLandServiceViewSet(PublicCreateAdminManageMixin, viewsets.ModelViewSet):
     queryset = GovernmentLandService.objects.all()

@@ -13,6 +13,9 @@ class SurveyOrBuildingSerializer(serializers.ModelSerializer):
         return data
 
 class BuyRentServiceSerializer(serializers.ModelSerializer):
+    property_title = serializers.CharField(source="property.title", read_only=True, default=None)
+    property_survey_no = serializers.CharField(source="property.survey_no", read_only=True, default=None)
+
     class Meta:
         model = BuyRentService
         fields = '__all__'
@@ -52,6 +55,10 @@ class PropertyAlertServiceSerializer(SurveyOrBuildingSerializer):
         fields = '__all__'
 
 class LandDocumentationServiceSerializer(SurveyOrBuildingSerializer):
+    # Set only by an admin uploading the fulfilled document, via the view
+    # (not directly writable through normal create/update validation).
+    result_document = serializers.FileField(read_only=True)
+
     class Meta:
         model = LandDocumentationService
         fields = '__all__'

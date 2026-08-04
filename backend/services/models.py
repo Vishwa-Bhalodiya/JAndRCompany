@@ -15,6 +15,13 @@ class BuyRentService(models.Model):
     village_name = models.CharField(max_length=255)
     district_name = models.CharField(max_length=255)
     taluka_name = models.CharField(max_length=255)
+    property = models.ForeignKey(
+        Property,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="buy_rent_inquiries"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -133,6 +140,7 @@ class LandDocumentationService(models.Model):
     village = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
     taluka = models.CharField(max_length=255)
+    result_document = models.FileField(upload_to="land_documentation_results/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

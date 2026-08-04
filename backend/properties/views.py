@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 
@@ -25,6 +27,37 @@ from .serializers import (
     AmenitySerializer,
     PropertyDocumentSerializer,
 )
+
+
+def _parse_boundary_points(raw):
+    """Accepts either a JSON-encoded string (multipart forms) or an
+    already-decoded list (JSON requests). Returns None if absent/invalid
+    so callers can tell "not provided" apart from "clear it"."""
+    if raw is None:
+        return None
+    parsed = raw
+    if isinstance(raw, str):
+        try:
+            parsed = json.loads(raw)
+        except (TypeError, ValueError):
+            return None
+    if not isinstance(parsed, list):
+        return None
+    return parsed
+
+
+def _explicit_bool(raw):
+    """Returns True/False only when raw unambiguously represents one
+    (native bool from JSON, or "true"/"false" string from a form field);
+    None otherwise, so callers can tell "not provided" apart from a value."""
+    if isinstance(raw, bool):
+        return raw
+    if isinstance(raw, str):
+        if raw.lower() in ("true", "1"):
+            return True
+        if raw.lower() in ("false", "0"):
+            return False
+    return None
 
 
 class PropertyList(APIView):
@@ -72,6 +105,11 @@ class PropertyList(APIView):
 
             Property_instance = serializer.save()
 
+            boundary_points = _parse_boundary_points(request.data.get("boundary_points"))
+            if boundary_points is not None:
+                Property_instance.boundary_points = boundary_points
+                Property_instance.save(update_fields=["boundary_points"])
+
             # Save Images
             images = request.FILES.getlist("images")
 
@@ -114,6 +152,18 @@ class PropertyDetail(RetrieveUpdateDestroyAPIView):
         if self.request.method in ("PUT", "PATCH", "DELETE"):
             return [IsAdminRole()]
         return [AllowAny()]
+
+    def perform_update(self, serializer):
+        explicit_is_approved = _explicit_bool(self.request.data.get("is_approved"))
+        if explicit_is_approved is not None:
+            instance = serializer.save(is_approved=explicit_is_approved)
+        else:
+            instance = serializer.save()
+
+        boundary_points = _parse_boundary_points(self.request.data.get("boundary_points"))
+        if boundary_points is not None:
+            instance.boundary_points = boundary_points
+            instance.save(update_fields=["boundary_points"])
 
 
 class AmenityListAPIView(ListAPIView):
