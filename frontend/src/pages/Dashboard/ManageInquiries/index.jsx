@@ -213,7 +213,7 @@ function ManageInquiries() {
                                 <div className="mi-card" key={record.id}>
                                     <div className="mi-card-grid">
                                         {Object.entries(record)
-                                            .filter(([key]) => key !== "id" && key !== "result_document")
+                                            .filter(([key]) => key !== "id" && key !== "result_document" && key !== "document")
                                             .map(([key, value]) => (
                                                 <div className="mi-field" key={key}>
                                                     <span className="mi-field-label">{humanize(key)}</span>
@@ -227,6 +227,19 @@ function ManageInquiries() {
                                                 <span className="mi-field-value">
                                                     {record.result_document ? (
                                                         <a href={record.result_document} target="_blank" rel="noopener noreferrer">
+                                                            View Document
+                                                        </a>
+                                                    ) : "—"}
+                                                </span>
+                                            </div>
+                                        )}
+
+                                        {Object.prototype.hasOwnProperty.call(record, "document") && (
+                                            <div className="mi-field">
+                                                <span className="mi-field-label">Attached Document</span>
+                                                <span className="mi-field-value">
+                                                    {record.document ? (
+                                                        <a href={record.document} target="_blank" rel="noopener noreferrer">
                                                             View Document
                                                         </a>
                                                     ) : "—"}

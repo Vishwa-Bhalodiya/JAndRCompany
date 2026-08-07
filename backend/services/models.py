@@ -70,6 +70,7 @@ class MeasurementService(models.Model):
     village = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
     taluka = models.CharField(max_length=255)
+    document = models.FileField(upload_to="measurement_documents/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -84,6 +85,7 @@ class LegalCourtService(models.Model):
     taluka = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
     problem_description = models.TextField()
+    document = models.FileField(upload_to="legal_court_documents/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -97,6 +99,7 @@ class NAService(models.Model):
     taluka = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
     na_papers = models.CharField(max_length=255) # Assuming text/yes-no for now based on plan
+    document = models.FileField(upload_to="na_service_documents/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -127,6 +130,7 @@ class PropertyAlertService(models.Model):
     location = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
     taluka = models.CharField(max_length=255)
+    document = models.FileField(upload_to="property_alert_documents/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -154,6 +158,7 @@ class GovernmentLandService(models.Model):
     taluka = models.CharField(max_length=255)
     district = models.CharField(max_length=255)
     matter_details = models.CharField(max_length=255)
+    document = models.FileField(upload_to="government_land_documents/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -170,6 +175,7 @@ class LandFinanceService(models.Model):
     land_area = models.IntegerField(default=0)
     loan_amount_required = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     purpose = models.CharField(max_length=255, blank=True, default="")
+    document = models.FileField(upload_to="land_finance_documents/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

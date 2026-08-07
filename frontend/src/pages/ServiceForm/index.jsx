@@ -58,7 +58,8 @@ const SERVICE_CONFIG = {
             { name: "building_name", label: "Building Name", type: "text", required: false },
             { name: "village", label: "Village", type: "text", required: true },
             { name: "district", label: "District", type: "text", required: true },
-            { name: "taluka", label: "Taluka", type: "text", required: true, full: true },
+            { name: "taluka", label: "Taluka", type: "text", required: true },
+            { name: "document", label: "Documents", type: "file", required: false, accept: ".pdf,.doc,.docx,image/*" },
         ]
     },
     "legal-court": {
@@ -71,8 +72,9 @@ const SERVICE_CONFIG = {
             { name: "building_name", label: "Building Name", type: "text", required: false },
             { name: "village", label: "Village", type: "text", required: true },
             { name: "taluka", label: "Taluka", type: "text", required: true },
-            { name: "district", label: "District", type: "text", required: true, full: true },
+            { name: "district", label: "District", type: "text", required: true },
             { name: "problem_description", label: "Problem Description", type: "textarea", required: true },
+            { name: "document", label: "Documents", type: "file", required: false, accept: ".pdf,.doc,.docx,image/*" },
         ]
     },
     "na-service": {
@@ -86,6 +88,7 @@ const SERVICE_CONFIG = {
             { name: "taluka", label: "Taluka", type: "text", required: true },
             { name: "district", label: "District", type: "text", required: true },
             { name: "na_papers", label: "N.A. Papers Details", type: "text", required: true, full: true },
+            { name: "document", label: "Documents", type: "file", required: false, accept: ".pdf,.doc,.docx,image/*" },
         ]
     },
     "land-documentation": {
@@ -112,6 +115,7 @@ const SERVICE_CONFIG = {
             { name: "taluka", label: "Taluka", type: "text", required: true },
             { name: "district", label: "District", type: "text", required: true },
             { name: "matter_details", label: "Details of Government Land Matter", type: "text", required: true, full: true },
+            { name: "document", label: "Documents", type: "file", required: false, accept: ".pdf,.doc,.docx,image/*" },
         ]
     },
     "investment": {
@@ -136,6 +140,7 @@ const SERVICE_CONFIG = {
             { name: "building_name", label: "Building Name", type: "text", required: false },
             { name: "district", label: "District", type: "text", required: true },
             { name: "taluka", label: "Taluka", type: "text", required: true },
+            { name: "document", label: "Documents", type: "file", required: false, accept: ".pdf,.doc,.docx,image/*" },
         ]
     },
     "land-finance": {
@@ -152,6 +157,7 @@ const SERVICE_CONFIG = {
             { name: "land_area", label: "Land Area (Sq.ft)", type: "number", required: true },
             { name: "loan_amount_required", label: "Loan Amount Required (₹)", type: "number", required: true },
             { name: "purpose", label: "Purpose of Loan", type: "text", required: true, full: true },
+            { name: "document", label: "Documents", type: "file", required: false, accept: ".pdf,.doc,.docx,image/*" },
         ]
     }
 };

@@ -8,7 +8,7 @@ name:"Jatin Panchal",
 
 position:"Founder & CEO & Government Consultant & Legal Advisor & Account Related Problem & Land Devlopment Consultant & PMC Services",
 
-image:"/JatinPanchal.png"
+image:""
 
 },
 
@@ -20,7 +20,7 @@ name:"Kiran Patel(B. D. Patel)",
 
 position:"Legal Advisor",
 
-image:"/KiranPatel.jpeg"
+image:""
 
 },
 
@@ -30,7 +30,7 @@ name:"Rahul Baraiya",
 
 position:"Buyer-Seller Consultant",
 
-image:"/RahulBariya.jpg"
+image:""
 
 },
 
@@ -40,7 +40,7 @@ name:"Shreya Patel",
 
 position:"Account Related Problem",
 
-image:"/ShreyaPatel.jpeg"
+image:""
 
 },
 
@@ -50,7 +50,7 @@ name:"Vishwa Bhalodiya",
 
 position:" Service Related Problem",
 
-image:"/VishwaBhalodiya.jpeg"
+image:""
 
 },
 
@@ -60,7 +60,7 @@ name:"Rajkumarbhai Sharma",
 
 position:"Land Devlopment Consultant & PMC Services",
 
-image:"https://i.pravatar.cc/400?img=11"
+image:""
 
 },
 
@@ -70,7 +70,7 @@ name:"Jitendra Nayak",
 
 position:"Investment Advisor & Property Consultant",
 
-image:"https://i.pravatar.cc/400?img=11"
+image:""
 
 }
 
@@ -111,10 +111,14 @@ key={index}
 
 <div className="team-card">
 
+{person.image ? (
 <img
 src={person.image}
 alt={person.name}
 />
+) : (
+<div className="team-card-photo-placeholder" />
+)}
 
 <h4>
 
